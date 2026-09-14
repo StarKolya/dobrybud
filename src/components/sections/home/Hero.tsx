@@ -12,8 +12,8 @@ export function Hero({ onCtaClick }: { onCtaClick: () => void }) {
 
       <div className="absolute inset-0">
         <RevealImage
-          afterSrc="/images/hero/hero-after.jpg"
-          beforeSrc="/images/hero/hero-before.jpg"
+          afterSrc="/images/hero/hero-after.png"
+          beforeSrc="/images/hero/hero-before.png"
           alt=""
           priority
         />

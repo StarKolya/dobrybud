@@ -18,35 +18,67 @@ interface RevealImageProps {
 export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140 }: RevealImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [pointer, setPointer] = useState<{ x: number; y: number } | null>(null);
+  const [visible, setVisible] = useState(false);
 
-  const handleMove = (event: React.MouseEvent<HTMLDivElement>) => {
+  const updatePointer = (clientX: number, clientY: number) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
-    setPointer({ x: event.clientX - rect.left, y: event.clientY - rect.top });
+    setPointer({ x: clientX - rect.left, y: clientY - rect.top });
   };
+
+  const handleMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    updatePointer(event.clientX, event.clientY);
+    setVisible(true);
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    updatePointer(touch.clientX, touch.clientY);
+    setVisible(true);
+  };
+
+  const maskImage = pointer
+    ? `radial-gradient(circle ${radiusPx}px at ${pointer.x}px ${pointer.y}px, black 55%, transparent 100%)`
+    : "none";
 
   return (
     <div
       ref={containerRef}
       onMouseMove={handleMove}
-      onMouseLeave={() => setPointer(null)}
+      onMouseLeave={() => setVisible(false)}
+      onTouchStart={handleTouchMove}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={() => setVisible(false)}
       className="relative h-full w-full overflow-hidden"
     >
-      <Image src={afterSrc} alt={alt} fill priority={priority} className="object-cover" />
+      <Image
+        src={afterSrc}
+        alt={alt}
+        fill
+        priority={priority}
+        sizes="100vw"
+        className="scale-x-[-1] object-cover"
+      />
+      <div className="absolute inset-0 bg-[#00000059]" />
       <div
         className="absolute inset-0"
         style={{
-          maskImage: pointer
-            ? `radial-gradient(circle ${radiusPx}px at ${pointer.x}px ${pointer.y}px, black 55%, transparent 100%)`
-            : "none",
-          WebkitMaskImage: pointer
-            ? `radial-gradient(circle ${radiusPx}px at ${pointer.x}px ${pointer.y}px, black 55%, transparent 100%)`
-            : "none",
-          opacity: pointer ? 1 : 0,
+          maskImage,
+          WebkitMaskImage: maskImage,
+          opacity: visible ? 1 : 0,
           transition: "opacity 150ms ease",
         }}
       >
-        <Image src={beforeSrc} alt="" fill priority={priority} className="object-cover" />
+        <Image
+          src={beforeSrc}
+          alt=""
+          fill
+          priority={priority}
+          sizes="100vw"
+          className="scale-x-[-1] object-cover"
+        />
+        <div className="absolute inset-0 bg-[#00000059]" />
       </div>
     </div>
   );
