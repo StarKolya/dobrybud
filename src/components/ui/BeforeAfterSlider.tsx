@@ -1,0 +1,54 @@
+"use client";
+
+import Image from "next/image";
+import { useRef, useState } from "react";
+
+interface BeforeAfterSliderProps {
+  beforeSrc: string;
+  afterSrc: string;
+  alt: string;
+}
+
+/** Draggable "before/after" comparison, used inside review cards. */
+export function BeforeAfterSlider({ beforeSrc, afterSrc, alt }: BeforeAfterSliderProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState(50); // percent
+
+  const updateFromClientX = (clientX: number) => {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const percent = ((clientX - rect.left) / rect.width) * 100;
+    setPosition(Math.min(100, Math.max(0, percent)));
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.setPointerCapture(event.pointerId);
+    updateFromClientX(event.clientX);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.buttons !== 1) return;
+    updateFromClientX(event.clientX);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      className="relative aspect-[4/3] w-full touch-none select-none overflow-hidden rounded-2xl"
+    >
+      <Image src={afterSrc} alt={alt} fill className="object-cover" />
+      <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${position}%` }}>
+        <Image src={beforeSrc} alt="" fill className="object-cover" />
+      </div>
+      <div
+        className="absolute inset-y-0 flex w-8 -translate-x-1/2 items-center justify-center"
+        style={{ left: `${position}%` }}
+      >
+        <span className="h-full w-px bg-white" />
+        <span className="absolute h-8 w-8 rounded-full bg-white shadow" />
+      </div>
+    </div>
+  );
+}

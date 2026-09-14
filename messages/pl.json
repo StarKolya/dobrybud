@@ -1,0 +1,96 @@
+{
+  "nav": {
+    "home": "Strona główna",
+    "prices": "Ceny",
+    "projects": "Projekty",
+    "about": "O nas",
+    "cta": "Zostaw zgłoszenie"
+  },
+  "footer": {
+    "rights": "Wszelkie prawa zastrzeżone"
+  },
+  "home": {
+    "hero": {
+      "titleMain": "Remont mieszkań",
+      "titleHighlight": "pod klucz",
+      "cta": "Otrzymaj wycenę"
+    },
+    "about": {
+      "title": "O nas",
+      "stats": {
+        "years": "lata doświadczenia",
+        "hours": "godzin pracy",
+        "projects": "zrealizowanych projektów",
+        "team": "specjalistów w zespole"
+      }
+    },
+    "projects": {
+      "title": "Zrealizowane projekty",
+      "cta": "Otrzymaj wycenę",
+      "budget": "Budżet",
+      "duration": "Czas trwania",
+      "area": "Powierzchnia",
+      "result": "Efekt"
+    },
+    "partners": {
+      "title": "Partnerzy"
+    },
+    "reviews": {
+      "title": "Opinie"
+    },
+    "calculator": {
+      "title": "Kalkulator",
+      "step1": "1. Wybierz taryfę",
+      "step2": "2. Powierzchnia mieszkania",
+      "step3": "3. Dzielnica (opcjonalnie)",
+      "packages": {
+        "basic": "BASIC",
+        "design": "DESIGN",
+        "premium": "PREMIUM"
+      },
+      "submit": "Oblicz koszt",
+      "resultTitle": "Szacunkowy koszt remontu wg wybranych parametrów",
+      "leadCta": "Zostaw zgłoszenie"
+    }
+  },
+  "prices": {
+    "title": "Ceny / Pakiety remontowe",
+    "viewAll": "Zobacz wszystkie projekty"
+  },
+  "about": {
+    "title": "O nas",
+    "stages": {
+      "title": "Jak pracujemy",
+      "step1": { "title": "Konsultacja", "description": "Omawiamy Twoje oczekiwania, budżet i terminy remontu." },
+      "step2": { "title": "Wizja lokalna lub analiza projektu", "description": "Oceniamy obiekt lub analizujemy gotowy projekt wnętrz." },
+      "step3": { "title": "Kosztorys", "description": "Obliczamy koszt prac i materiałów bez ukrytych opłat." },
+      "step4": { "title": "Umowa", "description": "Ustalamy warunki, koszt i odpowiedzialność stron." }
+    }
+  },
+  "projects": {
+    "title": "Projekty"
+  },
+  "thankYou": {
+    "title": "Dziękujemy za zgłoszenie!",
+    "description": "Nasz menedżer wkrótce się z Tobą skontaktuje.",
+    "backHome": "Strona główna"
+  },
+  "leadForm": {
+    "title": "Zostaw zgłoszenie",
+    "description": "Nasz menedżer skontaktuje się z Tobą, aby doprecyzować szczegóły",
+    "name": "Imię",
+    "phone": "Telefon",
+    "area": "Powierzchnia",
+    "submit": "Wyślij zgłoszenie"
+  },
+  "leadFormUpload": {
+    "uploadLabel": "Dodaj plik",
+    "fileTooLarge": "Plik jest za duży",
+    "remove": "usuń"
+  },
+  "exitPopup": {
+    "badge": "Już wychodzisz?",
+    "title": "Oferujemy bezpłatne usługi concierge",
+    "cta": "Wyślij zgłoszenie"
+  }
+}
