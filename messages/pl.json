@@ -72,6 +72,43 @@
         "privacyNote": "Gwarantujemy poufność Twoich danych"
       }
     },
+    "packages": {
+      "title": "Pakiety remontu",
+      "priceLabel": "Cena",
+      "priceFrom": "Od",
+      "materialsHelp": "Pomoc w zakupie materiałów",
+      "cta": "Zostaw zgłoszenie",
+      "items": {
+        "basic": {
+          "subtitle": "Mieszkania inwestycyjne, remont podstawowy",
+          "helpLabel": "Konsultacja"
+        },
+        "design": {
+          "subtitle": "Rozwiązania projektowe",
+          "helpLabel": "Konsultacja"
+        },
+        "premium": {
+          "subtitle": "Wnętrza premium",
+          "helpLabel": "Dostępność"
+        }
+      },
+      "features": [
+        "Gwarancja 1 rok",
+        "Foto/wideo raporty",
+        "Osobisty menedżer",
+        "Kontrola jakości",
+        "Koordynacja dostaw",
+        "Kamera 24/7",
+        "Nadzór autorski",
+        "Profesjonalne sprzątanie",
+        "Realizacja projektu wnętrz",
+        "Więcej opcji wykończenia",
+        "Złożone rozwiązania architektoniczne",
+        "Dowolne materiały",
+        "Indywidualne rozwiązania techniczne",
+        "Maksymalna swoboda projektowa"
+      ]
+    },
     "faq": {
       "title": "FAQ",
       "items": [
@@ -107,8 +144,21 @@
     }
   },
   "prices": {
-    "title": "Ceny / Pakiety remontowe",
-    "viewAll": "Zobacz wszystkie projekty"
+    "title": "Do każdego zadania",
+    "titleHighlight": "— swoje rozwiązanie",
+    "detailsCta": "Szczegóły",
+    "viewAll": "Zobacz wszystkie projekty",
+    "packages": {
+      "basic": {
+        "description": "Praktyczny remont pod klucz dla tych, którzy chcą dobrego efektu bez dopłat za zbędny komfort."
+      },
+      "design": {
+        "description": "Remont z projektem dla tych, którzy chcą indywidualnego projektu wnętrz dopracowanego w każdym detalu."
+      },
+      "premium": {
+        "description": "Indywidualny remont najwyższego poziomu dla tych, którzy nie ograniczają się w doborze materiałów i rozwiązań."
+      }
+    }
   },
   "about": {
     "title": "O nas",
