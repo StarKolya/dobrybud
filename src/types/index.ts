@@ -25,6 +25,7 @@ export interface Testimonial {
   name: string;
   subtitle: string;
   quote: string;
+  avatarImage?: string;
   beforeImage: string;
   afterImage: string;
 }

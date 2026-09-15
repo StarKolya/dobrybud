@@ -7,6 +7,7 @@ import { ProjectsShowcase } from "./ProjectsShowcase";
 import { Partners } from "./Partners";
 import { Testimonials } from "./Testimonials";
 import { Calculator } from "./Calculator";
+import { FAQ } from "./FAQ";
 import { Footer } from "@/components/layout/Footer";
 import { LeadFormPopup } from "@/components/popups/LeadFormPopup";
 import { ExitIntentPopup } from "@/components/popups/ExitIntentPopup";
@@ -22,6 +23,7 @@ export function HomeView() {
       <Partners />
       <Testimonials />
       <Calculator onGetQuote={() => setLeadFormOpen(true)} />
+      <FAQ />
       <Footer />
 
       <LeadFormPopup open={leadFormOpen} onClose={() => setLeadFormOpen(false)} />

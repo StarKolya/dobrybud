@@ -16,3 +16,7 @@ export const ROUTES = {
 } as const;
 
 export const MAX_UPLOAD_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB
+
+export const CONTACT_PHONE_DISPLAY = "+48 999 999 999";
+export const CONTACT_PHONE_HREF = "+48999999999";
+export const CONTACT_EMAIL = "dobrybud@gmail.com";

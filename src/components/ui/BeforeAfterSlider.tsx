@@ -38,9 +38,9 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt }: BeforeAfterSlide
       onPointerMove={handlePointerMove}
       className="relative aspect-[4/3] w-full touch-none select-none overflow-hidden rounded-2xl"
     >
-      <Image src={afterSrc} alt={alt} fill className="object-cover" />
-      <div className="absolute inset-y-0 left-0 overflow-hidden" style={{ width: `${position}%` }}>
-        <Image src={beforeSrc} alt="" fill className="object-cover" />
+      <Image src={beforeSrc} alt={alt} fill className="object-cover" />
+      <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
+        <Image src={afterSrc} alt="" fill className="object-cover" />
       </div>
       <div
         className="absolute inset-y-0 flex w-8 -translate-x-1/2 items-center justify-center"

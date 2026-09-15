@@ -7,7 +7,12 @@
     "cta": "Zostaw zgłoszenie"
   },
   "footer": {
-    "rights": "Wszelkie prawa zastrzeżone"
+    "rights": "Wszelkie prawa zastrzeżone",
+    "menuTitle": "Menu",
+    "contactsTitle": "Kontakty",
+    "tagline": "Tworzymy wnętrza, które dostosowują się do Twojego stylu życia.",
+    "cta": "Otrzymać wycenę",
+    "privacyPolicy": "Polityka prywatności"
   },
   "home": {
     "hero": {
@@ -43,6 +48,7 @@
       "title": "Opinie"
     },
     "calculator": {
+      "badge": "Kalkulacja",
       "title": "Kalkulator",
       "step1": "1. Wybierz taryfę",
       "step2": "2. Powierzchnia mieszkania",
@@ -52,9 +58,52 @@
         "design": "DESIGN",
         "premium": "PREMIUM"
       },
+      "packageNames": {
+        "basic": "Remont standardowy",
+        "design": "Remont z projektem",
+        "premium": "Remont premium"
+      },
+      "districtLabel": "Dzielnica",
       "submit": "Oblicz koszt",
       "resultTitle": "Szacunkowy koszt remontu wg wybranych parametrów",
-      "leadCta": "Zostaw zgłoszenie"
+      "leadCta": "Zostaw zgłoszenie",
+      "resultPopup": {
+        "contactTitle": "Zostaw zgłoszenie — nasz menedżer skontaktuje się z Tobą, aby doprecyzować szczegóły",
+        "privacyNote": "Gwarantujemy poufność Twoich danych"
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "items": [
+        {
+          "question": "Ile kosztuje remont mieszkania „pod klucz”?",
+          "answer": "Koszt remontu „pod klucz” zależy od metrażu, zakresu prac i wybranego pakietu — zaczynamy od 890 zł/m². Dokładną wycenę otrzymasz po bezpłatnej konsultacji."
+        },
+        {
+          "question": "Jak długo trwa remont?",
+          "answer": "Średnio remont mieszkania trwa od 4 do 12 tygodni, w zależności od powierzchni i zakresu prac. Terminy są określone w umowie."
+        },
+        {
+          "question": "Czy pomagacie w zakupie materiałów?",
+          "answer": "Tak, pomagamy dobrać i zamówić materiały wykończeniowe w cenach hurtowych u naszych partnerów, dopasowane do budżetu i stylu wnętrza."
+        },
+        {
+          "question": "Jak nadzorować remont, skoro nie ma mnie w Warszawie?",
+          "answer": "Cały proces możesz nadzorować zdalnie — przesyłamy regularne raporty ze zdjęciami i wideo, a menedżer projektu jest w stałym kontakcie."
+        },
+        {
+          "question": "Czy pracujecie na podstawie umowy?",
+          "answer": "Tak, każdy remont realizujemy na podstawie pisemnej umowy, która określa zakres prac, terminy, koszt i odpowiedzialność stron."
+        },
+        {
+          "question": "Jaką gwarancję oferujecie?",
+          "answer": "Udzielamy gwarancji na wykonane prace przez rok od odbioru mieszkania."
+        },
+        {
+          "question": "Czy można zamówić remont tylko jednego pokoju?",
+          "answer": "Tak, realizujemy również remonty pojedynczych pomieszczeń, np. łazienki czy kuchni."
+        }
+      ]
     }
   },
   "prices": {
