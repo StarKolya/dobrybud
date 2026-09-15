@@ -38,9 +38,11 @@ const STATS = [
 
 function FlagIcon({ className = "" }: { className?: string }) {
   return (
-    <svg width="14" height="18" viewBox="0 0 14 18" fill="none" className={className} aria-hidden>
-      <path d="M1.5 1v16" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-      <path d="M1.5 1.5h10.2l-3 3.6 3 3.6H1.5V1.5Z" fill="currentColor" />
+    <svg viewBox="0 0 22 21" fill="none" className={className} aria-hidden>
+      <path
+        d="M20.5858 3.41421C21.8457 2.15428 20.9534 0 19.1716 0H2C0.89543 0 0 0.895431 0 2V18.4424C0 20.1843 2.07217 21.0936 3.35411 19.9142L12.5 11.5L20.5858 3.41421Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }
@@ -61,7 +63,7 @@ function Stat({
 
   return (
     <div ref={ref as React.RefObject<HTMLDivElement>} className={`flex flex-col gap-2 ${className}`}>
-      <FlagIcon className="text-brand-red" />
+      <FlagIcon className="h-5 w-5.5 text-brand-red" />
       <span className="font-heading text-4xl font-semibold text-brand-dark desktop:text-5xl">
         {value}
         {suffix}
@@ -76,8 +78,8 @@ export function AboutStats() {
 
   return (
     <section className="px-6 py-16 desktop:px-16 desktop:py-24">
+      <Badge className="order-1 col-span-2 desktop:col-span-3">{t("title")}</Badge>
       <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 desktop:grid-cols-3 desktop:gap-x-14 desktop:gap-y-16">
-        <Badge className="order-1 col-span-2 desktop:col-span-3">{t("title")}</Badge>
 
         {STATS.map((stat) => (
           <Stat
@@ -89,13 +91,12 @@ export function AboutStats() {
           />
         ))}
 
-        <div className="relative order-4 col-span-2 aspect-4/3 desktop:order-0 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2">
+        <div className="relative order-4 col-span-2 aspect-4/3 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2">
           <Image
-            src="/images/about/loft-render.png"
+            src="/images/about/3d-house.png"
             alt=""
             fill
             className="object-contain"
-            sizes="(min-width: 1280px) 32rem, 100vw"
           />
         </div>
       </div>

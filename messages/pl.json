@@ -32,7 +32,9 @@
       "budget": "Budżet",
       "duration": "Czas trwania",
       "area": "Powierzchnia",
-      "result": "Efekt"
+      "result": "Efekt",
+      "ctaHeadingMain": "Wycenimy remont Twojego mieszkania",
+      "ctaHeadingHighlight": "w 1 dzień"
     },
     "partners": {
       "title": "Partnerzy"

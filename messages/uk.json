@@ -32,7 +32,9 @@
       "budget": "Бюджет",
       "duration": "Термін",
       "area": "Площа",
-      "result": "Результат"
+      "result": "Результат",
+      "ctaHeadingMain": "Розрахуємо вартість ремонту вашої квартири",
+      "ctaHeadingHighlight": "за 1 день"
     },
     "partners": {
       "title": "Партнери"

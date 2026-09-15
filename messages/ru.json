@@ -32,7 +32,9 @@
       "budget": "Бюджет",
       "duration": "Срок",
       "area": "Площадь",
-      "result": "Результат"
+      "result": "Результат",
+      "ctaHeadingMain": "Рассчитаем стоимость ремонта вашей квартиры",
+      "ctaHeadingHighlight": "за 1 день"
     },
     "partners": {
       "title": "Партнёры"
