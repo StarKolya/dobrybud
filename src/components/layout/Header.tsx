@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ROUTES } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import Image from "next/image";
 
 interface HeaderProps {
@@ -24,7 +25,7 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
 
   return (
     <header
-      className={`${positionClass} z-40 flex items-center justify-between px-17.5 py-17.5`}
+      className={`${positionClass} z-40 flex items-center justify-between px-5 py-5 desktop:px-17.5 desktop:py-8.75`}
     >
       <div className="flex items-center gap-24">
         <Link href={ROUTES.home} className={`font-heading text-[20px] font-semibold ${textClass}`}>
@@ -37,7 +38,7 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 desktop:flex">
+        <nav className="hidden items-center gap-8 tablet:flex">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -52,31 +53,46 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
       
       <div className="flex items-center gap-10">
 
-        <span className="text-[22px] hidden desktop:inline-flex text-white">+38 066 666 66 66</span>
+        <Link href="tel:+380666666666" className="text-[22px] hidden desktop:inline-flex text-white">
+          +38 066 666 66 66
+        </Link>
 
-        <div className="hidden items-center gap-2.25 desktop:flex">
-          <Image
-            src="/icons/socials/white/telegram.svg"
-            alt="Dobrybud logo"
-            width={120}
-            height={24}
-            className="h-auto w-auto"
-          />
-          <Image
-            src="/icons/socials/white/viber.svg"
-            alt="Dobrybud logo"
-            width={120}
-            height={24}
-            className="h-auto w-auto"
-          />
+        <div className="items-center gap-2.25 flex">
+          <Link href="https://t.me/dobrybud" className="text-[22px] text-white">
+            <Image
+              src="/icons/socials/white/telegram.svg"
+              alt="tg"
+              width={28}
+              height={28}
+              className="h-auto w-auto"
+            />
+          </Link>
+          <Link href="viber://chat?number=%2B380666666666" className="text-[22px] text-white">
+            <Image
+              src="/icons/socials/white/viber.svg"
+              alt="viber"
+              width={28}
+              height={28}
+              className="h-auto w-auto"
+            />
+          </Link>
+          <Link href="tel:+380666666666" className="text-[22px] text-white desktop:hidden">
+            <Image
+                src="/icons/phone.svg"
+                alt="phone"
+                width={28}
+                height={28}
+                className="h-auto w-auto"
+              />
+          </Link>
         </div>
 
-        <span className="text-[22px] text-white">UA</span>
+        <LanguageSwitcher className={textClass} />
 
         <button
           type="button"
           aria-label="Menu"
-          className={`flex h-10 w-10 items-center justify-center desktop:hidden ${textClass}`}
+          className={`flex h-10 w-10 items-center justify-center tablet:hidden ${textClass}`}
         >
           <span className="sr-only">Menu</span>
         </button>

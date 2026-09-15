@@ -11,8 +11,10 @@
   },
   "home": {
     "hero": {
-      "titleMain": "Ремонт квартир",
-      "titleHighlight": "під ключ",
+      "titleMain1": "Ремонт квартир",
+      "titleMain2": "під ключ у варшаві",
+      "titleHighlight": "З гарантією рік",
+      "priceFrom": "від 890 zł/m2",
       "cta": "Отримати розрахунок вартості"
     },
     "about": {

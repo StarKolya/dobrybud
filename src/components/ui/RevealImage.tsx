@@ -58,9 +58,8 @@ export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140
         fill
         priority={priority}
         sizes="100vw"
-        className="scale-x-[-1] object-cover"
+        className="object-cover"
       />
-      <div className="absolute inset-0 bg-[#00000059]" />
       <div
         className="absolute inset-0"
         style={{
@@ -76,7 +75,7 @@ export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140
           fill
           priority={priority}
           sizes="100vw"
-          className="scale-x-[-1] object-cover"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-[#00000059]" />
       </div>

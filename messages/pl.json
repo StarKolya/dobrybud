@@ -11,8 +11,10 @@
   },
   "home": {
     "hero": {
-      "titleMain": "Remont mieszkań",
-      "titleHighlight": "pod klucz",
+      "titleMain1": "Remont mieszkań",
+      "titleMain2": "pod klucz w Warszawie",
+      "titleHighlight": "z gwarancją roku",
+      "priceFrom": "od 890 zł/m2",
       "cta": "Otrzymaj wycenę"
     },
     "about": {

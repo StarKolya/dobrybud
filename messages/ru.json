@@ -11,8 +11,10 @@
   },
   "home": {
     "hero": {
-      "titleMain": "Ремонт квартир",
-      "titleHighlight": "под ключ",
+      "titleMain1": "Ремонт квартир",
+      "titleMain2": "под ключ в Варшаве",
+      "titleHighlight": "C гарантией год",
+      "priceFrom": "от 890 zł/m2",
       "cta": "Получить расчёт стоимости"
     },
     "about": {
