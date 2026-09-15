@@ -6,35 +6,14 @@ import { useCountUp } from "@/hooks/useCountUp";
 import { Badge } from "@/components/ui/Badge";
 
 const STATS = [
-  {
-    key: "years",
-    target: 4,
-    suffix: "+",
-    order: "order-3 desktop:order-0",
-    position: "desktop:col-start-1 desktop:row-start-1",
-  },
-  {
-    key: "projects",
-    target: 144,
-    suffix: "",
-    order: "order-2 desktop:order-0",
-    position: "desktop:col-start-3 desktop:row-start-1",
-  },
-  {
-    key: "hours",
-    target: 5760,
-    suffix: "+ M²",
-    order: "order-6 desktop:order-0",
-    position: "desktop:col-start-1 desktop:row-start-2",
-  },
-  {
-    key: "team",
-    target: 100,
-    suffix: "%",
-    order: "order-5 desktop:order-0",
-    position: "desktop:col-start-3 desktop:row-start-2",
-  },
+  { key: "years", target: 4, suffix: "+", order: "order-3", column: "left" },
+  { key: "projects", target: 144, suffix: "", order: "order-2", column: "right" },
+  { key: "hours", target: 5760, suffix: "+ M²", order: "order-6", column: "left" },
+  { key: "team", target: 100, suffix: "%", order: "order-5", column: "right" },
 ] as const;
+
+const LEFT_STATS = STATS.filter((stat) => stat.column === "left");
+const RIGHT_STATS = STATS.filter((stat) => stat.column === "right");
 
 function FlagIcon({ className = "" }: { className?: string }) {
   return (
@@ -68,7 +47,9 @@ function Stat({
         {value}
         {suffix}
       </span>
-      <span className="max-w-44 text-sm text-brand-dark/60">{t(labelKey)}</span>
+      <span className="max-w-44 text-[22px] leading-[100%] font-normal tracking-[-0.01em]">
+        {t(labelKey)}
+      </span>
     </div>
   );
 }
@@ -79,7 +60,7 @@ export function AboutStats() {
   return (
     <section className="px-6 py-16 desktop:px-16 desktop:py-24">
       <Badge className="order-1 col-span-2 desktop:col-span-3">{t("title")}</Badge>
-      <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 desktop:grid-cols-3 desktop:gap-x-14 desktop:gap-y-16">
+      <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 desktop:grid-cols-3 desktop:gap-x-14 desktop:gap-y-16 mt-9 h-120">
 
         {STATS.map((stat) => (
           <Stat
@@ -87,16 +68,28 @@ export function AboutStats() {
             target={stat.target}
             suffix={stat.suffix}
             labelKey={stat.key}
-            className={`${stat.order} ${stat.position}`}
+            className={`${stat.order} desktop:hidden`}
           />
         ))}
 
-        <div className="relative order-4 col-span-2 aspect-4/3 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2">
+        <div className="hidden desktop:col-start-1 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
+          {LEFT_STATS.map((stat) => (
+            <Stat key={stat.key} target={stat.target} suffix={stat.suffix} labelKey={stat.key} />
+          ))}
+        </div>
+
+        <div className="hidden desktop:col-start-3 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
+          {RIGHT_STATS.map((stat) => (
+            <Stat key={stat.key} target={stat.target} suffix={stat.suffix} labelKey={stat.key} />
+          ))}
+        </div>
+
+        <div className="relative order-4 col-span-2 aspect-586/522 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2 desktop:self-start desktop:scale-[1.2] desktop:z-10">
           <Image
             src="/images/about/3d-house.png"
             alt=""
             fill
-            className="object-contain"
+            className="object-contain desktop:rotate-[5deg]"
           />
         </div>
       </div>

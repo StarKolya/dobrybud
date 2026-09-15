@@ -1,6 +1,13 @@
+import { Badge } from "@/components/ui/Badge";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 
-const PARTNERS = ["Knauf", "Kubala", "Kerakoll", "Atlas"];
+const PARTNERS = [
+  { name: "Knauf", src: "/images/partners/knauf.png" },
+  { name: "Kubala", src: "/images/partners/kubala.png" },
+  { name: "Kerakoll", src: "/images/partners/kerakoll.png" },
+  { name: "Atlas", src: "/images/partners/atlas.png" },
+];
 
 export function Partners() {
   const t = useTranslations("home.partners");
@@ -9,17 +16,20 @@ export function Partners() {
   return (
     <section className="overflow-hidden bg-brand-gray py-8">
       <div className="mb-6 px-6 desktop:px-16">
-        <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-medium">
-          <span className="h-1.5 w-1.5 rounded-full bg-brand-red" />
-          {t("title")}
-        </span>
+        <Badge>{t("title")}</Badge>
       </div>
 
-      <div className="flex w-max animate-marquee gap-16 whitespace-nowrap px-8">
+      <div className="flex w-max animate-marquee items-center gap-16 whitespace-nowrap px-8">
         {loop.map((partner, index) => (
-          <span key={`${partner}-${index}`} className="text-2xl font-semibold text-brand-dark/70">
-            {partner}
-          </span>
+          <div key={`${partner.name}-${index}`} className="relative h-10 w-28 shrink-0 desktop:h-12 desktop:w-36">
+            <Image
+              src={partner.src}
+              alt={partner.name}
+              fill
+              className="object-contain"
+              sizes="150px"
+            />
+          </div>
         ))}
       </div>
     </section>
