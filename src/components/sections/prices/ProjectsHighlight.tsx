@@ -1,46 +1,53 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ROUTES } from "@/lib/constants";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { ProjectCard } from "@/components/sections/home/ProjectCard";
 import type { ProjectCard as ProjectCardData } from "@/types";
+
+const RESULT_CAPTION = "до вартості нерухомості після ремонту";
 
 const PROJECTS: (ProjectCardData & { images: string[] })[] = [
   {
     id: "1",
     images: ["/images/projects/project-1-1.jpg"],
     image: "/images/projects/project-1-1.jpg",
-    budget: "45 000 zł",
-    duration: "6 тижнів",
-    areaSqm: 52,
-    result: "Стандартний ремонт",
+    budget: "39 000 zł",
+    duration: "2 місяці",
+    areaSqm: 73,
+    resultValue: "+50%",
+    resultCaption: RESULT_CAPTION,
   },
   {
     id: "2",
     images: ["/images/projects/project-2-1.jpg"],
     image: "/images/projects/project-2-1.jpg",
-    budget: "68 000 zł",
-    duration: "8 тижнів",
-    areaSqm: 74,
-    result: "Дизайн-ремонт",
+    budget: "53 000 zł",
+    duration: "3 місяці",
+    areaSqm: 52,
+    resultValue: "+39%",
+    resultCaption: RESULT_CAPTION,
   },
   {
     id: "3",
     images: ["/images/projects/project-3-1.jpg"],
     image: "/images/projects/project-3-1.jpg",
-    budget: "92 000 zł",
-    duration: "10 тижнів",
-    areaSqm: 96,
-    result: "Преміум-ремонт",
+    budget: "39 000 zł",
+    duration: "2 місяці",
+    areaSqm: 73,
+    resultValue: "+50%",
+    resultCaption: RESULT_CAPTION,
   },
   {
     id: "4",
     images: ["/images/projects/project-4-1.jpg"],
     image: "/images/projects/project-4-1.jpg",
-    budget: "38 000 zł",
-    duration: "5 тижнів",
-    areaSqm: 41,
-    result: "Стандартний ремонт",
+    budget: "53 000 zł",
+    duration: "3 місяці",
+    areaSqm: 52,
+    resultValue: "+39%",
+    resultCaption: RESULT_CAPTION,
   },
 ];
 
@@ -50,7 +57,7 @@ export function ProjectsHighlight() {
 
   return (
     <section className="px-6 py-16 desktop:px-16 desktop:py-24">
-      <h2 className="mb-10 text-2xl font-semibold desktop:text-4xl">{t("title")}</h2>
+      <Badge className="mb-6 desktop:mb-10">{t("title")}</Badge>
 
       <div className="grid grid-cols-1 gap-6 desktop:grid-cols-2">
         {PROJECTS.map((project) => (

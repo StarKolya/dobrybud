@@ -17,7 +17,8 @@ export interface ProjectCard {
   budget: string;
   duration: string;
   areaSqm: number;
-  result: string;
+  resultValue: string;
+  resultCaption: string;
 }
 
 export interface Testimonial {
