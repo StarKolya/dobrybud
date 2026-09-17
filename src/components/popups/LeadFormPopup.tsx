@@ -44,7 +44,7 @@ export function LeadFormPopup({ open, onClose }: { open: boolean; onClose: () =>
           </div>
 
           <div className="relative order-last -mx-4.5 h-56 flex-1 overflow-hidden tablet:order-0 tablet:mx-0 tablet:h-auto tablet:min-h-45">
-            <div className="absolute inset-x-0 bottom-0 mx-auto h-117 w-117 tablet:inset-auto tablet:bottom-auto tablet:mx-0 tablet:-left-20 tablet:h-119.5 tablet:w-119.5 tablet:rotate-15">
+            <div className="absolute inset-0 tablet:inset-auto tablet:-left-20 tablet:h-119.5 tablet:w-119.5 tablet:rotate-15">
               <Image src="/images/popups/3d-house.png" alt="" fill className="object-cover" />
             </div>
           </div>
