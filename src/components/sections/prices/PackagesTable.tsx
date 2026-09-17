@@ -18,20 +18,18 @@ const INCLUDED_FEATURE_COUNT: Record<PackageId, number> = {
   premium: 14,
 };
 
-function CheckIcon({ included, onRed }: { included: boolean; onRed: boolean }) {
-  const circleClass = onRed
-    ? included
-      ? "bg-white"
-      : "bg-white/20"
-    : included
-      ? "bg-brand-red"
-      : "bg-brand-red/15";
-  const strokeClass = onRed ? (included ? "stroke-brand-red" : "stroke-white/60") : included ? "stroke-white" : "stroke-brand-red/40";
+function CheckIcon({ variant, onRed }: { variant: "check" | "dash"; onRed: boolean }) {
+  const circleClass = onRed ? "bg-white" : "bg-brand-red";
+  const strokeClass = onRed ? "stroke-brand-red" : "stroke-white";
 
   return (
     <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${circleClass}`}>
       <svg width="9" height="7" viewBox="0 0 9 7" fill="none" aria-hidden>
-        <path d="M1 3.5 3.3 6 8 1" className={strokeClass} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        {variant === "check" ? (
+          <path d="M1 3.5 3.3 6 8 1" className={strokeClass} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        ) : (
+          <path d="M1 3.5 8 3.5" className={strokeClass} strokeWidth="1.4" strokeLinecap="round" />
+        )}
       </svg>
     </span>
   );
@@ -56,39 +54,37 @@ function PackageCard({
 
   return (
     <div
-      className={`flex flex-col rounded-2xl p-6 desktop:p-8 ${
+      className={`flex h-219.5 flex-col rounded-2xl p-6 desktop:p-8 ${
         onRed ? "bg-brand-red text-white" : "bg-white text-brand-dark"
       } ${className}`}
     >
-      <p className="mb-1 flex items-center gap-2 text-sm font-semibold uppercase tracking-wide">
-        <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${onRed ? "bg-white" : "bg-brand-red"}`} aria-hidden />
+      <p className="mb-3 flex items-center gap-2 font-heading text-[40px] leading-none font-medium tracking-[-0.01em] uppercase">
+        <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${onRed ? "bg-white" : "bg-brand-red"}`} aria-hidden />
         {namesT(id)}
       </p>
-      <p className={`mb-4 text-sm ${onRed ? "text-white/80" : "text-brand-dark/50"}`}>
+      <hr className="border-brand-dark/50" />
+      <p className={`my-4 text-[22px] leading-none font-normal tracking-[-0.01em] ${onRed ? "text-white/80" : "text-brand-dark/50"}`}>
         {t(`items.${id}.subtitle`)}
       </p>
+      <hr className="border-brand-dark/50" />
 
-      <div
-        className={`mb-3 flex items-center justify-between gap-2 border-b pb-3 text-sm ${
-          onRed ? "border-white/20" : "border-brand-dark/10"
-        }`}
-      >
+      <div className="mb-3 flex items-center justify-between gap-2 text-base leading-none font-medium tracking-[-0.01em]">
         <span>{t("materialsHelp")}</span>
         <span className={onRed ? "text-white/70" : "text-brand-dark/50"}>({t(`items.${id}.helpLabel`)})</span>
       </div>
 
-      <ul className={`flex flex-col gap-2.5 border-b pb-4 text-sm ${onRed ? "border-white/20" : "border-brand-dark/10"}`}>
+      <ul className={`flex flex-col gap-2.5 border-b pb-4 text-base leading-none font-normal tracking-[-0.01em] ${onRed ? "border-white/20" : "border-brand-dark/10"}`}>
         {included.map((feature) => (
           <li key={feature} className="flex items-center gap-2.5">
-            <CheckIcon included onRed={onRed} />
+            <CheckIcon variant="check" onRed={onRed} />
             {feature}
           </li>
         ))}
       </ul>
-      <ul className={`flex flex-col gap-2.5 pt-4 text-sm ${onRed ? "text-white/50" : "text-brand-dark/40"}`}>
+      <ul className={`flex flex-col gap-2.5 pt-4 text-base leading-none font-normal tracking-[-0.01em] ${onRed ? "text-white/50" : "text-brand-dark/40"}`}>
         {excluded.map((feature) => (
           <li key={feature} className="flex items-center gap-2.5">
-            <CheckIcon included={false} onRed={onRed} />
+            <CheckIcon variant="dash" onRed={onRed} />
             {feature}
           </li>
         ))}

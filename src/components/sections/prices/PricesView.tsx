@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { LeadFormPopup } from "@/components/popups/LeadFormPopup";
 import { PackagesScroll } from "./PackagesScroll";
 import { PackagesTable } from "./PackagesTable";
+import { Advantages } from "./Advantages";
 import { ProjectsHighlight } from "./ProjectsHighlight";
 
 export function PricesView() {
@@ -26,6 +27,7 @@ export function PricesView() {
         </h1>
         <PackagesScroll />
         <PackagesTable onRequestQuote={() => setLeadFormOpen(true)} />
+        <Advantages />
         <ProjectsHighlight />
       </main>
       <Footer />

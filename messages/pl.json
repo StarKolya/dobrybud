@@ -160,6 +160,23 @@
       "premium": {
         "description": "Indywidualny remont najwyższego poziomu dla tych, którzy nie ograniczają się w doborze materiałów i rozwiązań."
       }
+    },
+    "advantages": {
+      "title": "Zalety",
+      "items": {
+        "deadline": {
+          "title": "Gwarancja dotrzymania terminów",
+          "description": "Ustalamy terminy remontu w umowie i odpowiadamy za ich dotrzymanie."
+        },
+        "contract": {
+          "title": "Umowa o stałych warunkach",
+          "description": "Wszystkie warunki ustalamy przed startem i nie zmieniamy ich jednostronnie w trakcie remontu."
+        },
+        "warranty": {
+          "title": "Gwarancja na prace na 1 rok",
+          "description": "Udzielamy gwarancji na wykonane prace przez rok od odbioru mieszkania."
+        }
+      }
     }
   },
   "about": {

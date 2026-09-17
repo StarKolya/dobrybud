@@ -5,6 +5,7 @@ import { Hero } from "./Hero";
 import { AboutStats } from "./AboutStats";
 import { ProjectsShowcase } from "./ProjectsShowcase";
 import { Partners } from "./Partners";
+import { PackagesTable } from "@/components/sections/prices/PackagesTable";
 import { Testimonials } from "./Testimonials";
 import { Calculator } from "./Calculator";
 import { FAQ } from "./FAQ";
@@ -40,6 +41,7 @@ export function HomeView() {
       <AboutStats />
       <ProjectsShowcase onRequestQuote={() => setLeadFormOpen(true)} />
       <Partners />
+      <PackagesTable onRequestQuote={() => setLeadFormOpen(true)} />
       <Testimonials />
       <Calculator onGetQuote={() => setLeadFormOpen(true)} />
       <FAQ />
