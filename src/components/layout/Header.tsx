@@ -36,11 +36,11 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
       <div className="flex items-center gap-24">
         <Link href={ROUTES.home} className={`font-heading text-[20px] font-semibold ${textClass}`}>
           <Image
-            src="/images/logos/white.svg"
+            src={isSolid ? "/images/logos/red.svg" : "/images/logos/white.svg"}
             alt="Dobrybud logo"
-            width={120}
-            height={24}
-            className="h-9 w-20 tablet:h-6 tablet:w-30"
+            width={107}
+            height={48}
+            className="h-9 w-20 tablet:h-11 tablet:w-24 desktop:h-13.5 desktop:w-30"
           />
         </Link>
 
@@ -57,39 +57,38 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
         </nav>
       </div>
 
-      <div className="flex items-center gap-10">
+      <div className="flex items-center gap-3 tablet:gap-10">
 
-        <Link href="tel:+380666666666" className="text-[22px] hidden desktop:inline-flex text-white">
+        <Link href="tel:+380666666666" className={`text-[22px] hidden desktop:inline-flex ${textClass}`}>
           +38 066 666 66 66
         </Link>
 
         <div className="items-center gap-2.25 flex">
-          <Link href="https://t.me/dobrybud" className="text-[22px] text-white">
+          <Link href="https://t.me/dobrybud" className={`text-[22px] ${textClass}`}>
             <Image
-              src="/icons/socials/white/telegram.svg"
+              src={`/icons/socials/${iconVariant}/telegram.svg`}
               alt="tg"
               width={28}
               height={28}
               className="h-auto w-auto"
             />
           </Link>
-          <Link href="viber://chat?number=%2B380666666666" className="text-[22px] text-white">
+          <Link href="viber://chat?number=%2B380666666666" className={`text-[22px] ${textClass}`}>
             <Image
-              src="/icons/socials/white/viber.svg"
+              src={`/icons/socials/${iconVariant}/viber.svg`}
               alt="viber"
               width={28}
               height={28}
               className="h-auto w-auto"
             />
           </Link>
-          <Link href="tel:+380666666666" className="text-[22px] text-white desktop:hidden">
-            <Image
-                src="/icons/phone-white.svg"
-                alt="phone"
-                width={28}
-                height={28}
-                className="h-auto w-auto"
+          <Link href="tel:+380666666666" className={`text-[22px] desktop:hidden ${textClass}`}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path
+                d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.3061 14.7614 16.1192 14.7528 15.9406 14.7953C15.762 14.8377 15.599 14.9294 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z"
+                fill="currentColor"
               />
+            </svg>
           </Link>
         </div>
 
@@ -100,7 +99,7 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
           aria-label="Menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
-          className={`flex h-10 w-10 items-center justify-center tablet:hidden ${textClass}`}
+          className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-red text-white transition-colors hover:bg-brand-dark tablet:hidden"
         >
           <span className="sr-only">Menu</span>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden className="h-6 w-6">
@@ -157,8 +156,8 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-3 border-b border-brand-dark/10 pb-6">
-            <p className="text-xs font-medium uppercase tracking-wide text-brand-dark/40">
+          <div className="mt-10 flex gap-3 border-b border-brand-dark/10 pb-6">
+            <p className="text-[14px] mr-18 font-normal uppercase tracking-wide text-brand-dark/70">
               {t("navigationTitle")}
             </p>
             <nav className="flex flex-col gap-2">
@@ -167,7 +166,7 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="text-2xl font-medium text-brand-dark transition-colors hover:text-brand-red"
+                  className="text-[25px] font-normal text-brand-dark transition-colors hover:text-brand-red"
                 >
                   {link.label}
                 </Link>
@@ -175,40 +174,40 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
             </nav>
           </div>
 
-          <div className="flex flex-col gap-3 border-b border-brand-dark/10 py-6">
-            <p className="text-xs font-medium uppercase tracking-wide text-brand-dark/40">
+          <div className="flex gap-3 border-b border-brand-dark/10 py-6">
+            <p className="text-[14px] mr-20 font-normal uppercase tracking-wide text-brand-dark/70">
               {tFooter("contactsTitle")}
             </p>
-            <Link
+            <div>
+              <Link
               href={`tel:${CONTACT_PHONE_HREF}`}
-              className="text-2xl font-medium text-brand-dark transition-colors hover:text-brand-red"
+              className="text-[25px] font-normal text-brand-dark transition-colors hover:text-brand-red"
             >
               {CONTACT_PHONE_DISPLAY}
-            </Link>
+            </Link> <br />
             <Link
               href={`mailto:${CONTACT_EMAIL}`}
-              className="text-2xl font-medium text-brand-dark transition-colors hover:text-brand-red"
+              className="text-[25px] font-normal text-brand-dark transition-colors hover:text-brand-red"
             >
               {CONTACT_EMAIL}
             </Link>
+            </div>
+          
           </div>
 
-          <div className="flex flex-col gap-3 py-6">
-            <p className="text-xs font-medium uppercase tracking-wide text-brand-dark/40">
+          <div className="flex gap-3 py-6">
+            <p className="text-[14px] mr-24 font-normal uppercase tracking-wide text-brand-dark/70">
               {t("writeTitle")}
             </p>
             <div className="flex items-center gap-3">
               <Link
                 href="https://t.me/dobrybud"
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-dark transition-colors hover:bg-brand-red"
               >
-                <Image src="/icons/socials/white/telegram.svg" alt="Telegram" width={20} height={20} />
+                <Image src="/icons/socials/black/telegram.svg" alt="Telegram" width={45} height={45} />
               </Link>
               <Link
-                href={`viber://chat?number=%2B${CONTACT_PHONE_HREF.slice(1)}`}
-                className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-dark transition-colors hover:bg-brand-red"
-              >
-                <Image src="/icons/socials/white/viber.svg" alt="Viber" width={20} height={20} />
+                href={`viber://chat?number=%2B${CONTACT_PHONE_HREF.slice(1)}`}              >
+                <Image src="/icons/socials/black/viber.svg" alt="Viber" width={45} height={45} />
               </Link>
             </div>
           </div>

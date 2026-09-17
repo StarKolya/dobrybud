@@ -18,7 +18,7 @@ interface ShowcaseProject {
 const PROJECTS: ShowcaseProject[] = [
   {
     id: "1",
-    image: "/images/projects/project-1-1.jpg",
+    image: "/images/projects/project-1.jpg",
     budget: "39 000 zł",
     duration: "2 місяці",
     resultValue: "+50%",
@@ -26,7 +26,7 @@ const PROJECTS: ShowcaseProject[] = [
   },
   {
     id: "2",
-    image: "/images/projects/project-2-1.jpg",
+    image: "/images/projects/project-1.jpg",
     budget: "68 000 zł",
     duration: "8 тижнів",
     resultValue: "+35%",
@@ -34,7 +34,7 @@ const PROJECTS: ShowcaseProject[] = [
   },
   {
     id: "3",
-    image: "/images/projects/project-3-1.jpg",
+    image: "/images/projects/project-1.jpg",
     budget: "92 000 zł",
     duration: "10 тижнів",
     resultValue: "+60%",
@@ -42,7 +42,7 @@ const PROJECTS: ShowcaseProject[] = [
   },
   {
     id: "4",
-    image: "/images/projects/project-4-1.jpg",
+    image: "/images/projects/project-1.jpg",
     budget: "38 000 zł",
     duration: "5 тижнів",
     resultValue: "+30%",
@@ -114,11 +114,13 @@ function StatBlocks({
 export function ProjectsShowcase({ onRequestQuote }: { onRequestQuote: () => void }) {
   const t = useTranslations("home.projects");
   const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState<"next" | "prev">("next");
   const active = PROJECTS[index];
   const canGoPrev = index > 0;
   const canGoNext = index < PROJECTS.length - 1;
 
   const go = (delta: number) => {
+    setDirection(delta > 0 ? "next" : "prev");
     setIndex((prev) => Math.min(Math.max(prev + delta, 0), PROJECTS.length - 1));
   };
 
@@ -133,8 +135,18 @@ export function ProjectsShowcase({ onRequestQuote }: { onRequestQuote: () => voi
       </div>
 
       <div className="relative overflow-hidden rounded-2xl">
-        <div className="relative aspect-4/3 tablet:aspect-16/8">
-          <Image src={active.image} alt="" fill className="object-cover" />
+        <div className="relative aspect-4/3 overflow-hidden tablet:aspect-16/8">
+          <Image
+            key={active.id}
+            src={active.image}
+            alt=""
+            fill
+            className={`object-cover ${
+              direction === "next"
+                ? "animate-carousel-slide-from-right"
+                : "animate-carousel-slide-from-left"
+            }`}
+          />
         </div>
 
         <div className="pointer-events-none absolute inset-x-4 top-4 hidden w-fit flex-col gap-2 tablet:flex">

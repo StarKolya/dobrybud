@@ -6,10 +6,38 @@ import { useCountUp } from "@/hooks/useCountUp";
 import { Badge } from "@/components/ui/Badge";
 
 const STATS = [
-  { key: "years", target: 4, suffix: "+", order: "order-3", column: "left" },
-  { key: "projects", target: 144, suffix: "", order: "order-2", column: "right" },
-  { key: "hours", target: 5760, suffix: "+ M²", order: "order-6", column: "left" },
-  { key: "team", target: 100, suffix: "%", order: "order-5", column: "right" },
+  { 
+    key: "years", 
+    target: 4, 
+    suffix: "+", 
+    order: "order-3", 
+    column: "left", 
+    offset: "translate-x-30" 
+  },
+  {
+    key: "projects",
+    target: 144,
+    suffix: "",
+    order: "order-2",
+    column: "right",
+    offset: "desktop:translate-x-5 ",
+  },
+  {
+    key: "hours",
+    target: 5760,
+    suffix: "+ M²",
+    order: "order-6",
+    column: "left",
+    offset: "desktop:translate-x-15 desktop:-translate-y-15",
+  },
+  {
+    key: "team",
+    target: 100,
+    suffix: "%",
+    order: "order-5",
+    column: "right",
+    offset: "desktop:-translate-x-3 desktop:-translate-y-10",
+  },
 ] as const;
 
 const LEFT_STATS = STATS.filter((stat) => stat.column === "left");
@@ -74,22 +102,34 @@ export function AboutStats() {
 
         <div className="hidden desktop:col-start-1 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
           {LEFT_STATS.map((stat) => (
-            <Stat key={stat.key} target={stat.target} suffix={stat.suffix} labelKey={stat.key} />
+            <Stat
+              key={stat.key}
+              target={stat.target}
+              suffix={stat.suffix}
+              labelKey={stat.key}
+              className={stat.offset}
+            />
           ))}
         </div>
 
         <div className="hidden desktop:col-start-3 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
           {RIGHT_STATS.map((stat) => (
-            <Stat key={stat.key} target={stat.target} suffix={stat.suffix} labelKey={stat.key} />
+            <Stat
+              key={stat.key}
+              target={stat.target}
+              suffix={stat.suffix}
+              labelKey={stat.key}
+              className={stat.offset}
+            />
           ))}
         </div>
 
-        <div className="relative order-4 col-span-2 aspect-586/522 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2 desktop:self-start desktop:scale-[1.2] desktop:z-10">
+        <div className="relative order-4 col-span-2 aspect-586/522 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2 desktop:self-start desktop:w-[586px] desktop:z-10">
           <Image
             src="/images/about/3d-house.png"
             alt=""
             fill
-            className="object-contain desktop:rotate-[5deg]"
+            className="object-contain desktop:rotate-[5deg] desktop:-translate-x-40 desktop:-translate-y-10"
           />
         </div>
       </div>

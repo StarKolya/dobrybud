@@ -67,6 +67,32 @@ h4 {
   animation: stat-change 0.35s ease-out;
 }
 
+@keyframes carousel-slide-from-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes carousel-slide-from-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-carousel-slide-from-right {
+  animation: carousel-slide-from-right 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-carousel-slide-from-left {
+  animation: carousel-slide-from-left 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 @keyframes menu-in {
   from {
     opacity: 0;

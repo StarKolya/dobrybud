@@ -58,7 +58,7 @@ export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140
         fill
         priority={priority}
         sizes="100vw"
-        className="object-cover"
+        className="object-cover object-[calc(50%+124px)_center] tablet:object-center"
       />
       <div
         className="absolute inset-0"
@@ -75,7 +75,7 @@ export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140
           fill
           priority={priority}
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-[calc(50%+120px)_center] tablet:object-center"
         />
         <div className="absolute inset-0 bg-[#00000059]" />
       </div>

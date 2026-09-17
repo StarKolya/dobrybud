@@ -29,7 +29,7 @@ export function Partners() {
             alt={partner.name}
             width={partner.width}
             height={partner.height}
-            className={`mr-16 w-auto shrink-0 object-contain ${partner.heightClass}`}
+            className={`mr-8 w-auto shrink-0 object-contain ${partner.heightClass}`}
           />
         ))}
       </div>
