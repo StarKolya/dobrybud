@@ -56,9 +56,10 @@ export function FileUpload({ onChange }: { onChange?: (file: File | null) => voi
         <button
           type="button"
           onClick={() => inputRef.current?.click()}
-          className="w-full text-left text-brand-dark/60 hover:text-brand-dark"
+          className="flex w-full flex-col items-center gap-1 py-2 text-center text-brand-dark/60 hover:text-brand-dark"
         >
-          {t("uploadLabel")}
+          <span>{t("uploadLabel")}</span>
+          <span className="text-xs text-brand-dark/40">{t("helperText")}</span>
         </button>
       ) : (
         <div className="flex items-center justify-between">

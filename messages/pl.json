@@ -180,14 +180,19 @@
   },
   "leadForm": {
     "title": "Zostaw zgłoszenie",
-    "description": "Nasz menedżer skontaktuje się z Tobą, aby doprecyzować szczegóły",
+    "description": "Nasz menedżer skontaktuje się z Tobą i doprecyzuje szczegóły",
     "name": "Imię",
     "phone": "Telefon",
-    "area": "Powierzchnia",
-    "submit": "Wyślij zgłoszenie"
+    "phoneMask": "(99) 999-99-99",
+    "area": "Metraż",
+    "areaUnit": "m²",
+    "submit": "Wyślij zgłoszenie",
+    "privacyNote": "Wszystkie dane są chronione."
   },
   "leadFormUpload": {
-    "uploadLabel": "Dodaj plik",
+    "filesLabel": "Pliki (opcjonalnie)",
+    "uploadLabel": "Dodaj pliki",
+    "helperText": "PDF, PNG, JPG do 10MB",
     "fileTooLarge": "Plik jest za duży",
     "remove": "usuń"
   },

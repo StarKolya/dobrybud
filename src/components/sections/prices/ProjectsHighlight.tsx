@@ -59,7 +59,7 @@ export function ProjectsHighlight() {
     <section className="px-6 py-16 desktop:px-16 desktop:py-24">
       <Badge className="mb-6 desktop:mb-10">{t("title")}</Badge>
 
-      <div className="grid grid-cols-1 gap-6 desktop:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2">
         {PROJECTS.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
