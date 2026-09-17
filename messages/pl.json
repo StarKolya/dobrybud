@@ -4,7 +4,9 @@
     "prices": "Ceny",
     "projects": "Projekty",
     "about": "O nas",
-    "cta": "Zostaw zgłoszenie"
+    "cta": "Zostaw zgłoszenie",
+    "navigationTitle": "Nawigacja",
+    "writeTitle": "Napisz"
   },
   "footer": {
     "rights": "Wszelkie prawa zastrzeżone",

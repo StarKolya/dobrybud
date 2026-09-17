@@ -69,7 +69,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
           onClick={() => setOpen((value) => !value)}
           aria-haspopup="listbox"
           aria-expanded={open}
-          className={`group flex items-center gap-1.5 rounded-lg px-3 py-2 text-[16px] font-semibold transition-colors ${
+          className={`group flex items-center gap-1.5 rounded-lg px-3 py-2 text-[20px] font-semibold transition-colors ${
             open ? "text-white" : "text-current hover:text-white"
           }`}
         >
@@ -90,7 +90,7 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
                 role="option"
                 aria-selected={false}
                 onClick={() => handleSelect(option)}
-                className="block w-full px-3 py-2 text-left text-[16px] text-white transition-colors hover:bg-white/10"
+                className="block w-full px-3 py-2 text-left text-[20px] text-white transition-colors hover:bg-white/10"
               >
                 {LOCALE_LABELS[option]}
               </button>

@@ -19,7 +19,7 @@ export function Hero({ onCtaClick }: { onCtaClick: () => void }) {
         />
       </div>
 
-      <div className="relative z-10 flex w-full flex-col gap-6 px-5 pb-16 desktop:px-16 desktop:pt-43.5">
+      <div className="relative z-10 flex w-full flex-col gap-6 px-5 pt-24 pb-16 desktop:px-16 desktop:pt-43.5">
         <h1 className="font-semibold w-fit  text-white leading-none">
           <span className="uppercase desktop:text-[80px]">
             {t("titleMain1")}
