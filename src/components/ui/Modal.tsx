@@ -9,6 +9,8 @@ export function Modal({
   className = "",
   maxWidthClassName = "max-w-lg",
   closeButtonClassName = "rounded-full bg-white/90 hover:bg-brand-gray",
+  closeButtonSizeClassName = "h-9 w-9",
+  closeButtonPositionClassName = "right-4 top-4",
 }: {
   open: boolean;
   onClose: () => void;
@@ -16,6 +18,8 @@ export function Modal({
   className?: string;
   maxWidthClassName?: string;
   closeButtonClassName?: string;
+  closeButtonSizeClassName?: string;
+  closeButtonPositionClassName?: string;
 }) {
   if (!open) return null;
 
@@ -26,7 +30,7 @@ export function Modal({
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className={`absolute right-4 top-4 flex h-9 w-9 items-center justify-center ${closeButtonClassName}`}
+          className={`absolute ${closeButtonPositionClassName} flex ${closeButtonSizeClassName} items-center justify-center ${closeButtonClassName}`}
         >
           ✕
         </button>

@@ -24,7 +24,9 @@ export function LeadFormPopup({ open, onClose }: { open: boolean; onClose: () =>
       open={open}
       onClose={onClose}
       maxWidthClassName="max-w-[850px]"
-      closeButtonClassName="rounded-md bg-brand-red text-white hover:bg-brand-dark"
+      closeButtonClassName="rounded-md bg-brand-red text-2xl font-bold text-white hover:bg-brand-dark"
+      closeButtonSizeClassName="h-10 w-10"
+      closeButtonPositionClassName="right-3 top-3"
       className="overflow-hidden"
     >
       <div className="flex flex-col tablet:h-92.5 tablet:flex-row">
@@ -36,7 +38,7 @@ export function LeadFormPopup({ open, onClose }: { open: boolean; onClose: () =>
                 {t("title")}
               </h2>
             </div>
-            <p className="font-sans text-base font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-foreground mt-2.5">
+            <p className="max-w-66 font-sans text-base font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-foreground mt-2.5">
               {t("description")}
             </p>
           </div>
@@ -48,7 +50,7 @@ export function LeadFormPopup({ open, onClose }: { open: boolean; onClose: () =>
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 p-6 tablet:pt-16.25 tablet:w-1/2">
+        <div className="flex flex-col gap-4 tablet:pt-16.25 tablet:pr-20 tablet:w-1/2">
           <form onSubmit={handleSubmit} className="flex flex-col gap-1.25">
             <input
               required

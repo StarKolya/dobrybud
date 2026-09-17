@@ -26,7 +26,9 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
       open={open}
       onClose={onClose}
       maxWidthClassName="max-w-[850px]"
-      closeButtonClassName="rounded-md bg-brand-red text-white hover:bg-brand-dark"
+      closeButtonClassName="rounded-md bg-brand-red text-lg font-bold text-white hover:bg-brand-dark"
+      closeButtonSizeClassName="h-10 w-10"
+      closeButtonPositionClassName="right-3 top-3"
       className="overflow-hidden"
     >
       <div className="flex flex-col tablet:h-92.5 tablet:flex-row">
@@ -38,7 +40,7 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
                 {t("title")}
               </h2>
             </div>
-            <p className="font-sans text-base font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark/60">
+            <p className="max-w-60 font-sans text-base font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark/60">
               {t("description")}
             </p>
           </div>
