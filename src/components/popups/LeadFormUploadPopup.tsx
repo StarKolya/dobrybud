@@ -26,34 +26,34 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
       open={open}
       onClose={onClose}
       maxWidthClassName="max-w-[850px]"
-      closeButtonClassName="rounded-md bg-brand-red text-lg font-bold text-white hover:bg-brand-dark"
+      closeButtonClassName="rounded-md bg-brand-red text-2xl font-bold text-white hover:bg-brand-dark"
       closeButtonSizeClassName="h-10 w-10"
       closeButtonPositionClassName="right-3 top-3"
       className="overflow-hidden"
     >
-      <div className="flex flex-col tablet:h-92.5 tablet:flex-row">
+      <div className="flex flex-col tablet:h-125 tablet:flex-row">
         <div className="flex flex-col tablet:w-1/2">
-          <div className="p-6 pb-4 desktop:p-10 desktop:pb-6">
+          <div className="tablet:pt-16.25 tablet:pl-19">
             <div className="mb-2 flex items-center gap-2">
-              <span aria-hidden className="h-2 w-2 rounded-full bg-brand-red" />
+              <span aria-hidden className="h-3 w-3 rounded-full bg-brand-red" />
               <h2 className="font-heading text-3xl font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
                 {t("title")}
               </h2>
             </div>
-            <p className="max-w-60 font-sans text-base font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark/60">
+            <p className="max-w-66 font-sans text-base font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-foreground mt-2.5">
               {t("description")}
             </p>
           </div>
 
           <div className="relative h-56 flex-1 overflow-hidden tablet:h-auto tablet:min-h-45">
-            <div className="absolute -left-12 top-12 h-119.5 w-119.5 rotate-[-15deg]">
+            <div className="absolute -left-24 h-119.5 w-119.5 rotate-15">
               <Image src="/images/popups/3d-house-2.png" alt="" fill className="object-cover" />
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col justify-center gap-4 p-6 desktop:p-10 tablet:w-1/2">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 tablet:pt-16.25 tablet:pr-20 tablet:w-1/2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-1.25">
             <input
               required
               name="name"
@@ -73,13 +73,13 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
               </span>
             </div>
             <div>
-              <p className="mb-2 text-sm text-brand-dark">{tUpload("filesLabel")}</p>
+              <p className="mb-1 mt-3 text-sm font-normal text-foreground">{tUpload("filesLabel")}</p>
               <FileUpload />
             </div>
-            <Button type="submit" className="h-11.75">
+            <Button type="submit" className="mt-5 h-11.75">
               {t("submit")}
             </Button>
-            <p className="text-center font-sans text-xs font-light text-brand-dark">{t("privacyNote")}</p>
+            <p className="mt-2.5 text-center font-sans text-xs font-light text-foreground">@{t("privacyNote")}</p>
           </form>
         </div>
       </div>
