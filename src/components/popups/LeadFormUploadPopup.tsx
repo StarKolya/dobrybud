@@ -31,8 +31,8 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
       closeButtonPositionClassName="right-3 top-3"
       className="overflow-hidden"
     >
-      <div className="flex flex-col tablet:h-125 tablet:flex-row">
-        <div className="flex flex-col tablet:w-1/2">
+      <div className="flex h-175 flex-col px-4.5 pt-12.75 tablet:h-125 tablet:flex-row tablet:px-0 tablet:pt-0">
+        <div className="contents tablet:flex tablet:flex-col tablet:w-1/2">
           <div className="tablet:pt-16.25 tablet:pl-19">
             <div className="mb-2 flex items-center gap-2">
               <span aria-hidden className="h-3 w-3 rounded-full bg-brand-red" />
@@ -45,14 +45,14 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
             </p>
           </div>
 
-          <div className="relative h-56 flex-1 overflow-hidden tablet:h-auto tablet:min-h-45">
-            <div className="absolute -left-24 h-119.5 w-119.5 rotate-15">
-              <Image src="/images/popups/3d-house-2.png" alt="" fill className="object-cover" />
+          <div className="relative order-last -mx-4.5 h-56 flex-1 overflow-hidden tablet:order-0 tablet:mx-0 tablet:h-auto tablet:min-h-45">
+            <div className="absolute inset-x-0 bottom-0 mx-auto h-104 w-104 tablet:inset-auto tablet:bottom-auto tablet:mx-0 tablet:-left-24 tablet:h-119.5 tablet:w-119.5 tablet:rotate-15">
+              <Image src="/images/popups/3d-house-2.png" alt="" fill  />
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 tablet:pt-16.25 tablet:pr-20 tablet:w-1/2">
+        <div className="mt-6 flex flex-col gap-4 tablet:mt-0 tablet:w-1/2 tablet:pt-16.25 tablet:pr-20">
           <form onSubmit={handleSubmit} className="flex flex-col gap-1.25">
             <input
               required
