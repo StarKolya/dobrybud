@@ -12,7 +12,7 @@ const STATS = [
     suffix: "+",
     order: "order-3",
     column: "left",
-    offset: "translate-x-30",
+    offset: "translate-x-[145px]",
   },
   {
     key: "projects",
@@ -20,7 +20,7 @@ const STATS = [
     suffix: "",
     order: "order-2",
     column: "right",
-    offset: "desktop:translate-x-5 ",
+    offset: "desktop:translate-x-[90px]",
   },
   {
     key: "hours",
@@ -28,7 +28,7 @@ const STATS = [
     suffix: "+ M²",
     order: "order-6",
     column: "left",
-    offset: "desktop:translate-x-15 desktop:-translate-y-15",
+    offset: "desktop:translate-x-15 desktop:translate-y-5",
   },
   {
     key: "team",
@@ -36,7 +36,7 @@ const STATS = [
     suffix: "%",
     order: "order-5",
     column: "right",
-    offset: "desktop:-translate-x-3 desktop:-translate-y-10",
+    offset: "desktop:translate-x-[18px] desktop:translate-y-12.5",
   },
 ] as const;
 
@@ -74,11 +74,11 @@ function Stat({
       className={`flex flex-col gap-2 ${className}`}
     >
       <FlagIcon className="h-5 w-5.5 text-brand-red" />
-      <span className="font-heading text-4xl font-semibold text-brand-dark desktop:text-5xl">
+      <span className="font-heading whitespace-nowrap text-4xl font-medium uppercase leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark desktop:text-[80px]">
         {value}
         {suffix}
       </span>
-      <span className="max-w-44 text-[22px] leading-[100%] font-normal tracking-[-0.01em]">
+      <span className="max-w-[270px] font-sans text-[22px] leading-none font-normal tracking-[-0.01em] lining-nums proportional-nums">
         {t(labelKey)}
       </span>
     </div>
@@ -129,12 +129,12 @@ export function AboutStats() {
             ))}
           </div>
 
-          <div className="relative order-4 col-span-2 aspect-586/522 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2 desktop:self-start desktop:w-[586px] desktop:z-10">
+          <div className="relative order-4 col-span-2 aspect-586/522 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2 desktop:self-start desktop:justify-self-center desktop:w-[586px] desktop:z-10">
             <Image
               src="/images/about/3d-house.png"
               alt=""
               fill
-              className="object-contain desktop:rotate-[5deg] desktop:-translate-x-40 desktop:-translate-y-10"
+              className="object-contain desktop:rotate-[5deg] desktop:-translate-y-10"
             />
           </div>
         </div>
