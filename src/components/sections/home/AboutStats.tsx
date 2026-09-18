@@ -12,7 +12,7 @@ const STATS = [
     suffix: "+",
     order: "order-3",
     column: "left",
-    offset: "translate-x-[145px]",
+    offset: "tablet:translate-x-[145px]",
   },
   {
     key: "projects",
@@ -20,7 +20,7 @@ const STATS = [
     suffix: "",
     order: "order-2",
     column: "right",
-    offset: "desktop:translate-x-[90px]",
+    offset: "tablet:translate-x-[50px] desktop:translate-x-[90px]",
   },
   {
     key: "hours",
@@ -28,7 +28,7 @@ const STATS = [
     suffix: "+ M²",
     order: "order-6",
     column: "left",
-    offset: "desktop:translate-x-15 desktop:translate-y-5",
+    offset: "tablet:translate-x-15 tablet:translate-y-5",
   },
   {
     key: "team",
@@ -36,7 +36,7 @@ const STATS = [
     suffix: "%",
     order: "order-5",
     column: "right",
-    offset: "desktop:translate-x-[18px] desktop:translate-y-12.5",
+    offset: "tablet:translate-x-[18px] tablet:translate-y-12.5",
   },
 ] as const;
 
@@ -74,11 +74,11 @@ function Stat({
       className={`flex flex-col gap-2 ${className}`}
     >
       <FlagIcon className="h-5 w-5.5 text-brand-red" />
-      <span className="font-heading whitespace-nowrap text-4xl font-medium uppercase leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark desktop:text-[80px]">
+      <span className="font-heading whitespace-nowrap text-4xl font-medium uppercase leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark tablet:text-[48px] desktop:text-[80px]">
         {value}
         {suffix}
       </span>
-      <span className="max-w-[270px] font-sans text-[22px] leading-none font-normal tracking-[-0.01em] lining-nums proportional-nums">
+      <span className="max-w-[270px] tablet:max-w-[200px] desktop:max-w-[270px] font-sans text-[22px] tablet:text-base desktop:text-[22px] leading-none font-normal tracking-[-0.01em] lining-nums proportional-nums">
         {t(labelKey)}
       </span>
     </div>
@@ -89,23 +89,23 @@ export function AboutStats() {
   const t = useTranslations("home.about");
 
   return (
-    <section className="px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="overflow-x-clip px-6 py-16 tablet:pb-0 desktop:px-16 desktop:py-24 desktop:pb-0">
       <div className="mx-auto max-w-360">
-        <Badge className="order-1 col-span-2 desktop:col-span-3">
+        <Badge className="order-1 col-span-2 tablet:col-span-3">
           {t("title")}
         </Badge>
-        <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 desktop:grid-cols-3 desktop:gap-x-14 desktop:gap-y-16 mt-9 h-120">
+        <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 tablet:grid-cols-3 tablet:gap-x-6 desktop:gap-x-14 tablet:gap-y-16 mt-9 h-120">
           {STATS.map((stat) => (
             <Stat
               key={stat.key}
               target={stat.target}
               suffix={stat.suffix}
               labelKey={stat.key}
-              className={`${stat.order} desktop:hidden`}
+              className={`${stat.order} tablet:hidden`}
             />
           ))}
 
-          <div className="hidden desktop:col-start-1 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
+          <div className="hidden tablet:col-start-1 tablet:row-start-1 tablet:row-span-2 tablet:flex tablet:h-full tablet:flex-col tablet:justify-between">
             {LEFT_STATS.map((stat) => (
               <Stat
                 key={stat.key}
@@ -117,7 +117,7 @@ export function AboutStats() {
             ))}
           </div>
 
-          <div className="hidden desktop:col-start-3 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
+          <div className="hidden tablet:col-start-3 tablet:row-start-1 tablet:row-span-2 tablet:flex tablet:h-full tablet:flex-col tablet:justify-between">
             {RIGHT_STATS.map((stat) => (
               <Stat
                 key={stat.key}
@@ -129,12 +129,12 @@ export function AboutStats() {
             ))}
           </div>
 
-          <div className="relative order-4 col-span-2 aspect-586/522 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2 desktop:self-start desktop:justify-self-center desktop:w-[586px] desktop:z-10">
+          <div className="relative order-4 col-span-2 aspect-586/522 max-w-[450px] justify-self-center tablet:max-w-none tablet:order-0 tablet:col-span-1 tablet:col-start-2 tablet:row-start-1 tablet:row-span-2 tablet:self-start tablet:justify-self-center tablet:w-[436px] desktop:w-[586px] tablet:z-10">
             <Image
               src="/images/about/3d-house.png"
               alt=""
               fill
-              className="object-contain desktop:rotate-[5deg] desktop:-translate-y-10"
+              className="object-contain tablet:rotate-[5deg] tablet:translate-y-20 desktop:-translate-y-10"
             />
           </div>
         </div>
