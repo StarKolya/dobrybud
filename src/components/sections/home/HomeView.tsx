@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Hero } from "./Hero";
 import { ConsultationBanner } from "./ConsultationBanner";
 import { AboutStats } from "./AboutStats";
-import { ProjectsShowcase } from "./ProjectsShowcase";
+import { ProjectsSlider } from "./ProjectsSlider";
 import { Partners } from "./Partners";
 import { PackagesTable } from "@/components/sections/prices/PackagesTable";
 import { Advantages } from "./Advantages";
@@ -25,7 +25,7 @@ export function HomeView() {
       <Hero onCtaClick={() => setLeadFormOpen(true)} />
       
       <AboutStats />
-      <ProjectsShowcase />
+      <ProjectsSlider onCtaClick={() => setLeadFormOpen(true)} />
       <Partners />
       <PackagesTable onRequestQuote={() => setLeadFormOpen(true)} />
       <Advantages />

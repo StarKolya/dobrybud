@@ -4,7 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import Script from "next/script";
 import { routing } from "@/i18n/routing";
-import { commissioner, geist } from "@/lib/fonts";
+import { commissioner, geist, raleway } from "@/lib/fonts";
 import "../globals.css";
 
 const GTM_ID = "GTM-54VP5LQ4";
@@ -35,7 +35,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${commissioner.variable} ${geist.variable} h-full antialiased`}
+      className={`${commissioner.variable} ${geist.variable} ${raleway.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
         <noscript>

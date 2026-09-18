@@ -1,4 +1,4 @@
-import { Commissioner, Geist } from "next/font/google";
+import { Commissioner, Geist, Raleway } from "next/font/google";
 
 export const commissioner = Commissioner({
   variable: "--font-commissioner",
@@ -9,4 +9,10 @@ export const commissioner = Commissioner({
 export const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin", "latin-ext"],
+});
+
+export const raleway = Raleway({
+  variable: "--font-raleway",
+  subsets: ["latin", "latin-ext", "cyrillic"],
+  weight: ["600"],
 });

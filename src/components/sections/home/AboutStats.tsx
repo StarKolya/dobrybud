@@ -96,7 +96,7 @@ export function AboutStats() {
 
   return (
     <section className="overflow-x-clip px-6 py-16 tablet:pb-0 desktop:px-16 desktop:py-24 desktop:pb-0">
-      <div className="mx-auto max-w-360">
+      <div className="mx-auto max-w-[1300px]">
         <Badge className="order-1 col-span-2 tablet:col-span-3">
           {t("title")}
         </Badge>

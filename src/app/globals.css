@@ -20,6 +20,7 @@
 
   --font-sans: var(--font-geist);
   --font-heading: var(--font-commissioner);
+  --font-raleway: var(--font-raleway);
 
   /* Design breakpoints: mobile-first base styles match the 390px mobile
      mock, `tablet:`/`desktop:` progressively match the 1440px desktop mock. */
