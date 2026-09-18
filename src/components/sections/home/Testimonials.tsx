@@ -159,7 +159,7 @@ export function Testimonials() {
           </div>
         </div>
 
-        <div className="overflow-hidden">
+        <div className="min-w-0 flex-1 overflow-hidden">
           <div
             ref={trackRef}
             className="flex gap-6 transition-transform duration-500 ease-out"

@@ -16,9 +16,9 @@ interface SelectProps {
   triggerClassName?: string;
 }
 
-const DEFAULT_TRIGGER_CLASSNAME = "rounded-lg bg-white/10 px-3 py-2";
+const DEFAULT_TRIGGER_CLASSNAME = "rounded-lg bg-white/10 px-3 py-2 text-white";
 
-/** Custom dropdown trigger + panel, styled to match dark inputs (e.g. the calculator card). */
+/** Custom dropdown trigger + panel. Pass `triggerClassName` to set text color/background for light or dark contexts. */
 export function Select({
   value,
   onChange,
@@ -60,10 +60,10 @@ export function Select({
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        className={`flex w-full items-center justify-between gap-2 text-left text-white outline-none ${triggerClassName}`}
+        className={`flex w-full items-center justify-between gap-2 text-left outline-none ${triggerClassName}`}
       >
-        <span className={value ? "" : "text-white/40"}>{value || placeholder}</span>
-        <span className={`text-white/50 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden>
+        <span className={value ? "" : "opacity-50"}>{value || placeholder}</span>
+        <span className={`opacity-50 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden>
           ▾
         </span>
       </button>

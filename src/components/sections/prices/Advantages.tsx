@@ -1,68 +1,37 @@
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/Badge";
+import { Button } from "@/components/ui/Button";
+import { AdvantageCard, ITEMS } from "@/components/sections/home/Advantages";
 
-const ITEM_IDS = ["deadline", "contract", "warranty"] as const;
-
-function DeadlineIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
-      <circle cx="10" cy="10.5" r="7" className="stroke-brand-red" strokeWidth="1.5" />
-      <path d="M10 6.5v4l2.5 1.5" className="stroke-brand-red" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M7 2h6" className="stroke-brand-red" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function ContractIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
-      <path d="M5 2.5h7l3 3v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-14a.5.5 0 0 1 .5-.5Z" className="stroke-brand-red" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M7 9h6M7 12h6M7 15h3.5" className="stroke-brand-red" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function WarrantyIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
-      <path d="M10 2.5 16 5v5c0 4.2-2.7 6.9-6 8.5-3.3-1.6-6-4.3-6-8.5V5l6-2.5Z" className="stroke-brand-red" strokeWidth="1.5" strokeLinejoin="round" />
-      <path d="M7.3 10 9.3 12l3.4-4.2" className="stroke-brand-red" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-const ITEM_ICONS: Record<(typeof ITEM_IDS)[number], () => React.JSX.Element> = {
-  deadline: DeadlineIcon,
-  contract: ContractIcon,
-  warranty: WarrantyIcon,
-};
-
-export function Advantages() {
+export function Advantages({ onRequestQuote }: { onRequestQuote: () => void }) {
   const t = useTranslations("prices.advantages");
+  const tCta = useTranslations("home.projects");
+  const tNav = useTranslations("nav");
 
   return (
     <section className="px-6 py-16 desktop:px-16 desktop:py-24">
-      <Badge className="mb-4 tablet:mb-6">{t("title")}</Badge>
+      <Badge className="mb-6 tablet:hidden">{t("title")}</Badge>
 
-      <div className="grid grid-cols-1 gap-4 tablet:grid-cols-3 tablet:gap-6">
-        {ITEM_IDS.map((id) => {
-          const Icon = ITEM_ICONS[id];
-          return (
-            <div key={id} className="flex flex-col gap-4 rounded-2xl bg-white p-6">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-red/10">
-                <Icon />
-              </span>
-              <div>
-                <p className="mb-1.5 font-heading text-sm font-semibold uppercase leading-tight tracking-[-0.01em]">
-                  {t(`items.${id}.title`)}
-                </p>
-                <p className="text-sm leading-5 text-brand-dark/50">
-                  {t(`items.${id}.description`)}
-                </p>
-              </div>
-            </div>
-          );
-        })}
+      <div className="flex gap-6">
+        <div className="hidden w-40 shrink-0 tablet:block desktop:w-52">
+          <Badge>{t("title")}</Badge>
+        </div>
+
+        <div className="grid min-w-0 flex-1 grid-cols-1 gap-2.5 tablet:grid-cols-2">
+          {ITEMS.map((item) => (
+            <AdvantageCard key={item.id} id={item.id} icon={item.icon} />
+          ))}
+
+          <div className="relative flex flex-col justify-between gap-8 rounded-lg bg-brand-red p-7.5 text-white">
+            <span className="absolute right-5 top-5 h-1.5 w-1.5 rounded-full bg-white" aria-hidden />
+            <h3 className="font-heading text-[25px] font-medium uppercase leading-none tracking-[-0.01em]">
+              {tCta("ctaHeadingMain")} <span className="font-semibold">{tCta("ctaHeadingHighlight")}</span>
+            </h3>
+            <Button variant="white" onClick={onRequestQuote} className="w-full">
+              {tNav("cta")}
+            </Button>
+          </div>
+        </div>
       </div>
     </section>
   );

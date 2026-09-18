@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
-import type { Stage } from "@/types";
+import { Badge } from "@/components/ui/Badge";
 
-const STAGE_KEYS = ["step1", "step2", "step3", "step4"] as const;
+const STAGE_KEYS = ["step1", "step2", "step3", "step4", "step5", "step6", "step7"] as const;
 
 export function StagesSlider() {
   const t = useTranslations("about.stages");
@@ -14,53 +15,68 @@ export function StagesSlider() {
     scrollerRef.current?.scrollBy({ left: delta, behavior: "smooth" });
   };
 
-  const stages: (Stage & { number: string })[] = STAGE_KEYS.map((key, index) => ({
-    number: String(index + 1).padStart(2, "0"),
-    title: t(`${key}.title`),
-    description: t(`${key}.description`),
-  }));
-
   return (
-    <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-brand-dark/80" />
-
-      <div className="relative px-6 py-16 text-white desktop:px-16 desktop:py-24">
-        <div className="mb-8 flex items-center justify-between">
-          <h2 className="font-heading text-2xl font-semibold desktop:text-4xl">{t("title")}</h2>
-          <div className="hidden gap-2 desktop:flex">
-            <button
-              type="button"
-              onClick={() => scrollBy(-320)}
-              aria-label="Previous"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/30 hover:bg-white/10"
-            >
-              ←
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollBy(320)}
-              aria-label="Next"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-red"
-            >
-              →
-            </button>
-          </div>
+    <section className="overflow-hidden px-6 py-8 tablet:px-16 tablet:py-12">
+      <div className="relative rounded-lg">
+        <div className="absolute inset-0 overflow-hidden rounded-lg">
+          <Image
+            src="/images/projects/project-1.jpg"
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-brand-dark/50" />
         </div>
 
-        <div
-          ref={scrollerRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
-        >
-          {stages.map((stage) => (
-            <div
-              key={stage.number}
-              className="w-64 flex-shrink-0 snap-start rounded-2xl bg-white/10 p-6 backdrop-blur"
-            >
-              <span className="text-sm text-white/50">{stage.number}</span>
-              <h3 className="mt-4 mb-2 font-medium">{stage.title}</h3>
-              <p className="text-sm text-white/70">{stage.description}</p>
+        <div className="relative flex flex-col gap-6 p-4 text-white tablet:flex-row tablet:gap-0 tablet:py-8 tablet:pr-0 tablet:pl-8">
+          <div className="tablet:w-[20%] tablet:shrink-0">
+            <Badge>{t("badge")}</Badge>
+          </div>
+
+          <div className="flex min-w-0 flex-1 flex-col gap-6 tablet:gap-8">
+            <div className="flex items-start justify-between tablet:pr-8">
+              <h2 className="font-heading text-4xl font-semibold uppercase leading-none tablet:text-5xl">
+                {t("title")}
+              </h2>
+              <div className="hidden gap-2 tablet:flex">
+                <button
+                  type="button"
+                  onClick={() => scrollBy(-320)}
+                  aria-label="Previous"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-brand-dark"
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollBy(320)}
+                  aria-label="Next"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-red"
+                >
+                  →
+                </button>
+              </div>
             </div>
-          ))}
+
+            <div
+              ref={scrollerRef}
+              className="flex max-h-[420px] flex-col gap-2.5 overflow-y-auto overscroll-contain tablet:-mr-16 tablet:max-h-none tablet:snap-x tablet:snap-mandatory tablet:flex-row tablet:overflow-x-auto tablet:overflow-y-visible tablet:scroll-smooth tablet:pr-16"
+            >
+              {STAGE_KEYS.map((key, i) => (
+                <div
+                  key={key}
+                  className="flex min-h-40 shrink-0 flex-col justify-between gap-6 rounded-lg bg-white p-4 text-brand-dark tablet:w-72 tablet:snap-start"
+                >
+                  <span className="text-brand-dark/60">{String(i + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h3 className="font-semibold">{t(`${key}.title`)}</h3>
+                    <p className="mt-1 text-sm text-brand-dark/70">{t(`${key}.description`)}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

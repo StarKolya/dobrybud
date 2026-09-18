@@ -78,6 +78,10 @@ export function Footer() {
                   {link.label}
                 </Link>
               ))}
+
+              <Link href={ROUTES.home} className="text-sm text-brand-dark transition-colors hover:text-brand-red max-w-20">
+                {t("privacyPolicy")}
+              </Link>
             </nav>
           </div>
 
@@ -141,9 +145,7 @@ export function Footer() {
         <span className="order-2 tablet:order-1">
           © {new Date().getFullYear()}. {t("rights")}
         </span>
-        <Link href={ROUTES.home} className="order-1 transition-colors hover:text-brand-red tablet:order-2">
-          {t("privacyPolicy")}
-        </Link>
+        
       </div>
     </footer>
   );

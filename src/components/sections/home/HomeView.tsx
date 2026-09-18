@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { Hero } from "./Hero";
+import { ConsultationBanner } from "./ConsultationBanner";
 import { AboutStats } from "./AboutStats";
 import { ProjectsShowcase } from "./ProjectsShowcase";
 import { Partners } from "./Partners";
 import { PackagesTable } from "@/components/sections/prices/PackagesTable";
+import { Advantages } from "./Advantages";
 import { Testimonials } from "./Testimonials";
 import { Calculator } from "./Calculator";
 import { FAQ } from "./FAQ";
@@ -20,28 +22,17 @@ export function HomeView() {
 
   return (
     <>
-      <div className="fixed bottom-4 left-4 z-40 flex flex-col gap-2">
-        <button
-          type="button"
-          onClick={() => setLeadFormOpen(true)}
-          className="rounded-md bg-brand-dark px-3 py-2 text-xs text-white"
-        >
-          Test: pop-up (без проєкту)
-        </button>
-        <button
-          type="button"
-          onClick={() => setLeadFormUploadOpen(true)}
-          className="rounded-md bg-brand-dark px-3 py-2 text-xs text-white"
-        >
-          Test: pop-up (є дизайн-проєкт)
-        </button>
-      </div>
-
       <Hero onCtaClick={() => setLeadFormOpen(true)} />
+      
       <AboutStats />
-      <ProjectsShowcase onRequestQuote={() => setLeadFormOpen(true)} />
+      <ProjectsShowcase />
       <Partners />
       <PackagesTable onRequestQuote={() => setLeadFormOpen(true)} />
+      <Advantages />
+      <ConsultationBanner
+        onHasDesignClick={() => setLeadFormUploadOpen(true)}
+        onNoDesignClick={() => setLeadFormOpen(true)}
+      />
       <Testimonials />
       <Calculator onGetQuote={() => setLeadFormOpen(true)} />
       <FAQ />

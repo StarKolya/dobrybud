@@ -24,6 +24,11 @@
       "priceFrom": "od 890 zł/m2",
       "cta": "Otrzymaj wycenę"
     },
+    "banner": {
+      "title": "Który wariant Ci odpowiada?",
+      "hasDesign": "Mam projekt wnętrz",
+      "noDesign": "Nie mam projektu"
+    },
     "about": {
       "title": "O nas",
       "stats": {
@@ -34,14 +39,16 @@
       }
     },
     "projects": {
-      "title": "Zrealizowane projekty",
+      "title": "Gotowe projekty",
       "cta": "Otrzymaj wycenę",
       "budget": "Budżet",
-      "duration": "Czas trwania",
+      "duration": "Czas realizacji",
       "area": "Powierzchnia",
       "result": "Efekt",
       "ctaHeadingMain": "Wycenimy remont Twojego mieszkania",
-      "ctaHeadingHighlight": "w 1 dzień"
+      "ctaHeadingHighlight": "w 1 dzień",
+      "project": "Projekt",
+      "viewAll": "Zobacz wszystkie projekty"
     },
     "partners": {
       "title": "Partnerzy"
@@ -146,6 +153,7 @@
     }
   },
   "prices": {
+    "packageBanner": { "title": "Nie wiesz, który pakiet będzie odpowiedni?", "description": "Nasz menedżer dobierze optymalny pakiet do Twojego budżetu i mieszkania.", "cta": "Uzyskaj bezpłatną konsultację" },
     "title": "Do każdego zadania",
     "titleHighlight": "— swoje rozwiązanie",
     "detailsCta": "Szczegóły",
@@ -181,12 +189,18 @@
   },
   "about": {
     "title": "O nas",
+    "aboutUs": { "title": "O nas", "p1": "Bierzemy na siebie cały proces remontu", "p2": "Pracujemy według przejrzystego systemu", "p3": "Dotrzymujemy uzgodnionych terminów", "p4": "Kontrolujemy jakość na każdym etapie", "p5": "Otwarcie komunikujemy się z klientem" },
+    "numbers": { "title": "Liczby" },
     "stages": {
+      "badge": "Etapy",
       "title": "Jak pracujemy",
       "step1": { "title": "Konsultacja", "description": "Omawiamy Twoje oczekiwania, budżet i terminy remontu." },
       "step2": { "title": "Wizja lokalna lub analiza projektu", "description": "Oceniamy obiekt lub analizujemy gotowy projekt wnętrz." },
       "step3": { "title": "Kosztorys", "description": "Obliczamy koszt prac i materiałów bez ukrytych opłat." },
-      "step4": { "title": "Umowa", "description": "Ustalamy warunki, koszt i odpowiedzialność stron." }
+      "step4": { "title": "Umowa", "description": "Ustalamy warunki, koszt i odpowiedzialność stron." },
+      "step5": { "title": "Realizacja remontu", "description": "Zespół wykonuje wszystkie prace i koordynuje proces na każdym etapie." },
+      "step6": { "title": "Kontrola jakości", "description": "Sprawdzamy wykonanie prac i przestrzeganie standardów jakości." },
+      "step7": { "title": "Odbiór obiektu", "description": "Przekazujemy gotowe mieszkanie — czyste, sprawdzone i gotowe do zamieszkania." }
     }
   },
   "projects": {

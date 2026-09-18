@@ -8,6 +8,7 @@ import { LeadFormPopup } from "@/components/popups/LeadFormPopup";
 import { PackagesScroll } from "./PackagesScroll";
 import { PackagesTable } from "./PackagesTable";
 import { Advantages } from "./Advantages";
+import { PackageBanner } from "./PackageBanner";
 import { ProjectsHighlight } from "./ProjectsHighlight";
 
 export function PricesView() {
@@ -27,7 +28,8 @@ export function PricesView() {
         </h1>
         <PackagesScroll />
         <PackagesTable onRequestQuote={() => setLeadFormOpen(true)} />
-        <Advantages />
+        <Advantages onRequestQuote={() => setLeadFormOpen(true)} />
+        <PackageBanner onCtaClick={() => setLeadFormOpen(true)} />
         <ProjectsHighlight />
       </main>
       <Footer />

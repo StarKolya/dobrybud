@@ -3,73 +3,72 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { ROUTES } from "@/lib/constants";
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
 
 interface ShowcaseProject {
   id: string;
-  image: string;
+  images: string[];
   budget: string;
   duration: string;
+  areaSqm: number;
   resultValue: string;
   resultCaption: string;
 }
 
+const RESULT_CAPTION = "до вартості нерухомості після ремонту";
+
 const PROJECTS: ShowcaseProject[] = [
   {
     id: "1",
-    image: "/images/projects/project-1.jpg",
-    budget: "39 000 zł",
+    images: ["/images/projects/project-1-1.jpg", "/images/projects/project-1-2.jpg"],
+    budget: "39000 zł",
     duration: "2 місяці",
+    areaSqm: 73,
     resultValue: "+50%",
-    resultCaption: "до вартості нерухомості після ремонту",
+    resultCaption: RESULT_CAPTION,
   },
   {
     id: "2",
-    image: "/images/projects/project-1.jpg",
-    budget: "68 000 zł",
-    duration: "8 тижнів",
-    resultValue: "+35%",
-    resultCaption: "до вартості нерухомості після ремонту",
+    images: ["/images/projects/project-2-1.jpg", "/images/projects/project-2-2.jpg"],
+    budget: "53000 zł",
+    duration: "3 місяці",
+    areaSqm: 52,
+    resultValue: "+39%",
+    resultCaption: RESULT_CAPTION,
   },
   {
     id: "3",
-    image: "/images/projects/project-1.jpg",
-    budget: "92 000 zł",
-    duration: "10 тижнів",
-    resultValue: "+60%",
-    resultCaption: "до вартості нерухомості після ремонту",
+    images: ["/images/projects/project-3-1.jpg"],
+    budget: "39000 zł",
+    duration: "2 місяці",
+    areaSqm: 73,
+    resultValue: "+50%",
+    resultCaption: RESULT_CAPTION,
   },
   {
     id: "4",
-    image: "/images/projects/project-1.jpg",
-    budget: "38 000 zł",
-    duration: "5 тижнів",
-    resultValue: "+30%",
-    resultCaption: "до вартості нерухомості після ремонту",
+    images: ["/images/projects/project-4-1.jpg"],
+    budget: "53000 zł",
+    duration: "3 місяці",
+    areaSqm: 52,
+    resultValue: "+39%",
+    resultCaption: RESULT_CAPTION,
   },
 ];
 
-function NavButton({
-  direction,
-  onClick,
-  disabled,
-}: {
-  direction: "prev" | "next";
-  onClick: () => void;
-  disabled: boolean;
-}) {
+function NavButton({ direction, onClick }: { direction: "prev" | "next"; onClick: () => void }) {
   const isNext = direction === "next";
   return (
     <button
       type="button"
       onClick={onClick}
-      disabled={disabled}
-      aria-label={isNext ? "Next project" : "Previous project"}
-      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors ${
-        disabled
-          ? "cursor-not-allowed bg-white text-brand-dark/30"
-          : "bg-brand-red text-white hover:bg-brand-dark"
+      aria-label={isNext ? "Next photo" : "Previous photo"}
+      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full transition-colors tablet:h-9 tablet:w-9 ${
+        isNext
+          ? "bg-brand-red text-white hover:bg-brand-dark"
+          : "bg-white text-brand-dark hover:bg-white/80"
       }`}
     >
       {isNext ? "→" : "←"}
@@ -77,100 +76,110 @@ function NavButton({
   );
 }
 
-function StatBlocks({
-  project,
-  t,
-}: {
-  project: ShowcaseProject;
-  t: ReturnType<typeof useTranslations>;
-}) {
+function Fact({ label, value, className }: { label: string; value: string; className: string }) {
+  return (
+    <div className={`flex flex-col justify-center rounded-lg bg-white px-3 py-2 ${className}`}>
+      <p className="text-xs text-brand-dark/50">{label}</p>
+      <p className="font-medium">{value}</p>
+    </div>
+  );
+}
+
+function Pill({ children }: { children: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-md bg-white px-2 py-1 text-xs">
+      <span className="h-1.5 w-1.5 rounded-full bg-brand-red" aria-hidden />
+      {children}
+    </span>
+  );
+}
+
+function Result({ project, label }: { project: ShowcaseProject; label: string }) {
   return (
     <>
-      <div className="flex gap-2">
-        <div className="flex flex-148 flex-col justify-center overflow-hidden rounded-xl bg-white px-4 py-3 tablet:w-42.5 tablet:flex-none tablet:h-23.25">
-          <p className="text-xs text-brand-dark/50">{t("budget")}</p>
-          <p key={project.id} className="animate-stat-change font-medium">
-            {project.budget}
-          </p>
-        </div>
-        <div className="flex flex-198 flex-col justify-center overflow-hidden rounded-xl bg-white px-4 py-3 tablet:w-68.5 tablet:flex-none tablet:h-23.25">
-          <p className="text-xs text-brand-dark/50">{t("duration")}</p>
-          <p key={project.id} className="animate-stat-change font-medium">
-            {project.duration}
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-col justify-center overflow-hidden rounded-xl bg-white px-4 py-3 tablet:h-29.5 tablet:w-112.25">
-        <p className="mb-0.5 text-xs text-brand-dark/50">{t("result")}</p>
-        <p key={project.id} className="animate-stat-change text-sm leading-5">
-          <span className="font-semibold text-brand-red">{project.resultValue}</span>{" "}
-          {project.resultCaption}
-        </p>
-      </div>
+      <p className="text-xs text-brand-dark/50">{label}</p>
+      <p className="text-sm leading-5">
+        <span className="font-semibold text-brand-red">{project.resultValue}</span>{" "}
+        {project.resultCaption}
+      </p>
     </>
   );
 }
 
-export function ProjectsShowcase({ onRequestQuote }: { onRequestQuote: () => void }) {
+function ProjectCard({ project, number }: { project: ShowcaseProject; number: number }) {
   const t = useTranslations("home.projects");
-  const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState<"next" | "prev">("next");
-  const active = PROJECTS[index];
-  const canGoPrev = index > 0;
-  const canGoNext = index < PROJECTS.length - 1;
+  const [imageIndex, setImageIndex] = useState(0);
+  const area = `${project.areaSqm} m²`;
 
   const go = (delta: number) => {
-    setDirection(delta > 0 ? "next" : "prev");
-    setIndex((prev) => Math.min(Math.max(prev + delta, 0), PROJECTS.length - 1));
+    setImageIndex((prev) => (prev + delta + project.images.length) % project.images.length);
   };
 
   return (
-    <section className="px-6 py-16 tablet:px-16 tablet:py-24">
-      <div className="mb-4 flex items-center justify-between tablet:mb-6">
-        <Badge>{t("title")}</Badge>
-        <div className="flex gap-2 tablet:hidden">
-          <NavButton direction="prev" onClick={() => go(-1)} disabled={!canGoPrev} />
-          <NavButton direction="next" onClick={() => go(1)} disabled={!canGoNext} />
+    <div className={number === 4 ? "hidden tablet:block" : ""}>
+      <h3 className="mb-2.5 text-lg font-semibold uppercase tablet:hidden">
+        {t("project")} {number}
+      </h3>
+
+      <div className="relative aspect-4/3 overflow-hidden rounded-lg tablet:aspect-16/11">
+        <Image
+          src={project.images[imageIndex]}
+          alt=""
+          fill
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="object-cover"
+        />
+
+        <div className="absolute inset-x-2.5 top-2.5 flex flex-wrap gap-1 tablet:hidden">
+          <Pill>{project.budget}</Pill>
+          <Pill>{area}</Pill>
+          <Pill>{project.duration}</Pill>
+        </div>
+
+        <div className="pointer-events-none absolute left-2.5 top-2.5 hidden flex-col gap-[5px] tablet:flex">
+          <div className="flex gap-[5px]">
+            <Fact label={t("budget")} value={project.budget} className="w-[120px]" />
+            <Fact label={t("duration")} value={project.duration} className="w-[190px]" />
+            <Fact label={t("area")} value={area} className="w-[120px]" />
+          </div>
+          <div className="flex w-[315px] flex-col justify-center rounded-lg bg-white px-3 py-2">
+            <Result project={project} label={t("result")} />
+          </div>
+        </div>
+
+        <div className="absolute inset-x-2.5 top-1/2 flex -translate-y-1/2 justify-between tablet:inset-x-auto tablet:bottom-2.5 tablet:right-2.5 tablet:top-auto tablet:translate-y-0 tablet:gap-2">
+          <NavButton direction="prev" onClick={() => go(-1)} />
+          <NavButton direction="next" onClick={() => go(1)} />
         </div>
       </div>
 
-      <div className="relative overflow-hidden rounded-2xl">
-        <div className="relative aspect-4/3 overflow-hidden tablet:aspect-16/8">
-          <Image
-            key={active.id}
-            src={active.image}
-            alt=""
-            fill
-            className={`object-cover ${
-              direction === "next"
-                ? "animate-carousel-slide-from-right"
-                : "animate-carousel-slide-from-left"
-            }`}
-          />
-        </div>
+      <div className="mt-2.5 rounded-lg bg-white px-3 py-2 tablet:hidden">
+        <Result project={project} label={t("result")} />
+      </div>
+    </div>
+  );
+}
 
-        <div className="pointer-events-none absolute inset-x-4 top-4 hidden w-fit flex-col gap-2 tablet:flex">
-          <StatBlocks project={active} t={t} />
-        </div>
+export function ProjectsShowcase() {
+  const t = useTranslations("home.projects");
 
-        <div className="absolute inset-x-4 bottom-4 hidden justify-end gap-2 tablet:flex">
-          <NavButton direction="prev" onClick={() => go(-1)} disabled={!canGoPrev} />
-          <NavButton direction="next" onClick={() => go(1)} disabled={!canGoNext} />
-        </div>
+  return (
+    <section className="bg-brand-gray px-6 py-16 tablet:px-16 tablet:py-24">
+      <Badge>{t("title")}</Badge>
+
+      <div className="mt-6 grid gap-6 tablet:grid-cols-2 tablet:gap-2">
+        {PROJECTS.map((project, i) => (
+          <ProjectCard key={project.id} project={project} number={i + 1} />
+        ))}
       </div>
 
-      <div className="mt-4 flex flex-col gap-2 tablet:hidden">
-        <StatBlocks project={active} t={t} />
-      </div>
-
-      <div className="mt-8 flex flex-col items-start gap-6 tablet:mt-10 tablet:flex-row tablet:items-center tablet:justify-between">
-        <h2 className="max-w-xl text-xl font-semibold uppercase leading-tight tablet:text-3xl">
-          <span className="mr-2 inline-block h-2 w-2 rounded-full bg-brand-red align-middle" aria-hidden />
-          {t("ctaHeadingMain")} <span className="text-brand-red">{t("ctaHeadingHighlight")}</span>
-        </h2>
-        <Button onClick={onRequestQuote} className="w-full tablet:w-auto">
-          {t("cta")}
-        </Button>
+      <div className="mt-8 flex justify-center tablet:mt-6">
+        <Link
+          href={ROUTES.projects}
+          className="inline-flex w-full items-center justify-center rounded-md bg-brand-red px-5 py-3.5 text-[20px] text-white transition-colors hover:bg-brand-dark tablet:w-auto"
+        >
+          {t("viewAll")}
+        </Link>
       </div>
     </section>
   );
