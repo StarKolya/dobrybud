@@ -14,15 +14,22 @@ const PACKAGE_IMAGES: Record<PackageId, string> = {
   premium: "/images/prices/premium.jpg",
 };
 
+const TABLET_BREAKPOINT_PX = 768;
 const DESKTOP_BREAKPOINT_PX = 1280;
+const CARD_H_MOBILE_PX = 400;
+const CARD_H_TABLET_PX = 700;
 const PAD_MOBILE_PX = 24;
 const PAD_DESKTOP_PX = 64;
 const GAP_PX = 24;
 const TOP_MARGIN_PX = 16;
 const RADIUS_PX = 24;
-/** Scroll distance per animation step, as a share of the pinned stage height. */
-const STEP_SCROLL_RATIO = 0.7;
-const STEPS = 4;
+/**
+ * Scroll distance of each phase (a slide or a widen), as a share of the pinned
+ * stage height. The animation has 6 phases: lift, widen, then slide + widen for
+ * each of the two remaining cards. The last four are slower than the first two.
+ */
+const PHASE_SCROLL_RATIOS = [0.35, 0.35, 0.5, 0.5, 0.5, 0.5];
+const TOTAL_SCROLL_RATIO = PHASE_SCROLL_RATIOS.reduce((sum, r) => sum + r, 0);
 
 interface Metrics {
   vw: number;
@@ -30,6 +37,7 @@ interface Metrics {
   headerH: number;
   titleBottom: number;
   padX: number;
+  cardH: number;
 }
 
 const clamp01 = (n: number) => Math.min(Math.max(n, 0), 1);
@@ -62,6 +70,7 @@ export function PackagesScroll() {
         stageH: window.innerHeight - headerH,
         titleBottom: title ? title.offsetTop + title.offsetHeight : 0,
         padX: vw >= DESKTOP_BREAKPOINT_PX ? PAD_DESKTOP_PX : PAD_MOBILE_PX,
+        cardH: vw >= TABLET_BREAKPOINT_PX ? CARD_H_TABLET_PX : CARD_H_MOBILE_PX,
       });
     };
     measure();
@@ -76,9 +85,13 @@ export function PackagesScroll() {
       frame = 0;
       const section = sectionRef.current;
       if (!section) return;
-      const scrollLen = section.offsetHeight - metrics.stageH;
       const scrolled = metrics.headerH - section.getBoundingClientRect().top;
-      setProgress(clamp01(scrolled / scrollLen) * STEPS);
+      const phase = (i: number) => {
+        const start = PHASE_SCROLL_RATIOS.slice(0, i).reduce((sum, r) => sum + r, 0);
+        return clamp01((scrolled / metrics.stageH - start) / PHASE_SCROLL_RATIOS[i]);
+      };
+      // Steps 3 and 4 span two phases each (slide, then widen).
+      setProgress(phase(0) + phase(1) + (phase(2) + phase(3)) / 2 + (phase(4) + phase(5)) / 2);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -92,7 +105,7 @@ export function PackagesScroll() {
   }, [metrics]);
 
   const m = metrics;
-  const cardH = m ? m.stageH - TOP_MARGIN_PX * 2 : 0;
+  const cardH = m?.cardH ?? 0;
   const restY = (i: number) => (m ? m.titleBottom + GAP_PX : 0) + i * (cardH + GAP_PX);
   const liftedBy = (m ? restY(0) - TOP_MARGIN_PX : 0) * clamp01(progress);
 
@@ -120,7 +133,7 @@ export function PackagesScroll() {
     <section
       ref={sectionRef}
       className="relative"
-      style={m ? { height: m.stageH * (1 + STEPS * STEP_SCROLL_RATIO) } : { height: "500vh" }}
+      style={m ? { height: m.stageH * (1 + TOTAL_SCROLL_RATIO) } : { height: "500vh" }}
     >
       <div
         className="sticky overflow-hidden"
