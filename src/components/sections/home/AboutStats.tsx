@@ -6,13 +6,13 @@ import { useCountUp } from "@/hooks/useCountUp";
 import { Badge } from "@/components/ui/Badge";
 
 const STATS = [
-  { 
-    key: "years", 
-    target: 4, 
-    suffix: "+", 
-    order: "order-3", 
-    column: "left", 
-    offset: "translate-x-30" 
+  {
+    key: "years",
+    target: 4,
+    suffix: "+",
+    order: "order-3",
+    column: "left",
+    offset: "translate-x-30",
   },
   {
     key: "projects",
@@ -69,7 +69,10 @@ function Stat({
   const { value, ref } = useCountUp(target);
 
   return (
-    <div ref={ref as React.RefObject<HTMLDivElement>} className={`flex flex-col gap-2 ${className}`}>
+    <div
+      ref={ref as React.RefObject<HTMLDivElement>}
+      className={`flex flex-col gap-2 ${className}`}
+    >
       <FlagIcon className="h-5 w-5.5 text-brand-red" />
       <span className="font-heading text-4xl font-semibold text-brand-dark desktop:text-5xl">
         {value}
@@ -87,50 +90,53 @@ export function AboutStats() {
 
   return (
     <section className="px-6 py-16 desktop:px-16 desktop:py-24">
-      <Badge className="order-1 col-span-2 desktop:col-span-3">{t("title")}</Badge>
-      <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 desktop:grid-cols-3 desktop:gap-x-14 desktop:gap-y-16 mt-9 h-120">
-
-        {STATS.map((stat) => (
-          <Stat
-            key={stat.key}
-            target={stat.target}
-            suffix={stat.suffix}
-            labelKey={stat.key}
-            className={`${stat.order} desktop:hidden`}
-          />
-        ))}
-
-        <div className="hidden desktop:col-start-1 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
-          {LEFT_STATS.map((stat) => (
+      <div className="mx-auto max-w-360">
+        <Badge className="order-1 col-span-2 desktop:col-span-3">
+          {t("title")}
+        </Badge>
+        <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 desktop:grid-cols-3 desktop:gap-x-14 desktop:gap-y-16 mt-9 h-120">
+          {STATS.map((stat) => (
             <Stat
               key={stat.key}
               target={stat.target}
               suffix={stat.suffix}
               labelKey={stat.key}
-              className={stat.offset}
+              className={`${stat.order} desktop:hidden`}
             />
           ))}
-        </div>
 
-        <div className="hidden desktop:col-start-3 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
-          {RIGHT_STATS.map((stat) => (
-            <Stat
-              key={stat.key}
-              target={stat.target}
-              suffix={stat.suffix}
-              labelKey={stat.key}
-              className={stat.offset}
+          <div className="hidden desktop:col-start-1 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
+            {LEFT_STATS.map((stat) => (
+              <Stat
+                key={stat.key}
+                target={stat.target}
+                suffix={stat.suffix}
+                labelKey={stat.key}
+                className={stat.offset}
+              />
+            ))}
+          </div>
+
+          <div className="hidden desktop:col-start-3 desktop:row-start-1 desktop:row-span-2 desktop:flex desktop:h-full desktop:flex-col desktop:justify-between">
+            {RIGHT_STATS.map((stat) => (
+              <Stat
+                key={stat.key}
+                target={stat.target}
+                suffix={stat.suffix}
+                labelKey={stat.key}
+                className={stat.offset}
+              />
+            ))}
+          </div>
+
+          <div className="relative order-4 col-span-2 aspect-586/522 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2 desktop:self-start desktop:w-[586px] desktop:z-10">
+            <Image
+              src="/images/about/3d-house.png"
+              alt=""
+              fill
+              className="object-contain desktop:rotate-[5deg] desktop:-translate-x-40 desktop:-translate-y-10"
             />
-          ))}
-        </div>
-
-        <div className="relative order-4 col-span-2 aspect-586/522 desktop:order-0 desktop:col-span-1 desktop:col-start-2 desktop:row-start-1 desktop:row-span-2 desktop:self-start desktop:w-[586px] desktop:z-10">
-          <Image
-            src="/images/about/3d-house.png"
-            alt=""
-            fill
-            className="object-contain desktop:rotate-[5deg] desktop:-translate-x-40 desktop:-translate-y-10"
-          />
+          </div>
         </div>
       </div>
     </section>
