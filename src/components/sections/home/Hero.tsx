@@ -20,7 +20,7 @@ export function Hero({ onCtaClick }: { onCtaClick: () => void }) {
       </div>
 
       <div className="relative z-10 flex w-full flex-col gap-4 tablet:gap-6 px-5 tablet:pt-24 pt-35 pb-10 tablet:pb-16 desktop:px-16 desktop:pt-43.5">
-        <h1 className="w-fit font-semibold uppercase leading-none tracking-[-0.01em] text-[32px] text-white tablet:text-[80px]">
+        <h1 className="w-fit font-semibold uppercase leading-none tracking-[-0.01em] text-[32px] text-white tablet:text-[56px] desktop:text-[80px]">
           <span>
             {t("titleMain1")}
             <br />
@@ -32,7 +32,7 @@ export function Hero({ onCtaClick }: { onCtaClick: () => void }) {
           </span>
         </h1>
 
-        <p className="flex items-center gap-3 text-3xl font-medium tablet:font-semibold text-white desktop:text-4xl tablet:mt-10 mt-auto">
+        <p className="flex items-center gap-3 text-3xl font-medium text-white desktop:text-4xl mt-auto">
           <span className="h-3 w-3 shrink-0 rounded-full bg-brand-red" aria-hidden />
           {t("priceFrom")}
         </p>

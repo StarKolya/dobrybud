@@ -161,8 +161,8 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
             </div>
           </div>
 
-          <div className="mt-10 flex gap-3 border-b border-brand-dark/10 pb-6">
-            <p className="text-[14px] mr-18 font-normal uppercase tracking-wide text-brand-dark/70">
+          <div className="mt-10 grid grid-cols-[8.5rem_1fr] gap-3 border-b border-brand-dark/10 pb-6">
+            <p className="text-[14px] font-normal break-words uppercase tracking-wide text-brand-dark/70">
               {t("navigationTitle")}
             </p>
             <nav className="flex flex-col gap-2">
@@ -179,11 +179,11 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
             </nav>
           </div>
 
-          <div className="flex gap-3 border-b border-brand-dark/10 py-6">
-            <p className="text-[14px] mr-20 font-normal uppercase tracking-wide text-brand-dark/70">
+          <div className="grid grid-cols-[8.5rem_1fr] gap-3 border-b border-brand-dark/10 py-6">
+            <p className="text-[14px] font-normal break-words uppercase tracking-wide text-brand-dark/70">
               {tFooter("contactsTitle")}
             </p>
-            <div>
+            <div className="min-w-0">
               <Link
               href={`tel:${CONTACT_PHONE_HREF}`}
               className="text-[25px] font-normal text-brand-dark transition-colors hover:text-brand-red"
@@ -192,7 +192,7 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
             </Link> <br />
             <Link
               href={`mailto:${CONTACT_EMAIL}`}
-              className="text-[25px] font-normal text-brand-dark transition-colors hover:text-brand-red"
+              className="break-all text-[25px] font-normal text-brand-dark transition-colors hover:text-brand-red"
             >
               {CONTACT_EMAIL}
             </Link>
@@ -200,8 +200,8 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
           
           </div>
 
-          <div className="flex gap-3 py-6">
-            <p className="text-[14px] mr-24 font-normal uppercase tracking-wide text-brand-dark/70">
+          <div className="grid grid-cols-[8.5rem_1fr] gap-3 py-6">
+            <p className="text-[14px] font-normal break-words uppercase tracking-wide text-brand-dark/70">
               {t("writeTitle")}
             </p>
             <div className="flex items-center gap-3">

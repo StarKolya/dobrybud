@@ -28,7 +28,7 @@ const RADIUS_PX = 24;
  * stage height. The animation has 6 phases: lift, widen, then slide + widen for
  * each of the two remaining cards. The last four are slower than the first two.
  */
-const PHASE_SCROLL_RATIOS = [0.35, 0.35, 0.5, 0.5, 0.5, 0.5];
+const PHASE_SCROLL_RATIOS = [0.35, 0.175, 0.5, 0.25, 0.5, 0.25];
 const TOTAL_SCROLL_RATIO = PHASE_SCROLL_RATIOS.reduce((sum, r) => sum + r, 0);
 
 interface Metrics {
@@ -116,7 +116,9 @@ export function PackagesScroll() {
     const step = i === 0 ? progress - 1 : progress - (i + 1);
     const move = i === 0 ? 0 : clamp01(step * 2);
     const widen = i === 0 ? clamp01(step) : clamp01(step * 2 - 1);
-    const y = lerp(restY(i) - liftedBy, TOP_MARGIN_PX, move);
+    // The card below rides along with the one ahead of it, keeping the gap.
+    const followed = i === 2 ? (restY(1) - liftedBy - TOP_MARGIN_PX) * clamp01((progress - 2) * 2) : 0;
+    const y = lerp(restY(i) - liftedBy - followed, TOP_MARGIN_PX, move);
     const inset = lerp(m.padX, 0, widen);
     return {
       top: 0,
@@ -133,10 +135,18 @@ export function PackagesScroll() {
     <section
       ref={sectionRef}
       className="relative"
-      style={m ? { height: m.stageH * (1 + TOTAL_SCROLL_RATIO) } : { height: "500vh" }}
+      style={
+        m
+          ? {
+              height: m.stageH * (1 + TOTAL_SCROLL_RATIO),
+              // Pull the next section up over the empty space below the finished stack.
+              marginBottom: -Math.max(m.stageH - m.cardH - TOP_MARGIN_PX * 2, 0),
+            }
+          : { height: "500vh" }
+      }
     >
       <div
-        className="sticky overflow-hidden"
+        className="pointer-events-none sticky overflow-hidden"
         style={{ top: m?.headerH ?? 0, height: m?.stageH ?? "100svh" }}
       >
         <h1
@@ -153,7 +163,7 @@ export function PackagesScroll() {
         {PACKAGE_IDS.map((id, index) => (
           <div
             key={id}
-            className="absolute overflow-hidden will-change-transform"
+            className="pointer-events-auto absolute overflow-hidden will-change-transform"
             style={cardStyle(index)}
           >
             <Image src={PACKAGE_IMAGES[id]} alt="" fill sizes="100vw" className="object-cover" />

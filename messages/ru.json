@@ -204,6 +204,8 @@
     }
   },
   "projects": {
+    "titleHighlight": "Успешно",
+    "titleMain": "реализованные проекты",
     "title": "Проекты"
   },
   "thankYou": {

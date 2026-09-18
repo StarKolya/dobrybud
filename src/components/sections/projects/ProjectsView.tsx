@@ -1,24 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { LeadFormPopup } from "@/components/popups/LeadFormPopup";
-import { ProjectsGrid } from "./ProjectsGrid";
+import { ProjectsScroll } from "./ProjectsScroll";
 
 export function ProjectsView() {
-  const t = useTranslations("projects");
   const [leadFormOpen, setLeadFormOpen] = useState(false);
 
   return (
     <>
-      <Header variant="solid" onCtaClick={() => setLeadFormOpen(true)} />
+      <Header variant="solid" sticky onCtaClick={() => setLeadFormOpen(true)} />
       <main className="flex flex-1 flex-col">
-        <h1 className="px-6 pt-8 text-3xl font-semibold desktop:px-16 desktop:text-5xl">
-          {t("title")}
-        </h1>
-        <ProjectsGrid />
+        <ProjectsScroll />
       </main>
       <Footer />
 

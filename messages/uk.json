@@ -204,6 +204,8 @@
     }
   },
   "projects": {
+    "titleHighlight": "Успішно",
+    "titleMain": "реалізовані проєкти",
     "title": "Проєкти"
   },
   "thankYou": {
