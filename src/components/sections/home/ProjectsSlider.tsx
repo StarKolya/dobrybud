@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { NavButton } from "@/components/ui/NavButton";
 
 interface Slide {
   image: string;
@@ -108,36 +109,6 @@ function AnimatedValue({
   );
 }
 
-function NavButton({
-  direction,
-  onClick,
-}: {
-  direction: "prev" | "next";
-  onClick: () => void;
-}) {
-  const isNext = direction === "next";
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={isNext ? "Next photo" : "Previous photo"}
-      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors tablet:h-[53px] tablet:w-[53px] ${
-        isNext
-          ? "bg-brand-red text-white hover:bg-brand-dark"
-          : "bg-white text-brand-dark hover:bg-white/80"
-      }`}
-    >
-      <Image
-        src={isNext ? "/icons/arrows/white.svg" : "/icons/arrows/black.svg"}
-        alt=""
-        width={24}
-        height={24}
-        className="h-[18px] w-[18px] tablet:h-6 tablet:w-6"
-      />
-    </button>
-  );
-}
-
 function Fact({
   label,
   children,
@@ -167,8 +138,10 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
   const [index, setIndex] = useState(0);
   const slide = SLIDES[index];
 
+  const canGoPrev = index > 0;
+  const canGoNext = index < SLIDES.length - 1;
   const go = (delta: number) =>
-    setIndex((prev) => (prev + delta + SLIDES.length) % SLIDES.length);
+    setIndex((prev) => Math.min(Math.max(prev + delta, 0), SLIDES.length - 1));
 
   const result = (
     <span className="block w-[300px] max-w-full tablet:w-auto">
@@ -185,8 +158,16 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
         <div className="mb-4 flex items-center justify-between tablet:mb-6">
           <Badge>{tTitle("title")}</Badge>
           <div className="flex gap-2 tablet:hidden">
-            <NavButton direction="prev" onClick={() => go(-1)} />
-            <NavButton direction="next" onClick={() => go(1)} />
+            <NavButton
+              direction="prev"
+              onClick={() => go(-1)}
+              disabled={!canGoPrev}
+            />
+            <NavButton
+              direction="next"
+              onClick={() => go(1)}
+              disabled={!canGoNext}
+            />
           </div>
         </div>
 
@@ -214,8 +195,16 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
           </div>
 
           <div className="absolute bottom-[25px] right-[25px] hidden gap-2 tablet:flex">
-            <NavButton direction="prev" onClick={() => go(-1)} />
-            <NavButton direction="next" onClick={() => go(1)} />
+            <NavButton
+              direction="prev"
+              onClick={() => go(-1)}
+              disabled={!canGoPrev}
+            />
+            <NavButton
+              direction="next"
+              onClick={() => go(1)}
+              disabled={!canGoNext}
+            />
           </div>
         </div>
 

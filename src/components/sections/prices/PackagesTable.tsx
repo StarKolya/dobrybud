@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { NavButton } from "@/components/ui/NavButton";
 import { CALCULATOR_PACKAGES } from "@/lib/calculator";
 import type { PackageId } from "@/types";
 
@@ -107,41 +108,56 @@ export function PackagesTable({ onRequestQuote }: { onRequestQuote: () => void }
   const t = useTranslations("home.packages");
   const namesT = useTranslations("home.calculator.packages");
   const [activeId, setActiveId] = useState<PackageId>("basic");
+  const activeIndex = PACKAGE_IDS.indexOf(activeId);
+  const go = (delta: number) => setActiveId(PACKAGE_IDS[activeIndex + delta]);
 
   return (
     <section className="px-6 py-16 desktop:px-16 desktop:py-24">
-      <div className="mb-6 flex items-center justify-between gap-4">
-        <Badge>{t("title")}</Badge>
+      <div className="mx-auto max-w-[1300px]">
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <Badge>{t("title")}</Badge>
 
-        <div className="flex gap-1 rounded-full bg-white p-1 tablet:hidden">
-          {PACKAGE_IDS.map((id) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setActiveId(id)}
-              className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
-                activeId === id ? "bg-brand-red text-white" : "text-brand-dark/60"
-              }`}
-            >
-              {namesT(id)}
-            </button>
+          <div className="flex gap-2 tablet:hidden">
+            <NavButton direction="prev" onClick={() => go(-1)} disabled={activeIndex === 0} />
+            <NavButton
+              direction="next"
+              onClick={() => go(1)}
+              disabled={activeIndex === PACKAGE_IDS.length - 1}
+            />
+          </div>
+        </div>
+
+        <div className="mb-4 flex items-stretch tablet:hidden">
+          {PACKAGE_IDS.map((id, i) => (
+            <Fragment key={id}>
+              {i > 0 && <span className="my-1 w-px shrink-0 bg-brand-dark/20" aria-hidden />}
+              <button
+                type="button"
+                onClick={() => setActiveId(id)}
+                className={`font-heading flex-1 rounded-md px-2 py-1.5 text-[20px] leading-none font-medium uppercase transition-colors ${
+                  activeId === id ? "bg-brand-red text-white" : "text-brand-dark/60"
+                }`}
+              >
+                {namesT(id)}
+              </button>
+            </Fragment>
           ))}
         </div>
-      </div>
 
-      <div className="tablet:hidden">
-        <PackageCard id={activeId} onRequestQuote={onRequestQuote} />
-      </div>
+        <div className="tablet:hidden">
+          <PackageCard id={activeId} onRequestQuote={onRequestQuote} />
+        </div>
 
-      <div className="hidden tablet:grid tablet:grid-cols-3 tablet:items-center tablet:gap-6">
-        {PACKAGE_IDS.map((id) => (
-          <PackageCard
-            key={id}
-            id={id}
-            onRequestQuote={onRequestQuote}
-            className={id === "design" ? "tablet:-my-4 tablet:shadow-xl" : ""}
-          />
-        ))}
+        <div className="hidden tablet:grid tablet:grid-cols-3 tablet:items-center tablet:gap-6">
+          {PACKAGE_IDS.map((id) => (
+            <PackageCard
+              key={id}
+              id={id}
+              onRequestQuote={onRequestQuote}
+              className={id === "design" ? "tablet:-my-4 tablet:shadow-xl" : ""}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -18,7 +18,9 @@ export function Partners() {
   return (
     <section className="overflow-hidden bg-brand-gray py-8 ">
       <div className="mb-6 px-6 desktop:px-16">
-        <Badge>{t("title")}</Badge>
+        <div className="mx-auto max-w-[1300px]">
+          <Badge>{t("title")}</Badge>
+        </div>
       </div>
 
       <div className="flex h-16 w-max animate-marquee items-center whitespace-nowrap">
