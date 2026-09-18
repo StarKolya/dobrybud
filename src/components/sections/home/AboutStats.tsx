@@ -12,6 +12,7 @@ const STATS = [
     suffix: "+",
     order: "order-3",
     column: "left",
+    mobileOffset: "translate-x-5 translate-y-10",
     offset: "tablet:translate-x-[145px]",
   },
   {
@@ -20,6 +21,7 @@ const STATS = [
     suffix: "",
     order: "order-2",
     column: "right",
+    mobileOffset: "translate-y-5",
     offset: "tablet:translate-x-[50px] desktop:translate-x-[90px]",
   },
   {
@@ -28,6 +30,7 @@ const STATS = [
     suffix: "+ M²",
     order: "order-6",
     column: "left",
+    mobileOffset: "-translate-x-[55px] translate-y-[70px]",
     offset: "tablet:translate-x-15 tablet:translate-y-5",
   },
   {
@@ -36,6 +39,7 @@ const STATS = [
     suffix: "%",
     order: "order-5",
     column: "right",
+    mobileOffset: "translate-x-[15px] -translate-y-[70px]",
     offset: "tablet:translate-x-[18px] tablet:translate-y-12.5",
   },
 ] as const;
@@ -59,11 +63,13 @@ function Stat({
   suffix,
   labelKey,
   className = "",
+  labelClassName = "max-w-[270px]",
 }: {
   target: number;
   suffix: string;
   labelKey: (typeof STATS)[number]["key"];
   className?: string;
+  labelClassName?: string;
 }) {
   const t = useTranslations("home.about.stats");
   const { value, ref } = useCountUp(target);
@@ -73,12 +79,12 @@ function Stat({
       ref={ref as React.RefObject<HTMLDivElement>}
       className={`flex flex-col gap-2 ${className}`}
     >
-      <FlagIcon className="h-5 w-5.5 text-brand-red" />
-      <span className="font-heading whitespace-nowrap text-4xl font-medium uppercase leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark tablet:text-[48px] desktop:text-[80px]">
+      <FlagIcon className="h-4 w-4.5 tablet:h-5 tablet:w-5.5 text-brand-red" />
+      <span className="font-heading whitespace-nowrap text-[45px] font-medium uppercase leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark tablet:text-[48px] desktop:text-[80px]">
         {value}
         {suffix}
       </span>
-      <span className="max-w-[270px] tablet:max-w-[200px] desktop:max-w-[270px] font-sans text-[22px] tablet:text-base desktop:text-[22px] leading-none font-normal tracking-[-0.01em] lining-nums proportional-nums">
+      <span className={`${labelClassName} tablet:max-w-[200px] desktop:max-w-[270px] font-sans text-[20px] tablet:text-base desktop:text-[22px] leading-none font-normal tracking-[-0.01em] lining-nums proportional-nums`}>
         {t(labelKey)}
       </span>
     </div>
@@ -94,14 +100,15 @@ export function AboutStats() {
         <Badge className="order-1 col-span-2 tablet:col-span-3">
           {t("title")}
         </Badge>
-        <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 tablet:grid-cols-3 tablet:gap-x-6 desktop:gap-x-14 tablet:gap-y-16 mt-9 h-120">
+        <div className="grid grid-cols-2 items-center gap-x-8 gap-y-10 tablet:grid-cols-3 tablet:gap-x-6 desktop:gap-x-14 tablet:gap-y-16 mt-9 h-[690px] tablet:h-120">
           {STATS.map((stat) => (
             <Stat
               key={stat.key}
               target={stat.target}
               suffix={stat.suffix}
               labelKey={stat.key}
-              className={`${stat.order} tablet:hidden`}
+              className={`${stat.order} ${stat.mobileOffset} tablet:hidden`}
+              labelClassName={stat.key === "team" ? "max-w-[195px]" : undefined}
             />
           ))}
 
@@ -129,12 +136,12 @@ export function AboutStats() {
             ))}
           </div>
 
-          <div className="relative order-4 col-span-2 aspect-586/522 max-w-[450px] justify-self-center tablet:max-w-none tablet:order-0 tablet:col-span-1 tablet:col-start-2 tablet:row-start-1 tablet:row-span-2 tablet:self-start tablet:justify-self-center tablet:w-[436px] desktop:w-[586px] tablet:z-10">
+          <div className="relative order-4 col-span-2 aspect-586/522 w-full max-w-[450px] justify-self-center tablet:max-w-none tablet:order-0 tablet:col-span-1 tablet:col-start-2 tablet:row-start-1 tablet:row-span-2 tablet:self-start tablet:justify-self-center tablet:w-[436px] desktop:w-[586px] tablet:z-10">
             <Image
               src="/images/about/3d-house.png"
               alt=""
               fill
-              className="object-contain tablet:rotate-[5deg] tablet:translate-y-20 desktop:-translate-y-10"
+              className="object-contain rotate-[5deg] tablet:translate-y-20 desktop:-translate-y-10"
             />
           </div>
         </div>
