@@ -11,9 +11,10 @@ import Image from "next/image";
 interface HeaderProps {
   variant?: "transparent" | "solid";
   onCtaClick?: () => void;
+  sticky?: boolean;
 }
 
-export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
+export function Header({ variant = "transparent", onCtaClick, sticky = false }: HeaderProps) {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,7 +26,11 @@ export function Header({ variant = "transparent", onCtaClick }: HeaderProps) {
   ];
 
   const isSolid = variant === "solid";
-  const positionClass = isSolid ? "relative" : "absolute inset-x-0 top-0";
+  const positionClass = isSolid
+    ? sticky
+      ? "sticky top-0 bg-background"
+      : "relative"
+    : "absolute inset-x-0 top-0";
   const textClass = isSolid ? "text-brand-dark" : "text-white";
   const iconVariant = isSolid ? "black" : "white";
 
