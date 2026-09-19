@@ -10,9 +10,20 @@ export function NewsletterForm() {
   const t = useTranslations("footer");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (submitted) return;
+    const email = new FormData(event.currentTarget).get("email");
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) return;
+    } catch {
+      return;
+    }
     setSubmitted(true);
   };
 
@@ -23,6 +34,7 @@ export function NewsletterForm() {
     >
       <input
         type="email"
+        name="email"
         required
         tabIndex={submitted ? -1 : 0}
         placeholder={t("emailPlaceholder")}

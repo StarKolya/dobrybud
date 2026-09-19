@@ -151,7 +151,7 @@ export function PackagesScroll() {
       >
         <h1
           ref={titleRef}
-          className="mx-auto max-w-357 px-6 pt-8 font-heading text-3xl font-semibold uppercase leading-tight desktop:px-16 desktop:text-5xl"
+          className="mx-auto max-w-357 px-6 pt-8 font-heading text-[30px] font-semibold uppercase leading-tight tablet:text-[52px] desktop:px-16 desktop:text-[80px]"
         >
           {t("title")}
           <br />
@@ -169,14 +169,14 @@ export function PackagesScroll() {
             <Image src={PACKAGE_IMAGES[id]} alt="" fill sizes="100vw" className="object-cover" />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 
-            <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-3 p-6 text-white desktop:p-10">
-              <h3 className="font-heading text-2xl font-semibold uppercase desktop:text-4xl">
+            <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-white desktop:p-10">
+              <h3 className="mb-[15px] font-heading text-[32px] font-semibold uppercase leading-none tablet:text-[44px] desktop:text-[60px]">
                 {packagesT(id)}
               </h3>
-              <p className="max-w-md text-sm leading-6 text-white/80">
+              <p className="max-w-md font-sans text-base font-medium leading-none tracking-[-0.01em] text-white/80 tablet:text-[18px] desktop:max-w-xl desktop:text-[22px]">
                 {t(`packages.${id}.description`)}
               </p>
-              <Button className="mt-1">{t("detailsCta")}</Button>
+              <Button className="mt-5 px-[15px]! py-[11px]! text-[18px]! font-medium">{t("detailsCta")}</Button>
             </div>
           </div>
         ))}
