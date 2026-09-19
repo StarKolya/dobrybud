@@ -22,7 +22,7 @@ const RESULT_CAPTION = "до вартості нерухомості після 
 const PROJECTS: ShowcaseProject[] = [
   {
     id: "1",
-    images: ["/images/projects/project-1-1.jpg", "/images/projects/project-1-2.jpg"],
+    images: ["/images/projects/1/1.jpg"],
     budget: "39000 zł",
     duration: "2 місяці",
     areaSqm: 73,
@@ -31,7 +31,7 @@ const PROJECTS: ShowcaseProject[] = [
   },
   {
     id: "2",
-    images: ["/images/projects/project-2-1.jpg", "/images/projects/project-2-2.jpg"],
+    images: ["/images/projects/2/1.jpg"],
     budget: "53000 zł",
     duration: "3 місяці",
     areaSqm: 52,
@@ -40,22 +40,14 @@ const PROJECTS: ShowcaseProject[] = [
   },
   {
     id: "3",
-    images: ["/images/projects/project-3-1.jpg"],
+    images: ["/images/projects/3/1.jpg"],
     budget: "39000 zł",
     duration: "2 місяці",
     areaSqm: 73,
     resultValue: "+50%",
     resultCaption: RESULT_CAPTION,
   },
-  {
-    id: "4",
-    images: ["/images/projects/project-4-1.jpg"],
-    budget: "53000 zł",
-    duration: "3 місяці",
-    areaSqm: 52,
-    resultValue: "+39%",
-    resultCaption: RESULT_CAPTION,
-  },
+
 ];
 
 function NavButton({ direction, onClick }: { direction: "prev" | "next"; onClick: () => void }) {

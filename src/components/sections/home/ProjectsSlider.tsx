@@ -17,40 +17,22 @@ interface Slide {
 
 const SLIDES: Slide[] = [
   {
-    image: "/images/projects/project-1-1.jpg",
+    image: "/images/projects/1/1.jpg",
     budget: "39000 zł",
     duration: "2 місяці",
     resultValue: "+50%",
   },
   {
-    image: "/images/projects/project-1-2.jpg",
+    image: "/images/projects/2/1.jpg",
+    budget: "53000 zł",
+    duration: "3 місяці",
+    resultValue: "+39%",
+  },
+  {
+    image: "/images/projects/3/1.jpg",
     budget: "39000 zł",
     duration: "2 місяці",
     resultValue: "+50%",
-  },
-  {
-    image: "/images/projects/project-2-1.jpg",
-    budget: "53000 zł",
-    duration: "3 місяці",
-    resultValue: "+39%",
-  },
-  {
-    image: "/images/projects/project-2-2.jpg",
-    budget: "53000 zł",
-    duration: "3 місяці",
-    resultValue: "+39%",
-  },
-  {
-    image: "/images/projects/project-3-1.jpg",
-    budget: "39000 zł",
-    duration: "2 місяці",
-    resultValue: "+50%",
-  },
-  {
-    image: "/images/projects/project-4-1.jpg",
-    budget: "53000 zł",
-    duration: "3 місяці",
-    resultValue: "+39%",
   },
 ];
 

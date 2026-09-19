@@ -8,7 +8,6 @@ import { Badge } from "@/components/ui/Badge";
 import { NavButton } from "@/components/ui/NavButton";
 import type { Testimonial } from "@/types";
 
-// TODO: replace the duplicated entries below with real reviews once more come in.
 const TESTIMONIALS: Testimonial[] = [
   {
     id: "1",
@@ -16,19 +15,19 @@ const TESTIMONIALS: Testimonial[] = [
     subtitle: "Квартира під оренду",
     quote:
       "Дуже задоволені результатом! Ремонт завершили в обумовлені терміни, кошторис не змінився, а якість робіт перевершила очікування. Усі питання вирішували швидко, тому процес пройшов без зайвого стресу. Однозначно рекомендуємо!",
-    avatarImage: "/images/testimonials/avatar-1.png",
-    beforeImage: "/images/testimonials/review-1-before.png",
-    afterImage: "/images/testimonials/review-1-after.jpg",
+    avatarImage: "/images/testimonials/1/avatar.png",
+    beforeImage: "/images/testimonials/1/before.png",
+    afterImage: "/images/testimonials/1/after.jpg",
   },
   {
     id: "2",
-    name: "Марта",
+    name: "Влад",
     subtitle: "Квартира під ремонт",
     quote:
       "Команда чітко тримала терміни та бюджет. Сподобалось, що на кожному етапі надсилали фото прогресу, тож ми завжди знали, що відбувається.",
-    avatarImage: "/images/testimonials/avatar-1.png",
-    beforeImage: "/images/testimonials/review-1-before.png",
-    afterImage: "/images/testimonials/review-1-after.jpg",
+    avatarImage: "/images/testimonials/2/avatar.PNG",
+    beforeImage: "/images/testimonials/2/before.JPG",
+    afterImage: "/images/testimonials/2/after.JPG",
   },
   {
     id: "3",
@@ -36,9 +35,9 @@ const TESTIMONIALS: Testimonial[] = [
     subtitle: "Будинок під ключ",
     quote:
       "Робили капітальний ремонт будинку — складний проєкт, але виконали якісно і без сюрпризів по кошторису. Рекомендую всім знайомим.",
-    avatarImage: "/images/testimonials/avatar-1.png",
-    beforeImage: "/images/testimonials/review-1-before.png",
-    afterImage: "/images/testimonials/review-1-after.jpg",
+    avatarImage: "/images/testimonials/3/avatar.PNG",
+    beforeImage: "/images/testimonials/3/before.PNG",
+    afterImage: "/images/testimonials/3/after.PNG",
   },
   {
     id: "4",
@@ -46,9 +45,9 @@ const TESTIMONIALS: Testimonial[] = [
     subtitle: "Квартира під оренду",
     quote:
       "Дуже вдячна за увагу до деталей та професійний підхід. Результат перевершив очікування, а спілкування з командою було приємним і зрозумілим.",
-    avatarImage: "/images/testimonials/avatar-1.png",
-    beforeImage: "/images/testimonials/review-1-before.png",
-    afterImage: "/images/testimonials/review-1-after.jpg",
+    avatarImage: "/images/testimonials/4/avatar.PNG",
+    beforeImage: "/images/testimonials/4/before.PNG",
+    afterImage: "/images/testimonials/4/after.PNG",
   },
   {
     id: "5",
@@ -56,41 +55,22 @@ const TESTIMONIALS: Testimonial[] = [
     subtitle: "Квартира під ключ",
     quote:
       "Ремонт зробили швидко й акуратно. Приємно вразила чесна комунікація: про будь-які зміни попереджали заздалегідь, а фінальна вартість збіглася з кошторисом.",
-    avatarImage: "/images/testimonials/avatar-1.png",
-    beforeImage: "/images/testimonials/review-1-before.png",
-    afterImage: "/images/testimonials/review-1-after.jpg",
+    avatarImage: "/images/testimonials/5/avatar.PNG",
+    beforeImage: "/images/testimonials/5/before.PNG",
+    afterImage: "/images/testimonials/5/after.PNG",
   },
   {
     id: "6",
-    name: "Софія",
+    name: "Влад",
     subtitle: "Квартира під оренду",
     quote:
       "Просто чудова команда! Дизайн-проєкт втілили точно, без жодних відхилень. Тепер квартира здається за вищою ціною, ніж ми очікували.",
-    avatarImage: "/images/testimonials/avatar-1.png",
-    beforeImage: "/images/testimonials/review-1-before.png",
-    afterImage: "/images/testimonials/review-1-after.jpg",
-  },
-  {
-    id: "7",
-    name: "Максим",
-    subtitle: "Будинок під ключ",
-    quote:
-      "Працювали над будинком понад пів року. Усі етапи були розписані заздалегідь, майстри приходили вчасно та залишали після себе чистоту.",
-    avatarImage: "/images/testimonials/avatar-1.png",
-    beforeImage: "/images/testimonials/review-1-before.png",
-    afterImage: "/images/testimonials/review-1-after.jpg",
-  },
-  {
-    id: "8",
-    name: "Наталія",
-    subtitle: "Квартира під ремонт",
-    quote:
-      "Звернулися з невеликим бюджетом, і нам одразу запропонували оптимальне рішення. Результатом дуже задоволені, дякуємо за професійну роботу!",
-    avatarImage: "/images/testimonials/avatar-1.png",
-    beforeImage: "/images/testimonials/review-1-before.png",
-    afterImage: "/images/testimonials/review-1-after.jpg",
+    avatarImage: "/images/testimonials/6/avatar.PNG",
+    beforeImage: "/images/testimonials/6/before.PNG",
+    afterImage: "/images/testimonials/6/after.PNG",
   },
 ];
+
 
 function ReviewCard({ testimonial }: { testimonial: Testimonial }) {
   return (

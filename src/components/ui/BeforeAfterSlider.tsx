@@ -38,16 +38,18 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt }: BeforeAfterSlide
       onPointerMove={handlePointerMove}
       className="relative aspect-[4/3] w-full touch-none select-none overflow-hidden rounded-2xl"
     >
-      <Image src={beforeSrc} alt={alt} fill className="object-cover" />
+      <Image src={afterSrc} alt={alt} fill sizes="(min-width: 768px) 340px, 100vw" className="object-cover" />
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
-        <Image src={afterSrc} alt="" fill className="object-cover" />
+        <Image src={beforeSrc} alt="" fill sizes="(min-width: 768px) 340px, 100vw" className="object-cover" />
       </div>
       <div
         className="absolute inset-y-0 flex w-8 -translate-x-1/2 items-center justify-center"
         style={{ left: `${position}%` }}
       >
-        <span className="h-full w-px bg-white" />
-        <span className="absolute h-8 w-8 rounded-full bg-white shadow" />
+        <span className="h-full w-0.5 bg-white" />
+        <span className="absolute flex h-8 w-8 items-center justify-center rounded-full bg-white shadow">
+          <Image src="/icons/double-arrows.svg" alt="" width={19} height={8} className="h-auto w-[19px]" />
+        </span>
       </div>
     </div>
   );

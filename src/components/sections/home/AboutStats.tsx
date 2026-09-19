@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useCountUp } from "@/hooks/useCountUp";
+import { useInView } from "@/hooks/useInView";
 import { Badge } from "@/components/ui/Badge";
 
 const STATS = [
@@ -93,6 +94,7 @@ function Stat({
 
 export function AboutStats() {
   const t = useTranslations("home.about");
+  const { ref: houseRef, inView: houseInView } = useInView<HTMLDivElement>();
 
   return (
     <section className="overflow-x-clip px-6 py-16 tablet:pb-0 desktop:px-16 desktop:py-24 desktop:pb-0">
@@ -136,12 +138,19 @@ export function AboutStats() {
             ))}
           </div>
 
-          <div className="relative order-4 col-span-2 aspect-586/522 w-full max-w-[450px] justify-self-center tablet:max-w-none tablet:order-0 tablet:col-span-1 tablet:col-start-2 tablet:row-start-1 tablet:row-span-2 tablet:self-start tablet:justify-self-center tablet:w-[436px] desktop:w-[586px] tablet:z-10">
+          <div
+            ref={houseRef}
+            className="relative order-4 col-span-2 aspect-586/522 w-full max-w-[450px] justify-self-center tablet:max-w-none tablet:order-0 tablet:col-span-1 tablet:col-start-2 tablet:row-start-1 tablet:row-span-2 tablet:self-start tablet:justify-self-center tablet:w-[436px] desktop:w-[586px] tablet:z-10"
+          >
             <Image
               src="/images/about/3d-house.png"
               alt=""
               fill
-              className="object-contain rotate-[5deg] tablet:translate-y-20 desktop:-translate-y-10"
+              loading="eager"
+              sizes="(min-width: 1280px) 586px, (min-width: 768px) 436px, 450px"
+              className={`object-contain rotate-[5deg] transition duration-1000 ease-out motion-reduce:transition-none tablet:translate-y-20 desktop:-translate-y-10 ${
+                houseInView ? "scale-100 opacity-100" : "scale-75 opacity-0"
+              }`}
             />
           </div>
         </div>

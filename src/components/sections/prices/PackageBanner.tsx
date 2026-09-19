@@ -8,7 +8,8 @@ export function PackageBanner({ onCtaClick }: { onCtaClick: () => void }) {
   return (
     <section className="px-0 py-16 tablet:px-6 desktop:px-16 desktop:py-24">
       <div className="relative mx-auto flex h-[374px] tablet:h-[580px] max-w-[1300px] items-center justify-center overflow-hidden rounded-none tablet:rounded-[15px]">
-        <Image src="/images/banner-2.png" alt="" fill className="object-cover" />
+        <Image src="/images/banner-2.png" alt="" fill
+ sizes="100vw" className="object-cover" />
 
         <div className="relative z-10 flex max-w-88 flex-col items-center gap-4 p-6 text-center tablet:max-w-140 tablet:gap-5 desktop:max-w-175">
           <h2 className="font-heading text-[35px] font-semibold uppercase leading-none tracking-[-0.01em] lining-nums proportional-nums text-white tablet:text-[48px] desktop:text-[60px]">

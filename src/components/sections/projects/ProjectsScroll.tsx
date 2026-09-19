@@ -64,7 +64,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
 
   return (
     <>
-      <div className="flex h-full flex-col gap-3 bg-brand-gray p-3 text-[#2C2C2C] tablet:hidden">
+      <div className="flex h-full flex-col gap-3 bg-brand-gray py-3 text-[#2C2C2C] tablet:hidden">
         <p className="font-heading text-xl font-medium uppercase leading-none">
           {t("project")} {number}
         </p>

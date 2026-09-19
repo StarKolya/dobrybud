@@ -30,7 +30,8 @@ export function ProjectCard({
       </p>
 
       <div className="relative aspect-3/2 overflow-hidden rounded-xl">
-        <Image src={project.images[imageIndex]} alt="" fill className="object-cover" />
+        <Image src={project.images[imageIndex]} alt="" fill
+ sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
 
         <div className="absolute left-2 top-2 right-2 flex flex-wrap gap-1">
           {[project.budget, `${project.areaSqm} m²`, project.duration].map((value) => (
@@ -63,7 +64,8 @@ export function ProjectCard({
     </div>
 
     <div className="relative hidden aspect-4/3 overflow-hidden rounded-2xl desktop:block">
-      <Image src={project.images[imageIndex]} alt="" fill className="object-cover" />
+      <Image src={project.images[imageIndex]} alt="" fill
+ sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
 
       <div className="absolute inset-x-2.5 top-2.5 flex flex-col gap-[5px]">
         <div className="flex gap-[5px]">

@@ -14,7 +14,8 @@ export function ConsultationBanner({
   return (
     <section className="py-16 tablet:px-16 desktop:py-24">
       <div className="relative mx-auto flex h-100 max-w-[1300px] items-center justify-center overflow-hidden tablet:h-115 tablet:items-center tablet:rounded-3xl">
-        <Image src="/images/banner.png" alt="" fill className="object-cover" />
+        <Image src="/images/banner.png" alt="" fill
+ sizes="100vw" className="object-cover" />
 
         <div className="relative z-10 flex flex-col items-center gap-6 p-6 text-center tablet:max-w-160 tablet:gap-8 desktop:max-w-200">
           <h2 className="font-heading text-[35px] font-semibold uppercase leading-none tracking-[-0.01em] text-balance text-white lining-nums proportional-nums tablet:text-[48px] desktop:text-[60px]">
