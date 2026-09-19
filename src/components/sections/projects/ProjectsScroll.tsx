@@ -57,9 +57,9 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
   const go = (delta: number) => setImageIndex((prev) => Math.min(Math.max(prev + delta, 0), count - 1));
 
   const facts = [
-    { label: t("budget"), value: project.budget },
-    { label: t("duration"), value: project.duration },
-    { label: t("area"), value: `${project.areaSqm} m²` },
+    { key: "budget", label: t("budget"), value: project.budget },
+    { key: "duration", label: t("duration"), value: project.duration },
+    { key: "area", label: t("area"), value: `${project.areaSqm} m²` },
   ];
 
   return (
@@ -77,19 +77,39 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-[5px]">
-          {facts.map((fact) => (
-            <div key={fact.label} className="flex flex-col gap-2 rounded-lg bg-white p-3">
-              <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{fact.label}:</p>
-              <p className="font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">{fact.value}</p>
+        <div className="flex flex-col gap-[5px]">
+          {[
+            [
+              { key: "budget", grow: "grow-[148]" },
+              { key: "duration", grow: "grow-[198]" },
+            ],
+            [
+              { key: "area", grow: "grow-[119]" },
+              { key: "result", grow: "grow-[226]" },
+            ],
+          ].map((row) => (
+            <div key={row[0].key} className="flex gap-[5px]">
+              {row.map(({ key, grow }) => {
+                const fact = facts.find((f) => f.key === key);
+                return (
+                  <div key={key} className={`flex basis-0 ${grow} flex-col justify-center gap-2 rounded-lg bg-white p-3`}>
+                    <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">
+                      {fact ? fact.label : t("result")}:
+                    </p>
+                    <p className="font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
+                      {fact ? (
+                        fact.value
+                      ) : (
+                        <>
+                          <span className="font-bold text-brand-red">{project.resultValue}</span> {project.resultCaption}
+                        </>
+                      )}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           ))}
-          <div className="flex flex-col gap-2 rounded-lg bg-white p-3">
-            <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{t("result")}:</p>
-            <p className="font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
-              <span className="font-bold text-brand-red">{project.resultValue}</span> {project.resultCaption}
-            </p>
-          </div>
         </div>
       </div>
 
@@ -107,7 +127,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
           {t("project")} {number}
         </div>
         {facts.map((fact) => (
-          <div key={fact.label} className="flex flex-col gap-2 rounded-lg bg-white/90 px-5 py-[18px] text-[#2C2C2C]">
+          <div key={fact.key} className="flex flex-col gap-2 rounded-lg bg-white/90 px-5 py-[18px] text-[#2C2C2C]">
             <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{fact.label}</p>
             <p className="font-heading text-[25px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">{fact.value}</p>
           </div>
@@ -157,7 +177,7 @@ const PAD_DESKTOP_PX = 64;
 const MAX_CONTENT_PX = 1300;
 /** Extra side inset of the not-yet-active cards compared to the first one. */
 const NARROW_EXTRA_PX = 24;
-const CARD_H_MOBILE_PX = 530;
+const CARD_H_MOBILE_PX = 560;
 const CARD_H_TABLET_PX = 700;
 const GAP_PX = 24;
 const BOTTOM_MARGIN_PX = 16;
