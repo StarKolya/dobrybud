@@ -17,7 +17,8 @@
     "newsletterTitle": "Підписуйтесь на нашу розсилку",
     "newsletterText": "Нові ідеї та корисні поради для ремонту",
     "emailPlaceholder": "Ваш e-mail",
-    "subscribe": "Отримати",
+    "subscribe": "Отримувати",
+    "subscribeThanks": "Дякуємо!",
     "privacyPolicy": "Політика конфіденційності"
   },
   "home": {

@@ -11,10 +11,10 @@ const SOCIALS = [
 
 function SocialIcons() {
   return (
-    <div className="flex items-center gap-3 tablet:flex-col">
+    <div className="flex items-center gap-3 tablet:flex-col tablet:gap-0.5">
       {SOCIALS.map((social) => (
         <Link key={social.name} href={social.href} className="transition-opacity hover:opacity-60">
-          <Image src={social.icon} alt={social.name} width={24} height={24} />
+          <Image src={social.icon} alt={social.name} width={50} height={50} className="h-[50px] w-[50px]" />
         </Link>
       ))}
     </div>
@@ -22,7 +22,7 @@ function SocialIcons() {
 }
 
 const CONTACT_LINK_CLASSNAME =
-  "flex items-center gap-2 text-sm text-brand-dark transition-colors hover:text-brand-red";
+  "flex items-center gap-2 font-sans text-[16px] tablet:text-base desktop:text-[20px] font-normal leading-none tracking-[-0.01em] text-[#2C2C2C] transition-colors hover:text-brand-red";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -35,31 +35,31 @@ export function Footer() {
   ];
 
   return (
-    <footer className="mt-auto bg-white px-6 pt-10 desktop:px-16 desktop:pt-14">
+    <footer className="mt-auto bg-white px-6 pt-10 pb-5 tablet:pb-2.5 desktop:px-16 desktop:pt-14">
       <div className="mx-auto max-w-[1300px]">
         <div className="mb-8 tablet:hidden">
-          <Image src="/images/logos/red.svg" alt="Dobrybud" width={107} height={48} className="h-8 w-auto" />
+          <Image src="/images/logos/red.svg" alt="Dobrybud" width={107} height={48} className="h-auto w-[100px]" />
         </div>
 
         <div className="flex flex-col gap-8 tablet:flex-row tablet:items-start tablet:justify-between">
           <div className="order-2 flex gap-10 tablet:order-1 desktop:gap-16">
-            <div>
-              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-brand-dark/40">
+            <div className="w-40 desktop:w-48">
+              <p className="mb-3 desktop:mb-7 font-sans text-[18px] tablet:text-base desktop:text-[20px] font-normal uppercase leading-none tracking-[-0.01em] text-[#2C2C2C]">
                 {t("menuTitle")}
               </p>
-              <nav className="flex flex-col gap-2">
+              <nav className="flex flex-col gap-2 desktop:gap-3">
                 {menuLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-sm text-brand-dark transition-colors hover:text-brand-red"
+                    className="font-sans text-[16px] tablet:text-base desktop:text-[20px] font-normal leading-none tracking-[-0.01em] text-[#2C2C2C] transition-colors hover:text-brand-red"
                   >
                     {link.label}
                   </Link>
                 ))}
                 <Link
                   href={ROUTES.home}
-                  className="max-w-20 text-sm text-brand-dark transition-colors hover:text-brand-red"
+                  className="font-sans text-[16px] tablet:text-base desktop:text-[20px] font-normal leading-none tracking-[-0.01em] text-[#2C2C2C] transition-colors hover:text-brand-red"
                 >
                   {t("privacyPolicy")}
                 </Link>
@@ -67,10 +67,10 @@ export function Footer() {
             </div>
 
             <div>
-              <p className="mb-3 text-xs font-medium uppercase tracking-wide text-brand-dark/40">
+              <p className="mb-3 desktop:mb-7 font-sans text-[18px] tablet:text-base desktop:text-[20px] font-normal uppercase leading-none tracking-[-0.01em] text-[#2C2C2C]">
                 {t("contactsTitle")}
               </p>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 desktop:gap-3">
                 {[0, 1].map((i) => (
                   <Link key={i} href={`tel:${CONTACT_PHONE_HREF}`} className={CONTACT_LINK_CLASSNAME}>
                     <Image src="/icons/phone-red.svg" alt="" width={20} height={20} />
@@ -86,7 +86,7 @@ export function Footer() {
           </div>
 
           <div className="order-1 flex flex-col gap-3 tablet:order-2 tablet:max-w-sm">
-            <p className="flex items-start gap-2 text-sm leading-5 text-brand-dark">
+            <p className="flex items-start gap-2 font-sans text-[20px] tablet:text-base desktop:text-[20px] font-normal leading-none tracking-[-0.01em] text-[#2C2C2C]">
               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-red tablet:hidden" aria-hidden />
               <span>
                 {t("newsletterTitle")}
@@ -111,7 +111,7 @@ export function Footer() {
           height={287}
           className="block h-auto w-full"
         />
-        <span className="absolute bottom-2 left-0 z-10 text-xs text-brand-dark/50">
+        <span className="absolute bottom-0.5 left-0 z-10 tablet:bottom-2 font-sans text-[12px] tablet:text-base desktop:text-[20px] font-normal leading-none tracking-[-0.01em] text-[#2C2C2C]">
           © {new Date().getFullYear()}. {t("rights")}
         </span>
       </div>

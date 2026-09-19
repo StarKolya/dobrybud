@@ -17,7 +17,8 @@
     "newsletterTitle": "Подписывайтесь на нашу рассылку",
     "newsletterText": "Новые идеи и полезные советы по ремонту",
     "emailPlaceholder": "Ваш e-mail",
-    "subscribe": "Получить",
+    "subscribe": "Получать",
+    "subscribeThanks": "Спасибо!",
     "privacyPolicy": "Политика конфиденциальности"
   },
   "home": {

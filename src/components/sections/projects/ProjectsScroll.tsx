@@ -285,7 +285,7 @@ export function ProjectsScroll() {
   return (
     <section
       ref={sectionRef}
-      className="relative"
+      className="pointer-events-none relative"
       style={
         m
           ? {
