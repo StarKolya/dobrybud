@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import Script from "next/script";
+import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { routing } from "@/i18n/routing";
 import { commissioner, geist, raleway } from "@/lib/fonts";
 import "../globals.css";
@@ -46,13 +47,14 @@ export default async function LocaleLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <Script id="gtm" strategy="beforeInteractive">
+        <Script id="gtm" strategy="afterInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','${GTM_ID}');`}
         </Script>
+        <MetaPixel />
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>
