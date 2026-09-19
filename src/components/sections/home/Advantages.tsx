@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/Badge";
+import { NavButton } from "@/components/ui/NavButton";
 
 export const ITEMS = [
   { id: "deadline", icon: "/icons/advantages/shield.svg" },
@@ -11,43 +12,16 @@ export const ITEMS = [
   { id: "warranty", icon: "/icons/advantages/calendar.svg" },
 ] as const;
 
-function NavButton({
-  direction,
-  onClick,
-  disabled,
-}: {
-  direction: "prev" | "next";
-  onClick: () => void;
-  disabled: boolean;
-}) {
-  const isNext = direction === "next";
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={isNext ? "Next" : "Previous"}
-      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full transition-colors ${
-        disabled
-          ? "cursor-not-allowed bg-white text-brand-dark/30"
-          : "bg-brand-red text-white hover:bg-brand-dark"
-      }`}
-    >
-      {isNext ? "→" : "←"}
-    </button>
-  );
-}
-
 export function AdvantageCard({ id, icon }: { id: (typeof ITEMS)[number]["id"]; icon: string }) {
   const t = useTranslations("prices.advantages");
 
   return (
     <div className="w-full shrink-0 rounded-lg bg-white p-7.5 tablet:w-auto">
       <Image src={icon} alt="" width={46} height={46} className="shrink-0" />
-      <p className="mt-[65px] font-heading text-[25px] font-medium uppercase leading-none tracking-[-0.01em] text-brand-dark">
+      <p className="mt-[65px] font-heading text-[25px] tablet:text-[20px] desktop:text-[25px] font-medium uppercase leading-none tracking-[-0.01em] text-brand-dark">
         {t(`items.${id}.title`)}
       </p>
-      <p className="mt-[30px] text-[18px] font-normal leading-none tracking-[-0.01em] text-brand-dark">
+      <p className="mt-[30px] text-[18px] tablet:text-[15px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] text-brand-dark">
         {t(`items.${id}.description`)}
       </p>
     </div>
@@ -81,35 +55,37 @@ export function Advantages() {
 
   return (
     <section className="bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
-      <div className="mb-6 flex items-center justify-between gap-4 tablet:hidden">
-        <Badge>{t("title")}</Badge>
-        <div className="flex gap-2">
-          <NavButton direction="prev" onClick={() => go(-1)} disabled={!canGoPrev} />
-          <NavButton direction="next" onClick={() => go(1)} disabled={!canGoNext} />
-        </div>
-      </div>
-
-      <div className="min-w-0 overflow-hidden tablet:hidden">
-        <div
-          ref={trackRef}
-          className="flex gap-2.5 transition-transform duration-500 ease-out"
-          style={{ transform: `translateX(-${offset}px)` }}
-        >
-          {ITEMS.map((item) => (
-            <AdvantageCard key={item.id} id={item.id} icon={item.icon} />
-          ))}
-        </div>
-      </div>
-
-      <div className="hidden gap-6 tablet:flex">
-        <div className="w-40 shrink-0 desktop:w-52">
+      <div className="mx-auto max-w-[1300px]">
+        <div className="mb-6 flex items-center justify-between gap-4 tablet:hidden">
           <Badge>{t("title")}</Badge>
+          <div className="flex gap-2">
+            <NavButton direction="prev" onClick={() => go(-1)} disabled={!canGoPrev} />
+            <NavButton direction="next" onClick={() => go(1)} disabled={!canGoNext} />
+          </div>
         </div>
 
-        <div className="grid flex-1 grid-cols-3 gap-2.5">
-          {ITEMS.map((item) => (
-            <AdvantageCard key={item.id} id={item.id} icon={item.icon} />
-          ))}
+        <div className="min-w-0 overflow-hidden tablet:hidden">
+          <div
+            ref={trackRef}
+            className="flex gap-2.5 transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(-${offset}px)` }}
+          >
+            {ITEMS.map((item) => (
+              <AdvantageCard key={item.id} id={item.id} icon={item.icon} />
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden gap-6 tablet:flex">
+          <div className="w-40 shrink-0 desktop:w-52">
+            <Badge>{t("title")}</Badge>
+          </div>
+
+          <div className="grid flex-1 grid-cols-3 gap-2.5">
+            {ITEMS.map((item) => (
+              <AdvantageCard key={item.id} id={item.id} icon={item.icon} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

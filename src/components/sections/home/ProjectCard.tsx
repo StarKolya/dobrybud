@@ -3,71 +3,87 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { NavButton } from "@/components/ui/NavButton";
+import { AnimatedValue } from "@/components/ui/AnimatedValue";
 import type { ProjectCard as ProjectCardData } from "@/types";
-
-function NavButton({
-  direction,
-  onClick,
-}: {
-  direction: "prev" | "next";
-  onClick: () => void;
-}) {
-  const isNext = direction === "next";
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={isNext ? "Next photo" : "Previous photo"}
-      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors ${
-        isNext ? "bg-brand-red text-white hover:bg-brand-dark" : "bg-white text-brand-dark hover:bg-white/80"
-      }`}
-    >
-      {isNext ? "→" : "←"}
-    </button>
-  );
-}
 
 export function ProjectCard({ project }: { project: ProjectCardData & { images: string[] } }) {
   const t = useTranslations("home.projects");
   const [imageIndex, setImageIndex] = useState(0);
 
   const go = (delta: number) => {
-    setImageIndex((prev) => (prev + delta + project.images.length) % project.images.length);
+    setImageIndex((prev) => Math.min(Math.max(prev + delta, 0), project.images.length - 1));
   };
 
   return (
-    <div className="relative aspect-4/3 overflow-hidden rounded-2xl">
+    <>
+    <div className="flex flex-col gap-3 rounded-2xl bg-white p-3 desktop:hidden">
+      <p className="font-heading text-xl font-medium uppercase leading-none text-[#2C2C2C]">
+        {t("project")} {project.id}
+      </p>
+
+      <div className="relative aspect-3/2 overflow-hidden rounded-xl">
+        <Image src={project.images[imageIndex]} alt="" fill className="object-cover" />
+
+        <div className="absolute left-2 top-2 right-2 flex flex-wrap gap-1">
+          {[project.budget, `${project.areaSqm} m²`, project.duration].map((value) => (
+            <span
+              key={value}
+              className="flex items-center gap-1.5 rounded-md bg-white p-3 font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"
+            >
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-red" aria-hidden />
+              {value}
+            </span>
+          ))}
+        </div>
+
+        <div className="absolute inset-x-2 top-1/2 flex -translate-y-1/2 justify-between">
+          <NavButton direction="prev" onClick={() => go(-1)} disabled={imageIndex === 0} />
+          <NavButton direction="next" onClick={() => go(1)} disabled={imageIndex === project.images.length - 1} />
+        </div>
+      </div>
+
+      <div className="rounded-lg bg-[#F0F0F0] p-3 font-heading text-sm leading-tight text-[#2C2C2C]">
+        <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{t("result")}:</p>
+        <p className="mt-2 max-w-[250px] font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
+          <span className="font-bold">{project.resultValue}</span> {project.resultCaption}
+        </p>
+      </div>
+    </div>
+
+    <div className="relative hidden aspect-4/3 overflow-hidden rounded-2xl desktop:block">
       <Image src={project.images[imageIndex]} alt="" fill className="object-cover" />
 
-      <div className="absolute inset-x-3 top-3 flex flex-col gap-2">
-        <div className="flex gap-2">
-          <div className="flex flex-1 flex-col justify-center rounded-lg bg-white px-3 py-2">
-            <p className="text-[11px] text-brand-dark/50">{t("budget")}</p>
-            <p className="text-sm font-medium">{project.budget}</p>
+      <div className="absolute inset-x-2.5 top-2.5 flex flex-col gap-[5px]">
+        <div className="flex gap-[5px]">
+          <div className="flex h-[60px] basis-0 grow-[119] desktop:h-[77px] desktop:w-[119px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
+            <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("budget")}:</p>
+            <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={project.budget} /></p>
           </div>
-          <div className="flex flex-1 flex-col justify-center rounded-lg bg-white px-3 py-2">
-            <p className="text-[11px] text-brand-dark/50">{t("duration")}</p>
-            <p className="text-sm font-medium">{project.duration}</p>
+          <div className="flex h-[60px] basis-0 grow-[193] desktop:h-[77px] desktop:w-[193px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
+            <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("duration")}:</p>
+            <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={project.duration} /></p>
           </div>
-          <div className="flex flex-1 flex-col justify-center rounded-lg bg-white px-3 py-2">
-            <p className="text-[11px] text-brand-dark/50">{t("area")}</p>
-            <p className="text-sm font-medium">{project.areaSqm} m²</p>
+          <div className="flex h-[60px] basis-0 grow-[119] desktop:h-[77px] desktop:w-[119px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
+            <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("area")}:</p>
+            <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={`${project.areaSqm} m²`} /></p>
           </div>
         </div>
 
-        <div className="flex flex-col justify-center rounded-lg bg-white px-3 py-2">
-          <p className="mb-0.5 text-[11px] text-brand-dark/50">{t("result")}</p>
-          <p className="text-sm leading-5">
-            <span className="font-semibold text-brand-red">{project.resultValue}</span>{" "}
+        <div className="flex h-[84px] w-[72%] desktop:h-[106px] desktop:w-[317px] flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
+          <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("result")}:</p>
+          <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">
+            <span className="font-semibold text-brand-red"><AnimatedValue value={project.resultValue} /></span>{" "}
             {project.resultCaption}
           </p>
         </div>
       </div>
 
-      <div className="absolute inset-x-3 bottom-3 flex justify-end gap-2">
-        <NavButton direction="prev" onClick={() => go(-1)} />
-        <NavButton direction="next" onClick={() => go(1)} />
+      <div className="absolute inset-x-2.5 bottom-2.5 flex justify-end gap-[5px]">
+        <NavButton direction="prev" onClick={() => go(-1)} disabled={imageIndex === 0} />
+        <NavButton direction="next" onClick={() => go(1)} disabled={imageIndex === project.images.length - 1} />
       </div>
     </div>
+    </>
   );
 }

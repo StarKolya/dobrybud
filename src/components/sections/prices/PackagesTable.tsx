@@ -55,26 +55,26 @@ function PackageCard({
 
   return (
     <div
-      className={`flex h-219.5 flex-col rounded-2xl p-6 desktop:p-8 ${
+      className={`flex flex-col rounded-2xl p-6 desktop:p-8 ${
         onRed ? "bg-brand-red text-white" : "bg-white text-brand-dark"
       } ${className}`}
     >
-      <p className="mb-3 flex items-center gap-2 font-heading text-[40px] leading-none font-medium tracking-[-0.01em] uppercase">
-        <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${onRed ? "bg-white" : "bg-brand-red"}`} aria-hidden />
+      <p className="mb-5 flex items-center gap-2 font-heading text-[40px] leading-none font-medium tracking-[-0.01em] uppercase">
+        <span className={`hidden h-2.5 w-2.5 shrink-0 rounded-full min-[900px]:block ${onRed ? "bg-white" : "bg-brand-red"}`} aria-hidden />
         {namesT(id)}
       </p>
-      <hr className="border-brand-dark/50" />
-      <p className={`my-4 text-[22px] leading-none font-normal tracking-[-0.01em] ${onRed ? "text-white/80" : "text-brand-dark/50"}`}>
+      <hr className={onRed ? "border-white/30" : "border-brand-dark/30"} />
+      <p className={`my-5 text-[22px] leading-none font-normal tracking-[-0.01em] ${id === "basic" ? "max-w-[300px]" : ""} ${onRed ? "text-white" : "text-brand-red"}`}>
         {t(`items.${id}.subtitle`)}
       </p>
-      <hr className="border-brand-dark/50" />
+      <hr className={onRed ? "border-white/30" : "border-brand-dark/30"} />
 
-      <div className="mb-3 flex items-center justify-between gap-2 text-base leading-none font-medium tracking-[-0.01em]">
+      <div className="mt-5 mb-5 flex items-center justify-between gap-2 text-base leading-none font-medium tracking-[-0.01em]">
         <span>{t("materialsHelp")}</span>
-        <span className={onRed ? "text-white/70" : "text-brand-dark/50"}>({t(`items.${id}.helpLabel`)})</span>
+        <span className={onRed ? "text-white" : "text-brand-red"}>({t(`items.${id}.helpLabel`)})</span>
       </div>
 
-      <ul className={`flex flex-col gap-2.5 border-b pb-4 text-base leading-none font-normal tracking-[-0.01em] ${onRed ? "border-white/20" : "border-brand-dark/10"}`}>
+      <ul className={`flex flex-col gap-2.5 border-b pb-4 text-base leading-none font-normal tracking-[-0.01em] ${onRed ? "border-white/30" : "border-brand-dark/30"}`}>
         {included.map((feature) => (
           <li key={feature} className="flex items-center gap-2.5">
             <CheckIcon variant="check" onRed={onRed} />
@@ -82,7 +82,7 @@ function PackageCard({
           </li>
         ))}
       </ul>
-      <ul className={`flex flex-col gap-2.5 pt-4 text-base leading-none font-normal tracking-[-0.01em] ${onRed ? "text-white/50" : "text-brand-dark/40"}`}>
+      <ul className={`flex flex-col gap-2.5 pt-4 text-base leading-none font-normal tracking-[-0.01em] ${onRed ? "text-white" : "text-brand-dark/40"}`}>
         {excluded.map((feature) => (
           <li key={feature} className="flex items-center gap-2.5">
             <CheckIcon variant="dash" onRed={onRed} />
@@ -92,11 +92,11 @@ function PackageCard({
       </ul>
 
       <div className="mt-6">
-        <p className={`text-xs ${onRed ? "text-white/70" : "text-brand-dark/50"}`}>{t("priceLabel")}:</p>
-        <p className="mb-4 font-heading text-2xl font-semibold uppercase">
+        <p className={`text-xs ${onRed ? "text-white" : "text-brand-dark/50"}`}>{t("priceLabel")}:</p>
+        <p className="font-heading text-2xl font-semibold uppercase">
           {t("priceFrom")} {CALCULATOR_PACKAGES[id].pricePerSqm} ZŁ
         </p>
-        <Button onClick={onRequestQuote} variant={onRed ? "white" : "primary"} className="w-full">
+        <Button onClick={onRequestQuote} variant={onRed ? "white" : "primary"} className="mt-6 w-[215px] py-2.5!">
           {t("cta")}
         </Button>
       </div>
@@ -117,7 +117,7 @@ export function PackagesTable({ onRequestQuote }: { onRequestQuote: () => void }
         <div className="mb-6 flex items-center justify-between gap-4">
           <Badge>{t("title")}</Badge>
 
-          <div className="flex gap-2 tablet:hidden">
+          <div className="flex gap-2 min-[900px]:hidden">
             <NavButton direction="prev" onClick={() => go(-1)} disabled={activeIndex === 0} />
             <NavButton
               direction="next"
@@ -127,15 +127,15 @@ export function PackagesTable({ onRequestQuote }: { onRequestQuote: () => void }
           </div>
         </div>
 
-        <div className="mb-4 flex items-stretch tablet:hidden">
+        <div className="mb-4 flex items-center gap-2 min-[900px]:hidden">
           {PACKAGE_IDS.map((id, i) => (
             <Fragment key={id}>
-              {i > 0 && <span className="my-1 w-px shrink-0 bg-brand-dark/20" aria-hidden />}
+              {i > 0 && <span className="h-6 w-px shrink-0 bg-brand-dark/20" aria-hidden />}
               <button
                 type="button"
                 onClick={() => setActiveId(id)}
-                className={`font-heading flex-1 rounded-md px-2 py-1.5 text-[20px] leading-none font-medium uppercase transition-colors ${
-                  activeId === id ? "bg-brand-red text-white" : "text-brand-dark/60"
+                className={`font-heading flex-1 rounded-md px-2 py-2 text-center text-[20px] leading-none font-semibold uppercase transition-colors ${
+                  activeId === id ? "bg-brand-red text-white" : "bg-white text-brand-dark/40"
                 }`}
               >
                 {namesT(id)}
@@ -144,17 +144,17 @@ export function PackagesTable({ onRequestQuote }: { onRequestQuote: () => void }
           ))}
         </div>
 
-        <div className="tablet:hidden">
+        <div className="min-[900px]:hidden">
           <PackageCard id={activeId} onRequestQuote={onRequestQuote} />
         </div>
 
-        <div className="hidden tablet:grid tablet:grid-cols-3 tablet:items-center tablet:gap-6">
+        <div className="hidden min-[900px]:grid min-[900px]:grid-cols-3 min-[900px]:items-center min-[900px]:gap-6">
           {PACKAGE_IDS.map((id) => (
             <PackageCard
               key={id}
               id={id}
               onRequestQuote={onRequestQuote}
-              className={id === "design" ? "tablet:-my-4 tablet:shadow-xl" : ""}
+              className={id === "design" ? "min-[900px]:-my-4 min-[900px]:shadow-xl" : ""}
             />
           ))}
         </div>

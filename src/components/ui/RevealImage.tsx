@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface RevealImageProps {
   afterSrc: string;
@@ -26,17 +26,37 @@ export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140
     setPointer({ x: clientX - rect.left, y: clientY - rect.top });
   };
 
-  const handleMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    updatePointer(event.clientX, event.clientY);
-    setVisible(true);
-  };
+  // Listen on the enclosing section so the effect also works beneath overlaid content.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const target: HTMLElement = container.closest("section") ?? container;
 
-  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
-    const touch = event.touches[0];
-    if (!touch) return;
-    updatePointer(touch.clientX, touch.clientY);
-    setVisible(true);
-  };
+    const move = (clientX: number, clientY: number) => {
+      const rect = container.getBoundingClientRect();
+      setPointer({ x: clientX - rect.left, y: clientY - rect.top });
+      setVisible(true);
+    };
+    const onMouseMove = (e: MouseEvent) => move(e.clientX, e.clientY);
+    const onTouch = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (touch) move(touch.clientX, touch.clientY);
+    };
+    const hide = () => setVisible(false);
+
+    target.addEventListener("mousemove", onMouseMove);
+    target.addEventListener("mouseleave", hide);
+    target.addEventListener("touchstart", onTouch, { passive: true });
+    target.addEventListener("touchmove", onTouch, { passive: true });
+    target.addEventListener("touchend", hide);
+    return () => {
+      target.removeEventListener("mousemove", onMouseMove);
+      target.removeEventListener("mouseleave", hide);
+      target.removeEventListener("touchstart", onTouch);
+      target.removeEventListener("touchmove", onTouch);
+      target.removeEventListener("touchend", hide);
+    };
+  }, []);
 
   const maskImage = pointer
     ? `radial-gradient(circle ${radiusPx}px at ${pointer.x}px ${pointer.y}px, black 55%, transparent 100%)`
@@ -45,11 +65,6 @@ export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140
   return (
     <div
       ref={containerRef}
-      onMouseMove={handleMove}
-      onMouseLeave={() => setVisible(false)}
-      onTouchStart={handleTouchMove}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={() => setVisible(false)}
       className="relative h-full w-full overflow-hidden"
     >
       <Image

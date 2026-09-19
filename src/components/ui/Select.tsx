@@ -14,6 +14,7 @@ interface SelectProps {
   placeholder?: string;
   className?: string;
   triggerClassName?: string;
+  arrowClassName?: string;
 }
 
 const DEFAULT_TRIGGER_CLASSNAME = "rounded-lg bg-white/10 px-3 py-2 text-white";
@@ -26,6 +27,7 @@ export function Select({
   placeholder = "—",
   className = "",
   triggerClassName = DEFAULT_TRIGGER_CLASSNAME,
+  arrowClassName = "opacity-50",
 }: SelectProps) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -63,7 +65,7 @@ export function Select({
         className={`flex w-full items-center justify-between gap-2 text-left outline-none ${triggerClassName}`}
       >
         <span className={value ? "" : "opacity-50"}>{value || placeholder}</span>
-        <span className={`opacity-50 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden>
+        <span className={`${arrowClassName} transition-transform ${open ? "rotate-180" : ""}`} aria-hidden>
           ▾
         </span>
       </button>

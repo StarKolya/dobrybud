@@ -15,7 +15,7 @@ export function NavButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      aria-label={isNext ? "Next photo" : "Previous photo"}
+      aria-label={isNext ? "Next" : "Previous"}
       className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors tablet:h-[53px] tablet:w-[53px] ${
         disabled
           ? "cursor-not-allowed bg-white"

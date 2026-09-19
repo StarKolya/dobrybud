@@ -14,6 +14,10 @@
     "contactsTitle": "Kontakty",
     "tagline": "Tworzymy wnętrza, które dostosowują się do Twojego stylu życia.",
     "cta": "Otrzymać wycenę",
+    "newsletterTitle": "Zapisz się do naszego newslettera",
+    "newsletterText": "Nowe pomysły i praktyczne porady dotyczące remontu",
+    "emailPlaceholder": "Twój e-mail",
+    "subscribe": "Otrzymaj",
     "privacyPolicy": "Polityka prywatności"
   },
   "home": {

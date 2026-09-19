@@ -151,7 +151,7 @@ export function PackagesScroll() {
       >
         <h1
           ref={titleRef}
-          className="px-6 pt-8 font-heading text-3xl font-semibold uppercase leading-tight desktop:px-16 desktop:text-5xl"
+          className="mx-auto max-w-357 px-6 pt-8 font-heading text-3xl font-semibold uppercase leading-tight desktop:px-16 desktop:text-5xl"
         >
           {t("title")}
           <br />
