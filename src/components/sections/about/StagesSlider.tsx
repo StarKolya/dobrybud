@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/Badge";
+import { NavButton } from "@/components/ui/NavButton";
 
 const STAGE_KEYS = ["step1", "step2", "step3", "step4", "step5", "step6", "step7"] as const;
 
@@ -11,13 +12,29 @@ export function StagesSlider() {
   const t = useTranslations("about.stages");
   const scrollerRef = useRef<HTMLDivElement>(null);
 
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  const updateEdges = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    setAtStart(el.scrollLeft <= 1);
+    setAtEnd(el.scrollLeft + el.clientWidth >= el.scrollWidth - 1);
+  }, []);
+
+  useEffect(() => {
+    updateEdges();
+    window.addEventListener("resize", updateEdges);
+    return () => window.removeEventListener("resize", updateEdges);
+  }, [updateEdges]);
+
   const scrollBy = (delta: number) => {
     scrollerRef.current?.scrollBy({ left: delta, behavior: "smooth" });
   };
 
   return (
     <section className="overflow-hidden px-6 py-8 tablet:px-16 tablet:py-12">
-      <div className="relative rounded-lg">
+      <div className="relative mx-auto max-w-[1300px] rounded-lg">
         <div className="absolute inset-0 overflow-hidden rounded-lg">
           <Image
             src="/images/projects/project-1.jpg"
@@ -40,27 +57,14 @@ export function StagesSlider() {
                 {t("title")}
               </h2>
               <div className="hidden gap-2 tablet:flex">
-                <button
-                  type="button"
-                  onClick={() => scrollBy(-320)}
-                  aria-label="Previous"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-brand-dark"
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollBy(320)}
-                  aria-label="Next"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-red"
-                >
-                  →
-                </button>
+                <NavButton direction="prev" onClick={() => scrollBy(-320)} disabled={atStart} />
+                <NavButton direction="next" onClick={() => scrollBy(320)} disabled={atEnd} />
               </div>
             </div>
 
             <div
               ref={scrollerRef}
+              onScroll={updateEdges}
               className="flex max-h-[420px] flex-col gap-2.5 overflow-y-auto overscroll-contain tablet:-mr-16 tablet:max-h-none tablet:snap-x tablet:snap-mandatory tablet:flex-row tablet:overflow-x-auto tablet:overflow-y-visible tablet:scroll-smooth tablet:pr-16"
             >
               {STAGE_KEYS.map((key, i) => (

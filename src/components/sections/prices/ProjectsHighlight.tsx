@@ -51,7 +51,7 @@ const PROJECTS: (ProjectCardData & { images: string[] })[] = [
   },
 ];
 
-export function ProjectsHighlight() {
+export function ProjectsHighlight({ redResult = false }: { redResult?: boolean }) {
   const t = useTranslations("home.projects");
   const priceT = useTranslations("prices");
 
@@ -63,14 +63,18 @@ export function ProjectsHighlight() {
         <div className="grid grid-cols-1 gap-6 tablet:grid-cols-2">
           {PROJECTS.map((project, index) => (
             <div key={project.id} className={index === 3 ? "hidden tablet:block" : undefined}>
-              <ProjectCard project={project} />
+              <ProjectCard project={project} redResult={redResult} />
             </div>
           ))}
         </div>
 
-        <Link href={ROUTES.projects} className="mx-auto mt-8 block w-[calc(100%-24px)] tablet:mx-0 tablet:inline-block tablet:w-auto">
-          <Button className="w-full rounded-2xl tablet:w-auto">{priceT("viewAll")}</Button>
-        </Link>
+        <div className="mt-8 flex justify-center">
+          <Link href={ROUTES.projects} className="w-[calc(100%-24px)] tablet:w-auto">
+            <Button className="w-full rounded-2xl tablet:w-auto tablet:px-16 desktop:px-28">
+              {priceT("viewAll")}
+            </Button>
+          </Link>
+        </div>
       </div>
     </section>
   );

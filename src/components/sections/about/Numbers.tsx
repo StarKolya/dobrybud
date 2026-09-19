@@ -58,7 +58,8 @@ export function Numbers() {
   const t = useTranslations("about.numbers");
 
   return (
-    <section className="bg-brand-gray px-6 py-16 tablet:px-16 tablet:py-24">
+    <section className="bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
+      <div className="mx-auto max-w-[1300px]">
       <Badge>{t("title")}</Badge>
 
       <div className="relative mt-6 tablet:mt-9 tablet:flex tablet:h-[490px] tablet:overflow-hidden tablet:rounded-lg">
@@ -91,6 +92,7 @@ export function Numbers() {
             />
           ))}
         </div>
+      </div>
       </div>
     </section>
   );

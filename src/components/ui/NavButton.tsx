@@ -4,10 +4,12 @@ export function NavButton({
   direction,
   onClick,
   disabled,
+  small = false,
 }: {
   direction: "prev" | "next";
   onClick: () => void;
   disabled: boolean;
+  small?: boolean;
 }) {
   const isNext = direction === "next";
   return (
@@ -16,7 +18,9 @@ export function NavButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={isNext ? "Next" : "Previous"}
-      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-colors tablet:h-[53px] tablet:w-[53px] ${
+      className={`flex shrink-0 items-center justify-center rounded-full transition-colors ${
+        small ? "h-9 w-9" : "h-11 w-11 tablet:h-[53px] tablet:w-[53px]"
+      } ${
         disabled
           ? "cursor-not-allowed bg-white"
           : "bg-brand-red hover:bg-brand-dark"
@@ -27,7 +31,7 @@ export function NavButton({
         alt=""
         width={24}
         height={24}
-        className={`h-[18px] w-[18px] tablet:h-6 tablet:w-6 ${disabled ? "opacity-30" : ""} ${
+        className={`${small ? "h-4 w-4" : "h-[18px] w-[18px] tablet:h-6 tablet:w-6"} ${disabled ? "opacity-30" : ""} ${
           isNext === disabled ? "-scale-x-100" : ""
         }`}
       />

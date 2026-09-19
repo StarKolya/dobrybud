@@ -7,7 +7,14 @@ import { NavButton } from "@/components/ui/NavButton";
 import { AnimatedValue } from "@/components/ui/AnimatedValue";
 import type { ProjectCard as ProjectCardData } from "@/types";
 
-export function ProjectCard({ project }: { project: ProjectCardData & { images: string[] } }) {
+export function ProjectCard({
+  project,
+  redResult = false,
+}: {
+  project: ProjectCardData & { images: string[] };
+  /** Phone/tablet card: brand-red result block with white text. */
+  redResult?: boolean;
+}) {
   const t = useTranslations("home.projects");
   const [imageIndex, setImageIndex] = useState(0);
 
@@ -43,7 +50,11 @@ export function ProjectCard({ project }: { project: ProjectCardData & { images: 
         </div>
       </div>
 
-      <div className="rounded-lg bg-[#F0F0F0] p-3 font-heading text-sm leading-tight text-[#2C2C2C]">
+      <div
+        className={`rounded-lg p-3 font-heading text-sm leading-tight ${
+          redResult ? "bg-brand-red text-white" : "bg-[#F0F0F0] text-[#2C2C2C]"
+        }`}
+      >
         <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{t("result")}:</p>
         <p className="mt-2 max-w-[250px] font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
           <span className="font-bold">{project.resultValue}</span> {project.resultCaption}

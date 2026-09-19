@@ -158,7 +158,7 @@
     }
   },
   "prices": {
-    "packageBanner": { "title": "Nie wiesz, który pakiet będzie odpowiedni?", "description": "Nasz menedżer dobierze optymalny pakiet do Twojego budżetu i mieszkania.", "cta": "Uzyskaj bezpłatną konsultację" },
+    "packageBanner": { "title": "Nie wiesz, który pakiet będzie odpowiedni?", "description": "Nasz menedżer dobierze optymalny pakiet do Twojego budżetu i mieszkania.", "cta": "Uzyskaj bezpłatną konsultację", "ctaShort": "Bezpłatna konsultacja" },
     "title": "Do każdego zadania",
     "titleHighlight": "— swoje rozwiązanie",
     "detailsCta": "Szczegóły",
@@ -193,6 +193,7 @@
     }
   },
   "about": {
+    "hero": { "titleMain1": "Tworzymy przestrzenie", "titleMain2": "w których", "titleHighlight": "chce się żyć" },
     "title": "O nas",
     "aboutUs": { "title": "O nas", "p1": "Bierzemy na siebie cały proces remontu", "p2": "Pracujemy według przejrzystego systemu", "p3": "Dotrzymujemy uzgodnionych terminów", "p4": "Kontrolujemy jakość na każdym etapie", "p5": "Otwarcie komunikujemy się z klientem" },
     "numbers": { "title": "Liczby" },
