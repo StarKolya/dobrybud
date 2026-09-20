@@ -37,7 +37,7 @@ export function StagesSlider() {
       <div className="relative mx-auto max-w-[1300px] rounded-lg">
         <div className="absolute inset-0 overflow-hidden rounded-lg">
           <Image
-            src="/images/projects/project-1.jpg"
+            src="/images/about/stages.png"
             alt=""
             fill
             sizes="100vw"
@@ -46,14 +46,14 @@ export function StagesSlider() {
           <div className="absolute inset-0 bg-brand-dark/50" />
         </div>
 
-        <div className="relative flex flex-col gap-6 p-4 text-white tablet:flex-row tablet:gap-0 tablet:py-8 tablet:pr-0 tablet:pl-8">
+        <div className="relative flex flex-col gap-6 p-4 text-white tablet:h-[533px] tablet:flex-row tablet:gap-0 tablet:py-8 tablet:pr-0 tablet:pl-8">
           <div className="tablet:w-[20%] tablet:shrink-0">
             <Badge>{t("badge")}</Badge>
           </div>
 
           <div className="flex min-w-0 flex-1 flex-col gap-6 tablet:gap-8">
             <div className="flex items-start justify-between tablet:pr-8">
-              <h2 className="font-heading text-4xl font-semibold uppercase leading-none tablet:text-5xl">
+              <h2 className="whitespace-pre-line font-heading text-4xl font-semibold uppercase leading-none tablet:text-5xl">
                 {t("title")}
               </h2>
               <div className="hidden gap-2 tablet:flex">
@@ -65,7 +65,7 @@ export function StagesSlider() {
             <div
               ref={scrollerRef}
               onScroll={updateEdges}
-              className="flex max-h-[420px] flex-col gap-2.5 overflow-y-auto overscroll-contain tablet:-mr-16 tablet:max-h-none tablet:snap-x tablet:snap-mandatory tablet:flex-row tablet:overflow-x-auto tablet:overflow-y-visible tablet:scroll-smooth tablet:pr-16"
+              className="flex max-h-[420px] flex-col gap-2.5 tablet:min-h-0 tablet:flex-1 overflow-y-auto overscroll-contain tablet:-mr-16 tablet:max-h-none tablet:snap-x tablet:snap-mandatory tablet:flex-row tablet:overflow-x-auto tablet:overflow-y-visible tablet:scroll-smooth tablet:pr-16"
             >
               {STAGE_KEYS.map((key, i) => (
                 <div

@@ -32,8 +32,8 @@ export function ExitIntentPopup({
       closeButtonPositionClassName="right-3 top-3"
       className="h-[652px] max-h-full overflow-hidden rounded-xl! bg-brand-red! text-white tablet:h-[690px]"
     >
-      <div className="pointer-events-none absolute left-1/2 top-[43%] h-[532px] w-[523px] tablet:h-[700px] tablet:w-[700px] -translate-x-1/2">
-        <Image src="/images/popups/3d-house-3.png" alt="" fill sizes="700px" className="object-cover" />
+      <div className="pointer-events-none absolute left-1/2 top-[43%] h-[613px] w-[603px] tablet:h-[740px] tablet:w-[740px] -translate-x-1/2">
+        <Image src="/images/popups/3d-house-3.png" alt="" fill sizes="740px" className="object-cover" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center px-6 pt-[56px] text-center tablet:px-10 tablet:pt-[64px]">

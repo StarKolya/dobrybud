@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AboutView } from "@/components/sections/about/AboutView";
 
-export const metadata: Metadata = {
-  title: "Про нас — Dobrybud",
-  description: "Як ми працюємо: консультація, кошторис, договір і супровід ремонту.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.about" });
+  return { title: t("title"), description: t("description") };
+}
 
 export default async function AboutPage({
   params,

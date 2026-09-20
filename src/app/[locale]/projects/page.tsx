@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ProjectsView } from "@/components/sections/projects/ProjectsView";
 
-export const metadata: Metadata = {
-  title: "Реалізовані проєкти — Dobrybud",
-  description: "Галерея завершених ремонтів: до/після, бюджет, терміни та площа.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "meta.projects" });
+  return { title: t("title"), description: t("description") };
+}
 
 export default async function ProjectsPage({
   params,

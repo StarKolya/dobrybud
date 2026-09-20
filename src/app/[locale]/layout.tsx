@@ -35,7 +35,7 @@ export default async function LocaleLayout({
 
   return (
     <html
-      lang={locale}
+      lang={locale === "ua" ? "uk" : locale}
       className={`${commissioner.variable} ${geist.variable} ${raleway.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">

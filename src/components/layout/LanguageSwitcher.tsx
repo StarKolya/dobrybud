@@ -6,12 +6,12 @@ import { usePathname, useRouter } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 
 const LOCALE_LABELS: Record<Locale, string> = {
-  uk: "UA",
+  ua: "UA",
   ru: "RU",
   pl: "PL",
 };
 
-const DISPLAY_ORDER: Locale[] = ["uk", "ru", "pl"];
+const DISPLAY_ORDER: Locale[] = ["ua", "ru", "pl"];
 
 function ChevronIcon({ className = "" }: { className?: string }) {
   return (

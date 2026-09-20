@@ -6,8 +6,8 @@ import { useCountUp } from "@/hooks/useCountUp";
 import { Badge } from "@/components/ui/Badge";
 
 const STATS = [
-  { key: "hours", target: 5760, suffix: "+ M²", className: "order-1 col-span-2 tablet:col-span-1 tablet:order-3 tablet:w-[304px]" },
-  { key: "projects", target: 144, suffix: "", className: "order-2 col-span-2 tablet:col-span-1 tablet:order-4 tablet:w-[290px]" },
+  { key: "hours", target: 5760, suffix: "+ M²", className: "order-1 col-span-2 pr-[150px]! tablet:pr-5! tablet:col-span-1 tablet:order-3 tablet:w-[304px]" },
+  { key: "projects", target: 144, suffix: "", className: "order-2 col-span-2 pr-[40%]! tablet:pr-5! tablet:col-span-1 tablet:order-4 tablet:w-[290px]" },
   { key: "team", target: 100, suffix: "%", className: "order-3 col-span-1 tablet:order-2 tablet:w-[246px]" },
   { key: "years", target: 4, suffix: "+", className: "order-4 col-span-1 tablet:order-1 tablet:w-[175px]" },
 ] as const;
@@ -58,7 +58,7 @@ export function Numbers() {
   const t = useTranslations("about.numbers");
 
   return (
-    <section className="bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="overflow-x-clip bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
       <div className="mx-auto max-w-[1300px]">
       <Badge>{t("title")}</Badge>
 
@@ -71,17 +71,16 @@ export function Numbers() {
           className="hidden object-cover tablet:block"
         />
 
-        <div className="relative z-0 aspect-4/3 w-full tablet:hidden">
-          <Image
-            src="/images/popups/3d-house-4.png"
-            alt=""
-            fill
-            sizes="100vw"
-            className="object-contain"
-          />
-        </div>
-
-        <div className="relative z-10 -mt-24 grid grid-cols-2 tablet:flex gap-2.5 tablet:m-0 tablet:h-full tablet:w-[639px] tablet:flex-wrap tablet:content-stretch tablet:gap-[5px] tablet:p-5">
+        <div className="relative z-10 grid grid-cols-2 tablet:flex gap-2.5 tablet:m-0 tablet:h-full tablet:w-[639px] tablet:flex-wrap tablet:content-stretch tablet:gap-[5px] tablet:p-5">
+          <div className="pointer-events-none absolute -top-4 -right-[162px] z-20 h-[310px] w-[310px] tablet:hidden">
+            <Image
+              src="/images/popups/3d-house-4.png"
+              alt=""
+              fill
+              sizes="310px"
+              className="object-contain"
+            />
+          </div>
           {STATS.map((stat) => (
             <StatCard
               key={stat.key}

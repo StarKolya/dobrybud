@@ -31,7 +31,7 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
       closeButtonPositionClassName="right-3 top-3"
       className="overflow-hidden"
     >
-      <div className="flex h-175 flex-col px-4.5 pt-12.75 tablet:h-125 tablet:flex-row tablet:px-0 tablet:pt-0">
+      <div className="flex h-187.5 flex-col px-4.5 pt-12.75 tablet:h-125 tablet:flex-row tablet:px-0 tablet:pt-0">
         <div className="contents tablet:flex tablet:flex-col tablet:w-1/2">
           <div className="tablet:pt-16.25 tablet:pl-19">
             <div className="mb-2 flex items-center gap-2">
@@ -46,7 +46,7 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
           </div>
 
           <div className="relative order-last -mx-4.5 h-56 flex-1 overflow-hidden tablet:order-0 tablet:mx-0 tablet:h-auto tablet:min-h-45">
-            <div className="absolute inset-0 tablet:inset-auto tablet:-left-24 tablet:h-119.5 tablet:w-119.5 tablet:rotate-15">
+            <div className="absolute top-0 -inset-x-25 aspect-square -translate-y-7.5 tablet:translate-y-0 tablet:inset-auto tablet:-left-24 tablet:h-119.5 tablet:w-119.5 tablet:rotate-15">
               <Image src="/images/popups/3d-house-2.png" alt="" fill
  sizes="480px" className="object-cover" />
             </div>

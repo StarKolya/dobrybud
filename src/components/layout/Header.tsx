@@ -33,10 +33,13 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
     : "absolute inset-x-0 top-0";
   const textClass = isSolid ? "text-brand-dark" : "text-white";
   const iconVariant = isSolid ? "black" : "white";
+  const paddingClass = isSolid
+    ? "desktop:px-[max(70px,calc((100%-1300px)/2))]"
+    : "desktop:px-17.5";
 
   return (
     <header
-      className={`${positionClass} z-40 flex items-center justify-between px-5 pt-5.25 pb-5 tablet:py-5 desktop:px-17.5 desktop:py-8.75`}
+      className={`${positionClass} z-40 flex items-center justify-between px-5 pt-5.25 pb-5 tablet:py-5 ${paddingClass} desktop:py-8.75`}
     >
       <div className="flex items-center gap-24">
         <Link href={ROUTES.home} className={`font-heading text-[20px] font-semibold ${textClass}`}>
