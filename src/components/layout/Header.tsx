@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
+import { CONTACT_EMAIL, CONTACT_TELEGRAM_URL, CONTACT_VIBER_URL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import Image from "next/image";
@@ -39,7 +39,7 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
 
   return (
     <header
-      className={`${positionClass} z-40 flex items-center justify-between px-5 pt-5.25 pb-5 tablet:py-5 ${paddingClass} desktop:py-8.75`}
+      className={`${positionClass} z-40 flex items-center justify-between px-5 pt-5.25 pb-5 tablet:py-5 ${paddingClass} desktop:py-6`}
     >
       <div className="flex items-center gap-24">
         <Link href={ROUTES.home} className={`font-heading text-[20px] font-semibold ${textClass}`}>
@@ -67,12 +67,12 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
 
       <div className="flex items-center gap-3 tablet:gap-10">
 
-        <Link href="tel:+380666666666" className={`text-[22px] hidden desktop:inline-flex ${textClass}`}>
-          +38 066 666 66 66
+        <Link href={`tel:${CONTACT_PHONE_HREF}`} className={`text-[22px] hidden desktop:inline-flex ${textClass}`}>
+          {CONTACT_PHONE_DISPLAY}
         </Link>
 
         <div className="items-center gap-2.25 flex">
-          <Link href="https://t.me/dobrybud" className={`text-[22px] ${textClass}`}>
+          <Link href={CONTACT_TELEGRAM_URL} className={`text-[22px] ${textClass}`}>
             <Image
               src={`/icons/socials/${iconVariant}/telegram.svg`}
               alt="tg"
@@ -81,7 +81,7 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
               className="h-auto w-auto"
             />
           </Link>
-          <Link href="viber://chat?number=%2B380666666666" className={`text-[22px] ${textClass}`}>
+          <Link href={CONTACT_VIBER_URL} className={`text-[22px] ${textClass}`}>
             <Image
               src={`/icons/socials/${iconVariant}/viber.svg`}
               alt="viber"
@@ -90,7 +90,7 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
               className="h-auto w-auto"
             />
           </Link>
-          <Link href="tel:+380666666666" className={`text-[22px] desktop:hidden ${textClass}`}>
+          <Link href={`tel:${CONTACT_PHONE_HREF}`} className={`text-[22px] desktop:hidden ${textClass}`}>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
               <path
                 d="M20.01 15.38C18.78 15.38 17.59 15.18 16.48 14.82C16.3061 14.7614 16.1192 14.7528 15.9406 14.7953C15.762 14.8377 15.599 14.9294 15.47 15.06L13.9 17.03C11.07 15.68 8.42 13.13 7.01 10.2L8.96 8.54C9.23 8.26 9.31 7.87 9.2 7.52C8.83 6.41 8.64 5.22 8.64 3.99C8.64 3.45 8.19 3 7.65 3H4.19C3.65 3 3 3.24 3 3.99C3 13.28 10.73 21 20.01 21C20.72 21 21 20.37 21 19.82V16.37C21 15.83 20.55 15.38 20.01 15.38Z"
@@ -209,12 +209,12 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
             </p>
             <div className="flex items-center gap-3">
               <Link
-                href="https://t.me/dobrybud"
+                href={CONTACT_TELEGRAM_URL}
               >
                 <Image src="/icons/socials/black/telegram.svg" alt="Telegram" width={45} height={45} />
               </Link>
               <Link
-                href={`viber://chat?number=%2B${CONTACT_PHONE_HREF.slice(1)}`}              >
+                href={CONTACT_VIBER_URL}              >
                 <Image src="/icons/socials/black/viber.svg" alt="Viber" width={45} height={45} />
               </Link>
             </div>

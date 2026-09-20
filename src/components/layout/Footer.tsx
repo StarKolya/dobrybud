@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
+import { CONTACT_EMAIL, CONTACT_VIBER_URL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
 import { NewsletterForm } from "./NewsletterForm";
 
 const SOCIALS = [
   { name: "Instagram", href: "https://instagram.com/dobrybud", icon: "/icons/socials/black/instagram.svg" },
-  { name: "Viber", href: "viber://chat?number=%2B48999999999", icon: "/icons/socials/black/viber.svg" },
+  { name: "Viber", href: CONTACT_VIBER_URL, icon: "/icons/socials/black/viber.svg" },
 ];
 
 function SocialIcons() {
@@ -71,12 +71,10 @@ export function Footer() {
                 {t("contactsTitle")}
               </p>
               <div className="flex flex-col gap-2 desktop:gap-3">
-                {[0, 1].map((i) => (
-                  <Link key={i} href={`tel:${CONTACT_PHONE_HREF}`} className={CONTACT_LINK_CLASSNAME}>
-                    <Image src="/icons/phone-red.svg" alt="" width={20} height={20} />
-                    {CONTACT_PHONE_DISPLAY}
-                  </Link>
-                ))}
+                <Link href={`tel:${CONTACT_PHONE_HREF}`} className={CONTACT_LINK_CLASSNAME}>
+                  <Image src="/icons/phone-red.svg" alt="" width={20} height={20} />
+                  {CONTACT_PHONE_DISPLAY}
+                </Link>
                 <Link href={`mailto:${CONTACT_EMAIL}`} className={CONTACT_LINK_CLASSNAME}>
                   <Image src="/icons/mail-red.svg" alt="" width={20} height={20} />
                   {CONTACT_EMAIL}
