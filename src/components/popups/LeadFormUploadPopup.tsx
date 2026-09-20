@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import { ROUTES } from "@/lib/constants";
+import { submitLead } from "@/lib/submitLead";
 import { Modal } from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
 import { PhoneInput } from "@/components/ui/PhoneInput";
@@ -14,9 +16,21 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
   const tUpload = useTranslations("leadFormUpload");
   const router = useRouter();
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const [submitting, setSubmitting] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // TODO: wire to lead-submission API (multipart, includes uploaded file)
+    if (submitting) return;
+    setSubmitting(true);
+    setFailed(false);
+    const ok = await submitLead(event.currentTarget, { file, source: "lead-form-upload" });
+    setSubmitting(false);
+    if (!ok) {
+      setFailed(true);
+      return;
+    }
     onClose();
     router.push(ROUTES.thankYou);
   };
@@ -75,11 +89,12 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
             </div>
             <div>
               <p className="mb-1 mt-3 text-sm font-normal text-foreground">{tUpload("filesLabel")}</p>
-              <FileUpload />
+              <FileUpload onChange={setFile} />
             </div>
-            <Button type="submit" className="mt-5 h-11.75">
+            <Button type="submit" disabled={submitting} className="mt-5 h-11.75">
               {t("submit")}
             </Button>
+            {failed && <p className="mt-2 text-center text-xs text-brand-red">{t("submitError")}</p>}
             <p className="mt-2.5 text-center font-sans text-xs font-light text-foreground">@{t("privacyNote")}</p>
           </form>
         </div>

@@ -268,7 +268,8 @@
     "area": "Metraż",
     "areaUnit": "m²",
     "submit": "Wyślij zgłoszenie",
-    "privacyNote": "Wszystkie dane są chronione."
+    "privacyNote": "Wszystkie dane są chronione.",
+    "submitError": "Nie udało się wysłać zgłoszenia. Spróbuj ponownie."
   },
   "leadFormUpload": {
     "filesLabel": "Pliki (opcjonalnie)",
