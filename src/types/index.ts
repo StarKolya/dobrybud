@@ -23,9 +23,6 @@ export interface ProjectCard {
 
 export interface Testimonial {
   id: string;
-  name: string;
-  subtitle: string;
-  quote: string;
   avatarImage?: string;
   beforeImage: string;
   afterImage: string;

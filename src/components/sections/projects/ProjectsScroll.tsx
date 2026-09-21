@@ -312,9 +312,9 @@ export function ProjectsScroll() {
         <div className="px-6 desktop:px-16">
           <h1
             ref={titleRef}
-            className="mx-auto max-w-[1300px] pt-8 font-heading text-[27px] font-semibold uppercase leading-tight tablet:text-3xl desktop:text-5xl"
+            className="mx-auto max-w-[1300px] pt-4 font-heading text-[27px] font-semibold uppercase leading-none tablet:pt-8 tablet:leading-tight tablet:text-3xl desktop:text-5xl"
           >
-            <span className="mb-2 inline-block rounded-md bg-brand-dark px-4 py-2 text-white">
+            <span className="mb-1 inline-block rounded-md bg-brand-dark px-2 py-1 text-white tablet:mb-2 tablet:px-4 tablet:py-2">
               {t("titleHighlight")}
             </span>
             <br />

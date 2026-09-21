@@ -60,7 +60,39 @@
       "title": "Partnerzy"
     },
     "reviews": {
-      "title": "Opinie"
+      "title": "Opinie",
+      "items": {
+        "1": {
+          "name": "Alina",
+          "subtitle": "Mieszkanie na wynajem",
+          "quote": "Jesteśmy bardzo zadowoleni z efektu! Remont zakończono w umówionym terminie, kosztorys się nie zmienił, a jakość prac przerosła oczekiwania. Wszystkie sprawy załatwiano szybko, dzięki czemu proces przebiegł bez zbędnego stresu. Zdecydowanie polecamy!"
+        },
+        "2": {
+          "name": "Vlad",
+          "subtitle": "Mieszkanie do remontu",
+          "quote": "Zespół ściśle trzymał się terminów i budżetu. Podobało nam się, że na każdym etapie przysyłano zdjęcia postępów, więc zawsze wiedzieliśmy, co się dzieje."
+        },
+        "3": {
+          "name": "Oleg",
+          "subtitle": "Dom pod klucz",
+          "quote": "Robiliśmy generalny remont domu — trudny projekt, ale wykonany solidnie i bez niespodzianek w kosztorysie. Polecam wszystkim znajomym."
+        },
+        "4": {
+          "name": "Iryna",
+          "subtitle": "Mieszkanie na wynajem",
+          "quote": "Bardzo dziękuję za dbałość o szczegóły i profesjonalne podejście. Efekt przerósł oczekiwania, a kontakt z zespołem był przyjemny i jasny."
+        },
+        "5": {
+          "name": "Andrij",
+          "subtitle": "Mieszkanie pod klucz",
+          "quote": "Remont wykonano szybko i starannie. Mile zaskoczyła uczciwa komunikacja: o wszelkich zmianach informowano z wyprzedzeniem, a końcowy koszt zgodził się z kosztorysem."
+        },
+        "6": {
+          "name": "Vlad",
+          "subtitle": "Mieszkanie na wynajem",
+          "quote": "Po prostu świetny zespół! Projekt wnętrza został zrealizowany dokładnie, bez żadnych odstępstw. Teraz mieszkanie wynajmuje się drożej, niż się spodziewaliśmy."
+        }
+      }
     },
     "calculator": {
       "badge": "Kalkulacja",

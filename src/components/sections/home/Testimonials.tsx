@@ -11,60 +11,36 @@ import type { Testimonial } from "@/types";
 const TESTIMONIALS: Testimonial[] = [
   {
     id: "1",
-    name: "Аліна",
-    subtitle: "Квартира під оренду",
-    quote:
-      "Дуже задоволені результатом! Ремонт завершили в обумовлені терміни, кошторис не змінився, а якість робіт перевершила очікування. Усі питання вирішували швидко, тому процес пройшов без зайвого стресу. Однозначно рекомендуємо!",
     avatarImage: "/images/testimonials/1/avatar.png",
     beforeImage: "/images/testimonials/1/before.png",
     afterImage: "/images/testimonials/1/after.jpg",
   },
   {
     id: "2",
-    name: "Влад",
-    subtitle: "Квартира під ремонт",
-    quote:
-      "Команда чітко тримала терміни та бюджет. Сподобалось, що на кожному етапі надсилали фото прогресу, тож ми завжди знали, що відбувається.",
     avatarImage: "/images/testimonials/2/avatar.PNG",
     beforeImage: "/images/testimonials/2/before.JPG",
     afterImage: "/images/testimonials/2/after.JPG",
   },
   {
     id: "3",
-    name: "Олег",
-    subtitle: "Будинок під ключ",
-    quote:
-      "Робили капітальний ремонт будинку — складний проєкт, але виконали якісно і без сюрпризів по кошторису. Рекомендую всім знайомим.",
     avatarImage: "/images/testimonials/3/avatar.PNG",
     beforeImage: "/images/testimonials/3/before.PNG",
     afterImage: "/images/testimonials/3/after.PNG",
   },
   {
     id: "4",
-    name: "Ірина",
-    subtitle: "Квартира під оренду",
-    quote:
-      "Дуже вдячна за увагу до деталей та професійний підхід. Результат перевершив очікування, а спілкування з командою було приємним і зрозумілим.",
     avatarImage: "/images/testimonials/4/avatar.PNG",
     beforeImage: "/images/testimonials/4/before.PNG",
     afterImage: "/images/testimonials/4/after.PNG",
   },
   {
     id: "5",
-    name: "Андрій",
-    subtitle: "Квартира під ключ",
-    quote:
-      "Ремонт зробили швидко й акуратно. Приємно вразила чесна комунікація: про будь-які зміни попереджали заздалегідь, а фінальна вартість збіглася з кошторисом.",
     avatarImage: "/images/testimonials/5/avatar.PNG",
     beforeImage: "/images/testimonials/5/before.PNG",
     afterImage: "/images/testimonials/5/after.PNG",
   },
   {
     id: "6",
-    name: "Влад",
-    subtitle: "Квартира під оренду",
-    quote:
-      "Просто чудова команда! Дизайн-проєкт втілили точно, без жодних відхилень. Тепер квартира здається за вищою ціною, ніж ми очікували.",
     avatarImage: "/images/testimonials/6/avatar.PNG",
     beforeImage: "/images/testimonials/6/before.PNG",
     afterImage: "/images/testimonials/6/after.PNG",
@@ -73,6 +49,8 @@ const TESTIMONIALS: Testimonial[] = [
 
 
 function ReviewCard({ testimonial }: { testimonial: Testimonial }) {
+  const t = useTranslations("home.reviews.items");
+  const name = t(`${testimonial.id}.name`);
   return (
     <div className="flex w-full shrink-0 flex-col gap-4 rounded-2xl bg-white p-5 tablet:w-95">
       <div className="flex items-end gap-3">
@@ -89,28 +67,30 @@ function ReviewCard({ testimonial }: { testimonial: Testimonial }) {
             className="flex h-20 w-20 shrink-0 items-center justify-center rounded-lg bg-brand-gray text-lg font-medium text-brand-dark"
             aria-hidden
           >
-            {testimonial.name.charAt(0)}
+            {name.charAt(0)}
           </span>
         )}
         <div>
           <p className="font-heading text-[25px] leading-none font-medium tracking-[-0.01em] lining-nums proportional-nums">
-            {testimonial.name}
+            {name}
           </p>
           <p className="mt-2 font-sans text-[16px] leading-none font-normal tracking-[-0.01em] text-brand-dark/50 lining-nums proportional-nums">
-            {testimonial.subtitle}
+            {t(`${testimonial.id}.subtitle`)}
           </p>
         </div>
       </div>
 
       <p className="font-sans text-[16px] leading-none font-normal tracking-[-0.01em] lining-nums proportional-nums tablet:text-[18px]">
-        {testimonial.quote}
+        {t(`${testimonial.id}.quote`)}
       </p>
 
-      <BeforeAfterSlider
-        beforeSrc={testimonial.beforeImage}
-        afterSrc={testimonial.afterImage}
-        alt={`${testimonial.name} — before/after`}
-      />
+      <div className="mt-auto">
+        <BeforeAfterSlider
+          beforeSrc={testimonial.beforeImage}
+          afterSrc={testimonial.afterImage}
+          alt={`${name} — before/after`}
+        />
+      </div>
     </div>
   );
 }
@@ -163,7 +143,7 @@ export function Testimonials() {
           <div className="min-w-0 flex-1 overflow-hidden tablet:-mr-[max(1.5rem,calc((100vw_-_1300px)/2))] desktop:-mr-[max(4rem,calc((100vw_-_1300px)/2))]">
             <div
               ref={trackRef}
-              className="flex items-start gap-6 transition-transform duration-500 ease-out"
+              className="flex items-stretch gap-6 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${offset}px)` }}
             >
               {TESTIMONIALS.map((testimonial) => (

@@ -17,7 +17,7 @@ const PACKAGE_IMAGES: Record<PackageId, string> = {
 const TABLET_BREAKPOINT_PX = 768;
 const DESKTOP_BREAKPOINT_PX = 1280;
 const CARD_H_MOBILE_PX = 400;
-const CARD_H_TABLET_PX = 700;
+const CARD_H_TABLET_PX = 600;
 const PAD_MOBILE_PX = 24;
 const PAD_DESKTOP_PX = 64;
 const GAP_PX = 24;
@@ -151,11 +151,11 @@ export function PackagesScroll() {
       >
         <h1
           ref={titleRef}
-          className="mx-auto max-w-357 px-6 pt-8 font-heading text-[30px] font-semibold uppercase leading-tight tablet:text-[52px] desktop:px-16 desktop:text-[80px]"
+          className="mx-auto max-w-357 px-6 pt-4 font-heading text-[27px] font-semibold uppercase leading-none tablet:pt-8 tablet:leading-tight tablet:text-[42px] desktop:px-16 desktop:text-[70px]"
         >
           {t("title")}
           <br />
-          <span className="mt-2 inline-block rounded-md bg-brand-dark px-4 py-2 text-white">
+          <span className="mt-1 inline-block rounded-md bg-brand-dark px-2 py-1 text-white tablet:mt-2 tablet:px-4 tablet:py-2">
             {t("titleHighlight")}
           </span>
         </h1>

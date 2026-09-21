@@ -18,7 +18,7 @@ export function PricesView() {
       <main className="flex flex-1 flex-col">
         <PackagesScroll />
         <PackagesTable onRequestQuote={() => setLeadFormOpen(true)} />
-        <ProjectsHighlight compact />
+        <ProjectsHighlight />
         <PackageBanner onCtaClick={() => setLeadFormOpen(true)} />
       </main>
       <Footer />
