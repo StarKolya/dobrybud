@@ -66,9 +66,9 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
   return (
     <>
       <div className="flex h-full flex-col gap-3 bg-brand-gray py-3 text-[#2C2C2C] tablet:hidden">
-        <p className="font-heading text-xl font-medium uppercase leading-none">
+        <h2 className="font-heading text-xl font-medium uppercase leading-none">
           {t("project")} {number}
-        </p>
+        </h2>
 
         <div className="relative h-[300px] shrink-0 overflow-hidden rounded-xl">
           <Image src={project.images[imageIndex]} alt={tAlt("project", { number, photo: imageIndex + 1 })} fill sizes="100vw" className="object-cover" />
@@ -124,9 +124,9 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
       />
 
       <div className="absolute left-10 top-10 flex w-[215px] flex-col gap-[5px]">
-        <div className="font-heading mb-5 text-[40px] font-medium uppercase leading-none tracking-[-0.01em] lining-nums proportional-nums text-white">
+        <h2 className="font-heading mb-5 text-[40px] font-medium uppercase leading-none tracking-[-0.01em] lining-nums proportional-nums text-white">
           {t("project")} {number}
-        </div>
+        </h2>
         {facts.map((fact) => (
           <div key={fact.key} className="flex flex-col gap-2 rounded-lg bg-white/90 px-5 py-[18px] text-[#2C2C2C]">
             <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{fact.label}</p>
