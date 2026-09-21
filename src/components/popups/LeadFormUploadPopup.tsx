@@ -19,14 +19,14 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
 
   const [submitting, setSubmitting] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (submitting) return;
     setSubmitting(true);
     setFailed(false);
-    const ok = await submitLead(event.currentTarget, { file, source: "lead-form-upload" });
+    const ok = await submitLead(event.currentTarget, { files, source: "lead-form-upload" });
     setSubmitting(false);
     if (!ok) {
       setFailed(true);
@@ -92,7 +92,7 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
             </div>
             <div>
               <p className="mb-1 mt-3 text-sm font-normal text-foreground">{tUpload("filesLabel")}</p>
-              <FileUpload onChange={setFile} />
+              <FileUpload onChange={setFiles} />
             </div>
             <Button type="submit" disabled={submitting} className="mt-5 h-11.75">
               {t("submit")}

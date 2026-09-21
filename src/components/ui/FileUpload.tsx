@@ -3,31 +3,43 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { MAX_UPLOAD_SIZE_BYTES } from "@/lib/constants";
+import { MAX_UPLOAD_FILES, MAX_UPLOAD_SIZE_BYTES } from "@/lib/constants";
 
-export function FileUpload({ onChange }: { onChange?: (file: File | null) => void }) {
+export function FileUpload({ onChange }: { onChange?: (files: File[]) => void }) {
   const t = useTranslations("leadFormUpload");
   const inputRef = useRef<HTMLInputElement>(null);
-  const [file, setFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
-  const acceptFile = (candidate: File | undefined) => {
-    if (!candidate) return;
-    if (candidate.size > MAX_UPLOAD_SIZE_BYTES) {
-      setError(t("fileTooLarge"));
-      return;
-    }
-    setError(null);
-    setFile(candidate);
-    onChange?.(candidate);
+  const update = (next: File[]) => {
+    setFiles(next);
+    onChange?.(next);
   };
 
-  const removeFile = () => {
-    setFile(null);
-    setError(null);
-    onChange?.(null);
+  const acceptFiles = (candidates: FileList | null | undefined) => {
+    if (!candidates?.length) return;
+    const next = [...files];
+    let nextError: string | null = null;
+    for (const candidate of Array.from(candidates)) {
+      if (next.length >= MAX_UPLOAD_FILES) {
+        nextError = t("tooManyFiles");
+        break;
+      }
+      if (candidate.size > MAX_UPLOAD_SIZE_BYTES) {
+        nextError = t("fileTooLarge");
+        continue;
+      }
+      next.push(candidate);
+    }
+    setError(nextError);
+    update(next);
     if (inputRef.current) inputRef.current.value = "";
+  };
+
+  const removeFile = (index: number) => {
+    setError(null);
+    update(files.filter((_, i) => i !== index));
   };
 
   return (
@@ -41,37 +53,59 @@ export function FileUpload({ onChange }: { onChange?: (file: File | null) => voi
         onDrop={(event) => {
           event.preventDefault();
           setIsDragging(false);
-          acceptFile(event.dataTransfer.files[0]);
+          acceptFiles(event.dataTransfer.files);
         }}
-        className={`flex h-19.5 items-center justify-center rounded-xl border border-dashed px-4 text-sm transition-colors hover:border-brand-red ${
+        className={`flex min-h-19.5 items-center justify-center rounded-xl border border-dashed px-4 text-sm transition-colors hover:border-brand-red ${
           isDragging ? "border-brand-red bg-brand-gray" : "border-brand-dark/20"
         }`}
       >
         <input
           ref={inputRef}
           type="file"
+          multiple
           className="hidden"
-          onChange={(event) => acceptFile(event.target.files?.[0])}
+          onChange={(event) => acceptFiles(event.target.files)}
         />
 
-        {!file ? (
+        {files.length === 0 ? (
           <button
             type="button"
             onClick={() => inputRef.current?.click()}
-            className="flex w-full flex-col items-center gap-1 text-center text-foreground hover:text-brand-dark"
+            className="flex h-19.5 w-full flex-col items-center justify-center gap-1 text-center text-foreground hover:text-brand-dark"
           >
             <Image src="/icons/file.svg" alt="" width={24} height={24} className="h-6 w-6" />
             <span className="text-sm font-light">{t("uploadLabel")}</span>
           </button>
         ) : (
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="font-medium">{file.name}</p>
-              <p className="text-xs text-brand-dark/50">{(file.size / (1024 * 1024)).toFixed(1)} MB</p>
-            </div>
-            <button type="button" onClick={removeFile} className="text-xs text-brand-red">
-              [ {t("remove")} ]
-            </button>
+          <div className="flex w-full flex-col gap-1 py-2">
+            <ul className="flex max-h-[84px] flex-col gap-1 overflow-y-auto">
+              {files.map((file, index) => (
+                <li key={`${file.name}-${index}`} className="flex items-center justify-between gap-3">
+                  <p className="min-w-0 truncate font-medium">
+                    {file.name}{" "}
+                    <span className="text-xs font-normal text-brand-dark/50">
+                      {(file.size / (1024 * 1024)).toFixed(1)} MB
+                    </span>
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => removeFile(index)}
+                    className="shrink-0 text-xs text-brand-red"
+                  >
+                    [ {t("remove")} ]
+                  </button>
+                </li>
+              ))}
+            </ul>
+            {files.length < MAX_UPLOAD_FILES && (
+              <button
+                type="button"
+                onClick={() => inputRef.current?.click()}
+                className="self-start text-xs text-brand-red"
+              >
+                {t("addMore")}
+              </button>
+            )}
           </div>
         )}
       </div>

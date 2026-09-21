@@ -1,7 +1,7 @@
-export async function submitLead(form: HTMLFormElement, extra: { file?: File | null; source: string }) {
+export async function submitLead(form: HTMLFormElement, extra: { files?: File[]; source: string }) {
   const formData = new FormData(form);
   formData.set("source", extra.source);
-  if (extra.file) formData.set("file", extra.file);
+  for (const file of extra.files ?? []) formData.append("files", file);
 
   try {
     const res = await fetch("/api/lead", { method: "POST", body: formData });

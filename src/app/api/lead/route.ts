@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import { MAX_UPLOAD_SIZE_BYTES } from "@/lib/constants";
+import { MAX_UPLOAD_FILES, MAX_UPLOAD_SIZE_BYTES, MAX_UPLOAD_TOTAL_BYTES } from "@/lib/constants";
 
 export const runtime = "nodejs";
 
@@ -24,9 +24,14 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid data" }, { status: 400 });
   }
 
-  const upload = formData.get("file");
-  const file = upload instanceof File && upload.size > 0 ? upload : null;
-  if (file && file.size > MAX_UPLOAD_SIZE_BYTES) {
+  const files = formData.getAll("files").filter((v): v is File => v instanceof File && v.size > 0);
+  if (files.length > MAX_UPLOAD_FILES) {
+    return Response.json({ error: "Too many files" }, { status: 400 });
+  }
+  if (
+    files.some((f) => f.size > MAX_UPLOAD_SIZE_BYTES) ||
+    files.reduce((sum, f) => sum + f.size, 0) > MAX_UPLOAD_TOTAL_BYTES
+  ) {
     return Response.json({ error: "File too large" }, { status: 413 });
   }
 
@@ -35,7 +40,7 @@ export async function POST(request: Request) {
     ["Телефон", phone],
     ["Квадратура", area ? `${area} м²` : "не вказано"],
     ["Джерело", source || "не вказано"],
-    ["Файл", file ? file.name : "не додано"],
+    ["Файли", files.length ? files.map((f) => f.name).join(", ") : "не додано"],
   ];
 
   const text = [
@@ -43,7 +48,7 @@ export async function POST(request: Request) {
     "",
     ...rows.map(([label, value]) => `${label}: ${value}`),
     "",
-    file ? "Файл клієнта додано до листа." : "",
+    files.length ? "Файли клієнта додано до листа." : "",
   ].join("\n");
 
   const html = `
@@ -60,7 +65,7 @@ export async function POST(request: Request) {
           )
           .join("")}
       </table>
-      ${file ? `<p style="margin:16px 0 0">📎 Файл клієнта додано до цього листа.</p>` : ""}
+      ${files.length ? `<p style="margin:16px 0 0">📎 Файли клієнта (${files.length}) додано до цього листа.</p>` : ""}
     </div>`;
 
   const port = Number(process.env.SMTP_PORT ?? 465);
@@ -78,9 +83,13 @@ export async function POST(request: Request) {
       subject: `Нова заявка: ${name}, ${phone}`,
       text,
       html,
-      attachments: file
-        ? [{ filename: file.name, content: Buffer.from(await file.arrayBuffer()), contentType: file.type || undefined }]
-        : [],
+      attachments: await Promise.all(
+        files.map(async (f) => ({
+          filename: f.name,
+          content: Buffer.from(await f.arrayBuffer()),
+          contentType: f.type || undefined,
+        })),
+      ),
     });
   } catch (error) {
     console.error("Lead email failed", error);

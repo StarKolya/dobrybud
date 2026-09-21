@@ -307,9 +307,11 @@
   "leadFormUpload": {
     "filesLabel": "Файлы (опционально)",
     "uploadLabel": "Добавить файлы",
-    "helperText": "PDF, PNG, JPG до 10МБ",
+    "helperText": "До 5 файлов: PDF, PNG, JPG, до 10МБ каждый",
     "fileTooLarge": "Файл слишком большой",
-    "remove": "удалить"
+    "remove": "удалить",
+    "tooManyFiles": "Можно добавить не более 5 файлов",
+    "addMore": "+ добавить ещё"
   },
   "exitPopup": {
     "badge": "Уже уходите?",

@@ -307,9 +307,11 @@
   "leadFormUpload": {
     "filesLabel": "Pliki (opcjonalnie)",
     "uploadLabel": "Dodaj pliki",
-    "helperText": "PDF, PNG, JPG do 10MB",
+    "helperText": "Do 5 plików: PDF, PNG, JPG, do 10MB każdy",
     "fileTooLarge": "Plik jest za duży",
-    "remove": "usuń"
+    "remove": "usuń",
+    "tooManyFiles": "Można dodać maksymalnie 5 plików",
+    "addMore": "+ dodaj kolejny"
   },
   "exitPopup": {
     "badge": "Już wychodzisz?",

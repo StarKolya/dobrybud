@@ -307,9 +307,11 @@
   "leadFormUpload": {
     "filesLabel": "Файли (опціонально)",
     "uploadLabel": "Додати файли",
-    "helperText": "PDF, PNG, JPG до 10мб",
-    "fileTooLarge": "Файл слишком великий",
-    "remove": "видалити"
+    "helperText": "До 5 файлів: PDF, PNG, JPG, до 10мб кожен",
+    "fileTooLarge": "Файл завеликий",
+    "remove": "видалити",
+    "tooManyFiles": "Можна додати не більше 5 файлів",
+    "addMore": "+ додати ще"
   },
   "exitPopup": {
     "badge": "Вже йдете?",

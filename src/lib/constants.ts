@@ -15,7 +15,9 @@ export const ROUTES = {
   thankYou: "/thank-you",
 } as const;
 
-export const MAX_UPLOAD_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB
+export const MAX_UPLOAD_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB per file
+export const MAX_UPLOAD_FILES = 5;
+export const MAX_UPLOAD_TOTAL_BYTES = 25 * 1024 * 1024; // 25 MB per request (email size)
 
 export const CONTACT_PHONE_DISPLAY = "+48 883 053 614";
 export const CONTACT_PHONE_HREF = "+48883053614";
