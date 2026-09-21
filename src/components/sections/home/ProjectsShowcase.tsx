@@ -100,6 +100,7 @@ function Result({ project, label }: { project: ShowcaseProject; label: string })
 
 function ProjectCard({ project, number }: { project: ShowcaseProject; number: number }) {
   const t = useTranslations("home.projects");
+  const tAlt = useTranslations("seo.alt");
   const [imageIndex, setImageIndex] = useState(0);
   const area = `${project.areaSqm} m²`;
 
@@ -116,7 +117,7 @@ function ProjectCard({ project, number }: { project: ShowcaseProject; number: nu
       <div className="relative aspect-4/3 overflow-hidden rounded-lg tablet:aspect-16/11">
         <Image
           src={project.images[imageIndex]}
-          alt=""
+          alt={tAlt("project", { number, photo: imageIndex + 1 })}
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover"

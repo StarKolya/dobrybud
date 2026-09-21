@@ -62,6 +62,7 @@ function Fact({
 export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
   const t = useTranslations("home.projects");
   const tTitle = useTranslations("projects");
+  const tAlt = useTranslations("seo.alt");
   const [index, setIndex] = useState(0);
   const slide = SLIDES[index];
 
@@ -102,7 +103,7 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
           <Image
             key={slide.image}
             src={slide.image}
-            alt=""
+            alt={tAlt("project", { number: index + 1, photo: 1 })}
             fill
             priority={index === 0}
             sizes="(min-width: 768px) 90vw, 100vw"

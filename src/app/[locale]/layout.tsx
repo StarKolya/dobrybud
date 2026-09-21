@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import Script from "next/script";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
+import { SITE_URL } from "@/lib/seo";
 import { routing } from "@/i18n/routing";
 import { commissioner, geist, raleway } from "@/lib/fonts";
 import "../globals.css";
@@ -15,8 +16,7 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Dobrybud — ремонт квартир під ключ",
-  description: "Ремонт квартир під ключ: дизайн, кошторис, реалізація.",
+  metadataBase: new URL(SITE_URL),
 };
 
 export default async function LocaleLayout({

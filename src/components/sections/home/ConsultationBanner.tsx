@@ -10,11 +10,12 @@ export function ConsultationBanner({
   onNoDesignClick: () => void;
 }) {
   const t = useTranslations("home.banner");
+  const tAlt = useTranslations("seo.alt");
 
   return (
     <section className="py-16 tablet:px-16 desktop:py-24">
       <div className="relative mx-auto flex h-100 max-w-[1300px] items-center justify-center overflow-hidden tablet:h-115 tablet:items-center tablet:rounded-3xl">
-        <Image src="/images/banner.png" alt="" fill
+        <Image src="/images/banner.png" alt={tAlt("banner")} fill
  sizes="100vw" className="object-cover" />
 
         <div className="relative z-10 flex flex-col items-center gap-6 p-6 text-center tablet:max-w-160 tablet:gap-8 desktop:max-w-200">

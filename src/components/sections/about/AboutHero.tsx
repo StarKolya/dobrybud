@@ -4,13 +4,14 @@ import { Header } from "@/components/layout/Header";
 
 export function AboutHero({ onCtaClick }: { onCtaClick: () => void }) {
   const t = useTranslations("about.hero");
+  const tAlt = useTranslations("seo.alt");
 
   return (
     <section className="relative flex h-125 overflow-hidden desktop:h-187.5">
       <Header onCtaClick={onCtaClick} />
 
       <div className="absolute inset-0">
-        <Image src="/images/hero/hero-about.png" alt="" fill priority sizes="100vw" className="object-cover" />
+        <Image src="/images/hero/hero-about.png" alt={tAlt("about")} fill priority sizes="100vw" className="object-cover" />
       </div>
 
       <div className="relative z-10 flex w-full flex-col justify-end px-5 pb-10 tablet:pb-16 desktop:px-16">

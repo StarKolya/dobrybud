@@ -8,11 +8,19 @@ import { ROUTES } from "@/lib/constants";
 import { LeadEvent } from "@/components/analytics/LeadEvent";
 import { Button } from "@/components/ui/Button";
 
-export const metadata: Metadata = {
-  title: "Дякуємо за заявку! — Dobrybud",
-  description:
-    "Заявку прийнято, наш менеджер зв'яжеться з вами найближчим часом.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "thankYou" });
+  return {
+    title: `${t("title")} — Dobry Bud`,
+    description: t("description").replace(/\n/g, " "),
+    robots: { index: false, follow: false },
+  };
+}
 
 export default async function ThankYouPage({
   params,

@@ -5,6 +5,7 @@ import { RevealImage } from "@/components/ui/RevealImage";
 
 export function Hero({ onCtaClick }: { onCtaClick: () => void }) {
   const t = useTranslations("home.hero");
+  const tAlt = useTranslations("seo.alt");
 
   return (
     <section className="relative flex h-150 overflow-hidden desktop:h-187.5">
@@ -14,7 +15,7 @@ export function Hero({ onCtaClick }: { onCtaClick: () => void }) {
         <RevealImage
           afterSrc="/images/hero/hhero-before.png"
           beforeSrc="/images/hero/hhero-after.png"
-          alt=""
+          alt={tAlt("hero")}
           priority
         />
       </div>

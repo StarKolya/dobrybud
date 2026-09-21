@@ -10,6 +10,7 @@ const STAGE_KEYS = ["step1", "step2", "step3", "step4", "step5", "step6", "step7
 
 export function StagesSlider() {
   const t = useTranslations("about.stages");
+  const tAlt = useTranslations("seo.alt");
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   const [atStart, setAtStart] = useState(true);
@@ -38,7 +39,7 @@ export function StagesSlider() {
         <div className="absolute inset-0 overflow-hidden rounded-lg">
           <Image
             src="/images/about/stages.png"
-            alt=""
+            alt={tAlt("stages")}
             fill
             sizes="100vw"
             className="object-cover"

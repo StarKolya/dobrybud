@@ -332,5 +332,18 @@
       "title": "Dobry Bud — firma remontowa Warszawa | O nas",
       "description": "Dobry Bud to firma remontowa w Warszawie specjalizująca się w remontach mieszkań pod klucz. 4 lata doświadczenia, 144 realizacje i ponad 5760 m²."
     }
+  },
+  "seo": {
+    "alt": {
+      "project": "Remont mieszkania w Warszawie — projekt {number}, zdjęcie {photo}",
+      "hero": "Mieszkanie przed i po remoncie Dobry Bud",
+      "packages": "Pakiet remontowy {name}",
+      "about": "Zespół Dobry Bud na budowie",
+      "stages": "Etapy remontu mieszkania pod klucz",
+      "family": "Szczęśliwa rodzina w mieszkaniu po remoncie",
+      "house": "Model 3D mieszkania",
+      "avatar": "{name} — klient Dobry Bud",
+      "banner": "Bezpłatna konsultacja w sprawie remontu mieszkania"
+    }
   }
 }

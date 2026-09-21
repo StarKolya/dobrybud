@@ -56,6 +56,7 @@ function StatCard({
 
 export function Numbers() {
   const t = useTranslations("about.numbers");
+  const tAlt = useTranslations("seo.alt");
 
   return (
     <section className="overflow-x-clip bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
@@ -65,7 +66,7 @@ export function Numbers() {
       <div className="relative mt-6 tablet:mt-9 tablet:flex tablet:h-[490px] tablet:overflow-hidden tablet:rounded-lg">
         <Image
           src="/images/family.png"
-          alt=""
+          alt={tAlt("family")}
           fill
           sizes="100vw"
           className="hidden object-cover tablet:block"

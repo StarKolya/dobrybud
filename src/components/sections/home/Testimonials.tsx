@@ -50,6 +50,7 @@ const TESTIMONIALS: Testimonial[] = [
 
 function ReviewCard({ testimonial }: { testimonial: Testimonial }) {
   const t = useTranslations("home.reviews.items");
+  const tAlt = useTranslations("seo.alt");
   const name = t(`${testimonial.id}.name`);
   return (
     <div className="flex w-full shrink-0 flex-col gap-4 rounded-2xl bg-white p-5 tablet:w-95">
@@ -57,7 +58,7 @@ function ReviewCard({ testimonial }: { testimonial: Testimonial }) {
         {testimonial.avatarImage ? (
           <Image
             src={testimonial.avatarImage}
-            alt=""
+            alt={tAlt("avatar", { name })}
             width={80}
             height={80}
             className="h-20 w-20 shrink-0 rounded-lg object-cover"

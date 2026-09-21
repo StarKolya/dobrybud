@@ -54,6 +54,7 @@ const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 export function PackagesScroll() {
   const packagesT = useTranslations("home.calculator.packages");
   const t = useTranslations("prices");
+  const tAlt = useTranslations("seo.alt");
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [metrics, setMetrics] = useState<Metrics | null>(null);
@@ -166,7 +167,7 @@ export function PackagesScroll() {
             className="pointer-events-auto absolute overflow-hidden will-change-transform"
             style={cardStyle(index)}
           >
-            <Image src={PACKAGE_IMAGES[id]} alt="" fill sizes="100vw" className="object-cover" />
+            <Image src={PACKAGE_IMAGES[id]} alt={tAlt("packages", { name: packagesT(id) })} fill sizes="100vw" className="object-cover" />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent" />
 
             <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-white desktop:p-10">

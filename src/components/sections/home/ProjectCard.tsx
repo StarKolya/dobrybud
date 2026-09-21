@@ -16,6 +16,7 @@ export function ProjectCard({
   redResult?: boolean;
 }) {
   const t = useTranslations("home.projects");
+  const tAlt = useTranslations("seo.alt");
   const [imageIndex, setImageIndex] = useState(0);
 
   const go = (delta: number) => {
@@ -30,7 +31,7 @@ export function ProjectCard({
       </p>
 
       <div className="relative aspect-3/2 overflow-hidden rounded-xl">
-        <Image src={project.images[imageIndex]} alt="" fill
+        <Image src={project.images[imageIndex]} alt={tAlt("project", { number: project.id, photo: imageIndex + 1 })} fill
  sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
 
         <div className="absolute left-2 top-2 right-2 flex flex-wrap gap-1">
@@ -64,7 +65,7 @@ export function ProjectCard({
     </div>
 
     <div className="relative hidden aspect-4/3 overflow-hidden rounded-2xl desktop:block">
-      <Image src={project.images[imageIndex]} alt="" fill
+      <Image src={project.images[imageIndex]} alt={tAlt("project", { number: project.id, photo: imageIndex + 1 })} fill
  sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
 
       <div className="absolute inset-x-2.5 top-2.5 flex flex-col gap-[5px]">

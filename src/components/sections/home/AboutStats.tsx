@@ -94,6 +94,7 @@ function Stat({
 
 export function AboutStats() {
   const t = useTranslations("home.about");
+  const tAlt = useTranslations("seo.alt");
   const { ref: houseRef, inView: houseInView } = useInView<HTMLDivElement>();
 
   return (
@@ -144,7 +145,7 @@ export function AboutStats() {
           >
             <Image
               src="/images/about/3d-house.png"
-              alt=""
+              alt={tAlt("house")}
               fill
               loading="eager"
               sizes="(min-width: 1280px) 586px, (min-width: 768px) 436px, 450px"

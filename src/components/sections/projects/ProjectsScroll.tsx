@@ -52,6 +52,7 @@ const PROJECTS: ScrollProject[] = [
 
 function ProjectCardContent({ project, number }: { project: ScrollProject; number: number }) {
   const t = useTranslations("home.projects");
+  const tAlt = useTranslations("seo.alt");
   const [imageIndex, setImageIndex] = useState(0);
   const count = project.images.length;
   const go = (delta: number) => setImageIndex((prev) => Math.min(Math.max(prev + delta, 0), count - 1));
@@ -70,7 +71,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
         </p>
 
         <div className="relative h-[300px] shrink-0 overflow-hidden rounded-xl">
-          <Image src={project.images[imageIndex]} alt="" fill sizes="100vw" className="object-cover" />
+          <Image src={project.images[imageIndex]} alt={tAlt("project", { number, photo: imageIndex + 1 })} fill sizes="100vw" className="object-cover" />
           <div className="absolute inset-x-2 top-1/2 flex -translate-y-1/2 justify-between">
             <NavButton small direction="prev" onClick={() => go(-1)} disabled={imageIndex === 0} />
             <NavButton small direction="next" onClick={() => go(1)} disabled={imageIndex === count - 1} />
@@ -116,7 +117,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
       <div className="hidden tablet:contents">
       <Image
         src={project.images[imageIndex]}
-        alt=""
+        alt={tAlt("project", { number, photo: imageIndex + 1 })}
         fill
         sizes="100vw"
         className="object-cover"
@@ -154,7 +155,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
                 i === imageIndex ? "" : "opacity-60"
               }`}
             >
-              <Image src={image} alt="" fill sizes="80px" className="object-cover" />
+              <Image src={image} alt={tAlt("project", { number, photo: i + 1 })} fill sizes="80px" className="object-cover" />
             </button>
           ))}
         </div>

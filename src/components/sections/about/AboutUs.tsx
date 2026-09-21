@@ -6,6 +6,7 @@ const POINTS = ["p1", "p2", "p3", "p4", "p5"] as const;
 
 export function AboutUs() {
   const t = useTranslations("about.aboutUs");
+  const tAlt = useTranslations("seo.alt");
 
   return (
     <section className="bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
@@ -15,7 +16,7 @@ export function AboutUs() {
         <div className="relative mt-6 aspect-4/3 overflow-hidden rounded-lg tablet:order-3 tablet:mt-0 tablet:aspect-auto tablet:min-h-[400px]">
           <Image
             src="/images/about/build.png"
-            alt=""
+            alt={tAlt("about")}
             fill
             sizes="(min-width: 768px) 40vw, 100vw"
             className="object-cover"
