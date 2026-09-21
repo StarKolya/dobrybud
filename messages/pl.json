@@ -54,7 +54,8 @@
       "ctaHeadingMain": "Wycenimy remont Twojego mieszkania",
       "ctaHeadingHighlight": "w 1 dzień",
       "project": "Projekt",
-      "viewAll": "Zobacz wszystkie projekty"
+      "viewAll": "Zobacz wszystkie projekty",
+      "months": "{count, plural, one {# miesiąc} few {# miesiące} many {# miesięcy} other {# miesiąca}}"
     },
     "partners": {
       "title": "Partnerzy"

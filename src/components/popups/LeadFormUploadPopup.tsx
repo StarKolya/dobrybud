@@ -7,6 +7,7 @@ import { useRouter } from "@/i18n/navigation";
 import { ROUTES } from "@/lib/constants";
 import { submitLead } from "@/lib/submitLead";
 import { Modal } from "@/components/ui/Modal";
+import { PreloadImage } from "@/components/ui/PreloadImage";
 import { Button } from "@/components/ui/Button";
 import { PhoneInput } from "@/components/ui/PhoneInput";
 import { FileUpload } from "@/components/ui/FileUpload";
@@ -36,6 +37,8 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
   };
 
   return (
+    <>
+    <PreloadImage src="/images/popups/3d-house-2.png" sizes="480px" />
     <Modal
       open={open}
       onClose={onClose}
@@ -62,7 +65,7 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
           <div className="relative order-last -mx-4.5 h-56 flex-1 overflow-hidden tablet:order-0 tablet:mx-0 tablet:h-auto tablet:min-h-45">
             <div className="absolute top-0 -inset-x-25 aspect-square -translate-y-7.5 tablet:translate-y-0 tablet:inset-auto tablet:-left-24 tablet:h-119.5 tablet:w-119.5 tablet:rotate-15">
               <Image src="/images/popups/3d-house-2.png" alt="" fill
- sizes="480px" className="object-cover" />
+ sizes="480px" loading="eager" className="object-cover" />
             </div>
           </div>
         </div>
@@ -100,5 +103,6 @@ export function LeadFormUploadPopup({ open, onClose }: { open: boolean; onClose:
         </div>
       </div>
     </Modal>
+    </>
   );
 }

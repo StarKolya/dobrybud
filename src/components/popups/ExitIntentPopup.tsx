@@ -4,6 +4,9 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useExitIntent } from "@/hooks/useExitIntent";
 import { Modal } from "@/components/ui/Modal";
+import { PreloadImage } from "@/components/ui/PreloadImage";
+
+const HOUSE_IMAGE = "/images/popups/3d-house-3.png";
 
 export function ExitIntentPopup({
   onSendRequest,
@@ -14,6 +17,8 @@ export function ExitIntentPopup({
   const { triggered, dismiss } = useExitIntent();
 
   return (
+    <>
+      <PreloadImage src={HOUSE_IMAGE} sizes="740px" />
     <Modal
       open={triggered}
       onClose={dismiss}
@@ -24,7 +29,7 @@ export function ExitIntentPopup({
       className="h-[652px] max-h-full overflow-hidden rounded-xl! bg-brand-red! text-white tablet:h-[690px]"
     >
       <div className="pointer-events-none absolute left-1/2 top-[43%] h-[613px] w-[603px] tablet:h-[740px] tablet:w-[740px] -translate-x-1/2">
-        <Image src="/images/popups/3d-house-3.png" alt="" fill sizes="740px" className="object-cover" />
+        <Image src={HOUSE_IMAGE} alt="" fill sizes="740px" loading="eager" className="object-cover" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center px-6 pt-[56px] text-center tablet:px-10 tablet:pt-[64px]">
@@ -47,5 +52,6 @@ export function ExitIntentPopup({
         </button>
       </div>
     </Modal>
+    </>
   );
 }

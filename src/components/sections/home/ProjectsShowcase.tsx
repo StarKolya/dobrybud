@@ -11,41 +11,35 @@ interface ShowcaseProject {
   id: string;
   images: string[];
   budget: string;
-  duration: string;
+  durationMonths: number;
   areaSqm: number;
   resultValue: string;
-  resultCaption: string;
 }
-
-const RESULT_CAPTION = "до вартості нерухомості після ремонту";
 
 const PROJECTS: ShowcaseProject[] = [
   {
     id: "1",
     images: ["/images/projects/1/1.jpg"],
     budget: "39000 zł",
-    duration: "2 місяці",
+    durationMonths: 2,
     areaSqm: 73,
     resultValue: "+50%",
-    resultCaption: RESULT_CAPTION,
   },
   {
     id: "2",
     images: ["/images/projects/2/1.jpg"],
     budget: "53000 zł",
-    duration: "3 місяці",
+    durationMonths: 3,
     areaSqm: 52,
     resultValue: "+39%",
-    resultCaption: RESULT_CAPTION,
   },
   {
     id: "3",
     images: ["/images/projects/3/1.jpg"],
     budget: "39000 zł",
-    duration: "2 місяці",
+    durationMonths: 2,
     areaSqm: 73,
     resultValue: "+50%",
-    resultCaption: RESULT_CAPTION,
   },
 
 ];
@@ -87,12 +81,13 @@ function Pill({ children }: { children: string }) {
 }
 
 function Result({ project, label }: { project: ShowcaseProject; label: string }) {
+  const t = useTranslations("home.projects");
   return (
     <>
       <p className="text-xs text-brand-dark/50">{label}</p>
       <p className="text-sm leading-5">
         <span className="font-semibold text-brand-red">{project.resultValue}</span>{" "}
-        {project.resultCaption}
+        {t("resultCaption")}
       </p>
     </>
   );
@@ -101,6 +96,7 @@ function Result({ project, label }: { project: ShowcaseProject; label: string })
 function ProjectCard({ project, number }: { project: ShowcaseProject; number: number }) {
   const t = useTranslations("home.projects");
   const tAlt = useTranslations("seo.alt");
+  const months = t("months", { count: project.durationMonths });
   const [imageIndex, setImageIndex] = useState(0);
   const area = `${project.areaSqm} m²`;
 
@@ -126,13 +122,13 @@ function ProjectCard({ project, number }: { project: ShowcaseProject; number: nu
         <div className="absolute inset-x-2.5 top-2.5 flex flex-wrap gap-1 tablet:hidden">
           <Pill>{project.budget}</Pill>
           <Pill>{area}</Pill>
-          <Pill>{project.duration}</Pill>
+          <Pill>{months}</Pill>
         </div>
 
         <div className="pointer-events-none absolute left-2.5 top-2.5 hidden flex-col gap-[5px] tablet:flex">
           <div className="flex gap-[5px]">
             <Fact label={t("budget")} value={project.budget} className="w-[120px]" />
-            <Fact label={t("duration")} value={project.duration} className="w-[190px]" />
+            <Fact label={t("duration")} value={months} className="w-[190px]" />
             <Fact label={t("area")} value={area} className="w-[120px]" />
           </div>
           <div className="flex w-[315px] flex-col justify-center rounded-lg bg-white px-3 py-2">

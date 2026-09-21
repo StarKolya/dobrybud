@@ -35,7 +35,7 @@ export function ProjectCard({
  sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
 
         <div className="absolute left-2 top-2 right-2 flex flex-wrap gap-1">
-          {[project.budget, `${project.areaSqm} m²`, project.duration].map((value) => (
+          {[project.budget, `${project.areaSqm} m²`, t("months", { count: project.durationMonths })].map((value) => (
             <span
               key={value}
               className="flex items-center gap-1.5 rounded-md bg-white p-3 font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"
@@ -59,7 +59,7 @@ export function ProjectCard({
       >
         <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{t("result")}:</p>
         <p className="mt-2 max-w-[250px] font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
-          <span className="font-bold">{project.resultValue}</span> {project.resultCaption}
+          <span className="font-bold">{project.resultValue}</span> {t("resultCaption")}
         </p>
       </div>
     </div>
@@ -76,9 +76,9 @@ export function ProjectCard({
           </div>
           <div className="flex h-[60px] basis-0 grow-[193] desktop:h-[77px] desktop:w-[193px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
             <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("duration")}:</p>
-            <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={project.duration} /></p>
+            <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={t("months", { count: project.durationMonths })} /></p>
           </div>
-          <div className="flex h-[60px] basis-0 grow-[119] desktop:h-[77px] desktop:w-[119px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
+          <div className="flex h-[60px] basis-0 grow-[150] desktop:h-[77px] desktop:w-[150px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
             <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("area")}:</p>
             <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={`${project.areaSqm} m²`} /></p>
           </div>
@@ -88,7 +88,7 @@ export function ProjectCard({
           <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("result")}:</p>
           <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">
             <span className="font-semibold text-brand-red"><AnimatedValue value={project.resultValue} /></span>{" "}
-            {project.resultCaption}
+            {t("resultCaption")}
           </p>
         </div>
       </div>

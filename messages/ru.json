@@ -54,7 +54,8 @@
       "ctaHeadingMain": "Рассчитаем стоимость ремонта вашей квартиры",
       "ctaHeadingHighlight": "за 1 день",
       "project": "Проект",
-      "viewAll": "Посмотреть все проекты"
+      "viewAll": "Посмотреть все проекты",
+      "months": "{count, plural, one {# месяц} few {# месяца} many {# месяцев} other {# месяца}}"
     },
     "partners": {
       "title": "Партнёры"

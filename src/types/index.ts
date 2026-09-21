@@ -15,10 +15,9 @@ export interface ProjectCard {
   id: string;
   image: string;
   budget: string;
-  duration: string;
+  durationMonths: number;
   areaSqm: number;
   resultValue: string;
-  resultCaption: string;
 }
 
 export interface Testimonial {

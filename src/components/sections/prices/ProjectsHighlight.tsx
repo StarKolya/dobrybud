@@ -6,48 +6,42 @@ import { Button } from "@/components/ui/Button";
 import { ProjectCard } from "@/components/sections/home/ProjectCard";
 import type { ProjectCard as ProjectCardData } from "@/types";
 
-const RESULT_CAPTION = "до вартості нерухомості після ремонту";
-
 const PROJECTS: (ProjectCardData & { images: string[] })[] = [
   {
     id: "1",
     images: [1, 2, 3, 4, 5].map((n) => `/images/projects/1/${n}.jpg`),
     image: "/images/projects/1/1.jpg",
     budget: "39000 zł",
-    duration: "2 місяці",
+    durationMonths: 2,
     areaSqm: 73,
     resultValue: "+50%",
-    resultCaption: RESULT_CAPTION,
   },
   {
     id: "2",
     images: [1, 2, 3, 4].map((n) => `/images/projects/2/${n}.jpg`),
     image: "/images/projects/2/1.jpg",
     budget: "53000 zł",
-    duration: "3 місяці",
+    durationMonths: 3,
     areaSqm: 52,
     resultValue: "+39%",
-    resultCaption: RESULT_CAPTION,
   },
   {
     id: "3",
     images: [1, 2, 3, 4].map((n) => `/images/projects/3/${n}.jpg`),
     image: "/images/projects/3/1.jpg",
     budget: "39000 zł",
-    duration: "2 місяці",
+    durationMonths: 2,
     areaSqm: 73,
     resultValue: "+50%",
-    resultCaption: RESULT_CAPTION,
   },
   {
     id: "4",
     images: [1, 2, 3, 4].map((n) => `/images/projects/4/${n}.jpg`),
     image: "/images/projects/4/1.jpg",
     budget: "53000 zł",
-    duration: "3 місяці",
+    durationMonths: 3,
     areaSqm: 52,
     resultValue: "+39%",
-    resultCaption: RESULT_CAPTION,
   },
 ];
 

@@ -9,13 +9,10 @@ interface ScrollProject {
   id: string;
   images: string[];
   budget: string;
-  duration: string;
+  durationMonths: number;
   areaSqm: number;
   resultValue: string;
-  resultCaption: string;
 }
-
-const RESULT_CAPTION = "до вартості нерухомості після ремонту";
 
 const projectImages = (id: number, count: number) =>
   Array.from({ length: count }, (_, i) => `/images/projects/${id}/${i + 1}.jpg`);
@@ -25,28 +22,25 @@ const PROJECTS: ScrollProject[] = [
     id: "1",
     images: projectImages(1, 5),
     budget: "39000 zł",
-    duration: "2 місяці",
+    durationMonths: 2,
     areaSqm: 73,
     resultValue: "+50%",
-    resultCaption: RESULT_CAPTION,
   },
   {
     id: "2",
     images: projectImages(2, 4),
     budget: "53000 zł",
-    duration: "3 місяці",
+    durationMonths: 3,
     areaSqm: 52,
     resultValue: "+39%",
-    resultCaption: RESULT_CAPTION,
   },
   {
     id: "3",
     images: projectImages(3, 4),
     budget: "39000 zł",
-    duration: "2 місяці",
+    durationMonths: 2,
     areaSqm: 73,
     resultValue: "+50%",
-    resultCaption: RESULT_CAPTION,
   },
 ];
 
@@ -59,7 +53,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
 
   const facts = [
     { key: "budget", label: t("budget"), value: project.budget },
-    { key: "duration", label: t("duration"), value: project.duration },
+    { key: "duration", label: t("duration"), value: t("months", { count: project.durationMonths }) },
     { key: "area", label: t("area"), value: `${project.areaSqm} m²` },
   ];
 
@@ -102,7 +96,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
                         fact.value
                       ) : (
                         <>
-                          <span className="font-bold text-brand-red">{project.resultValue}</span> {project.resultCaption}
+                          <span className="font-bold text-brand-red">{project.resultValue}</span> {t("resultCaption")}
                         </>
                       )}
                     </p>
@@ -137,7 +131,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
           <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{t("result")}</p>
           <p className="font-heading text-[25px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
             <span className="text-brand-red">{project.resultValue}</span>{" "}
-            {project.resultCaption}
+            {t("resultCaption")}
           </p>
         </div>
       </div>
@@ -182,7 +176,6 @@ const CARD_H_MOBILE_PX = 560;
 const CARD_H_TABLET_PX = 620;
 const GAP_PX = 24;
 const BOTTOM_MARGIN_PX = 16;
-const RADIUS_PX = 24;
 
 /** Top of the finished stack: the first card ends up here, covering the heading. */
 const END_TOP_PX = BOTTOM_MARGIN_PX;
@@ -287,7 +280,6 @@ export function ProjectsScroll() {
       transform: `translateY(${
         i === 0 ? lerp(m.firstTop, END_TOP_PX, clamp01(progress)) : lerp(restY - followed, END_TOP_PX, move)
       }px)`,
-      borderRadius: RADIUS_PX,
       zIndex: i + 1,
     };
   };
