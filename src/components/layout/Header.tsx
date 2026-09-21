@@ -12,10 +12,9 @@ interface HeaderProps {
   variant?: "transparent" | "solid";
   onCtaClick?: () => void;
   sticky?: boolean;
-  compact?: boolean;
 }
 
-export function Header({ variant = "transparent", onCtaClick, sticky = false, compact = false }: HeaderProps) {
+export function Header({ variant = "transparent", onCtaClick, sticky = false }: HeaderProps) {
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -41,7 +40,7 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false, co
 
   return (
     <header
-      className={`${positionClass} z-40 flex items-center justify-between px-5 pt-5.25 pb-5 tablet:py-5 ${paddingClass} ${compact ? "desktop:py-4" : "desktop:py-6"}`}
+      className={`${positionClass} z-40 flex items-center justify-between px-5 pt-5.25 pb-5 tablet:py-5 ${paddingClass} desktop:py-6`}
     >
       <div className="flex items-center gap-24">
         <Link href={ROUTES.home} className={`font-heading text-[20px] font-semibold ${textClass}`}>

@@ -9,7 +9,7 @@ interface BeforeAfterSliderProps {
   alt: string;
 }
 
-/** Draggable "before/after" comparison, used inside review cards. */
+/** "Before/after" comparison, used inside review cards. Only the arrows handle can be dragged. */
 export function BeforeAfterSlider({ beforeSrc, afterSrc, alt }: BeforeAfterSliderProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState(50); // percent
@@ -23,7 +23,6 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt }: BeforeAfterSlide
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     event.currentTarget.setPointerCapture(event.pointerId);
-    updateFromClientX(event.clientX);
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -34,16 +33,16 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt }: BeforeAfterSlide
   return (
     <div
       ref={containerRef}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      className="relative aspect-[4/3] w-full touch-none select-none overflow-hidden rounded-2xl"
+      className="relative aspect-[4/3] w-full select-none overflow-hidden rounded-2xl"
     >
-      <Image src={afterSrc} alt={alt} fill sizes="(min-width: 768px) 340px, 100vw" className="object-cover" />
+      <Image src={afterSrc} alt={alt} fill sizes="(min-width: 768px) 340px, 100vw" className="pointer-events-none object-cover" draggable={false} />
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>
-        <Image src={beforeSrc} alt="" fill sizes="(min-width: 768px) 340px, 100vw" className="object-cover" />
+        <Image src={beforeSrc} alt="" fill sizes="(min-width: 768px) 340px, 100vw" className="pointer-events-none object-cover" draggable={false} />
       </div>
       <div
-        className="absolute inset-y-0 flex w-8 -translate-x-1/2 items-center justify-center"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        className="absolute inset-y-0 flex w-8 -translate-x-1/2 cursor-ew-resize touch-none items-center justify-center"
         style={{ left: `${position}%` }}
       >
         <span className="h-full w-0.5 bg-white" />

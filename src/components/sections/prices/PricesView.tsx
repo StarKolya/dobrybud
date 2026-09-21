@@ -14,7 +14,7 @@ export function PricesView() {
 
   return (
     <>
-      <Header variant="solid" sticky compact onCtaClick={() => setLeadFormOpen(true)} />
+      <Header variant="solid" sticky onCtaClick={() => setLeadFormOpen(true)} />
       <main className="flex flex-1 flex-col">
         <PackagesScroll />
         <PackagesTable onRequestQuote={() => setLeadFormOpen(true)} />
