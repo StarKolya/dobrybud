@@ -178,13 +178,19 @@ const MAX_CONTENT_PX = 1300;
 /** Extra side inset of the not-yet-active cards compared to the first one. */
 const NARROW_EXTRA_PX = 24;
 const CARD_H_MOBILE_PX = 560;
-const CARD_H_TABLET_PX = 700;
+const CARD_H_TABLET_PX = 620;
 const GAP_PX = 24;
 const BOTTOM_MARGIN_PX = 16;
 const RADIUS_PX = 24;
 
-/** Scroll distance of each phase as a share of the viewport height: slide, widen, slide, widen. */
-const PHASE_SCROLL_RATIOS = [0.5, 0.25, 0.5, 0.25];
+/** Top of the finished stack: the first card ends up here, covering the heading. */
+const END_TOP_PX = BOTTOM_MARGIN_PX;
+
+/**
+ * Scroll distance of each phase as a share of the viewport height: the first
+ * card covers the heading, then the second and third each slide and widen.
+ */
+const PHASE_SCROLL_RATIOS = [0.5, 0.5, 0.25, 0.5, 0.25];
 const TOTAL_SCROLL_RATIO = PHASE_SCROLL_RATIOS.reduce((sum, r) => sum + r, 0);
 
 interface Metrics {
@@ -201,15 +207,16 @@ const clamp01 = (n: number) => Math.min(Math.max(n, 0), 1);
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
 /**
- * The first card is already in place and slightly wider than the others; the
- * second and third slide up over it in turn, then widen to its width.
+ * The first card starts below the heading, slightly wider than the others, and
+ * slides up to cover it; the second and third then slide up over it in turn and
+ * widen to its width.
  */
 export function ProjectsScroll() {
   const t = useTranslations("projects");
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [metrics, setMetrics] = useState<Metrics | null>(null);
-  const [progress, setProgress] = useState(0); // 0..2, one unit per card
+  const [progress, setProgress] = useState(0); // 0..3, one unit per card
 
   useLayoutEffect(() => {
     const measure = () => {
@@ -247,7 +254,7 @@ export function ProjectsScroll() {
         const start = PHASE_SCROLL_RATIOS.slice(0, i).reduce((sum, r) => sum + r, 0);
         return clamp01((scrolled / m.vh - start) / PHASE_SCROLL_RATIOS[i]);
       };
-      setProgress((phase(0) + phase(1)) / 2 + (phase(2) + phase(3)) / 2);
+      setProgress(phase(0) + (phase(1) + phase(2)) / 2 + (phase(3) + phase(4)) / 2);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -262,21 +269,23 @@ export function ProjectsScroll() {
 
   const cardStyle = (i: number) => {
     if (!m) return { visibility: "hidden" as const };
-    // Card 0 never moves. Cards 1 and 2 slide in the first half of their step
-    // and widen in the second half.
-    const step = progress - (i - 1);
-    const move = i === 0 ? 1 : clamp01(step * 2);
-    const widen = i === 0 ? 1 : clamp01(step * 2 - 1);
+    // Card 0 slides up over the heading in the first unit of progress. Cards 1
+    // and 2 then each slide in the first half of their unit and widen in the second.
+    const step = progress - i;
+    const move = clamp01(step * 2);
+    const widen = clamp01(step * 2 - 1);
     const restY = m.firstTop + i * (m.cardH + GAP_PX);
     // The third card rides along with the second one, keeping the gap.
-    const followed = i === 2 ? (m.cardH + GAP_PX) * clamp01(progress * 2) : 0;
+    const followed = i === 2 ? (m.firstTop + m.cardH + GAP_PX - END_TOP_PX) * clamp01((progress - 1) * 2) : 0;
     const extra = i === 0 ? 0 : lerp(NARROW_EXTRA_PX, 0, widen);
     return {
       top: 0,
       left: m.contentLeft + extra,
       width: m.contentW - extra * 2,
       height: m.cardH,
-      transform: `translateY(${i === 0 ? m.firstTop : lerp(restY - followed, m.firstTop, move)}px)`,
+      transform: `translateY(${
+        i === 0 ? lerp(m.firstTop, END_TOP_PX, clamp01(progress)) : lerp(restY - followed, END_TOP_PX, move)
+      }px)`,
       borderRadius: RADIUS_PX,
       zIndex: i + 1,
     };
@@ -291,7 +300,7 @@ export function ProjectsScroll() {
           ? {
               height: stageH + m.vh * TOTAL_SCROLL_RATIO,
               // Pull the next section up over the empty space below the finished stack.
-              marginBottom: -Math.max(stageH - m.firstTop - m.cardH - BOTTOM_MARGIN_PX, 0),
+              marginBottom: -Math.max(stageH - END_TOP_PX - m.cardH - BOTTOM_MARGIN_PX, 0),
             }
           : { height: "300vh" }
       }

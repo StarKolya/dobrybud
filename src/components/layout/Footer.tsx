@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { CONTACT_EMAIL, CONTACT_VIBER_URL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
+import { CONTACT_EMAIL, CONTACT_TELEGRAM_URL, CONTACT_VIBER_URL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
 import { NewsletterForm } from "./NewsletterForm";
 
 const SOCIALS = [
-  { name: "Instagram", href: "https://instagram.com/dobrybud", icon: "/icons/socials/black/instagram.svg" },
+  { name: "Telegram", href: CONTACT_TELEGRAM_URL, icon: "/icons/socials/black/telegram.svg" },
   { name: "Viber", href: CONTACT_VIBER_URL, icon: "/icons/socials/black/viber.svg" },
 ];
 

@@ -34,7 +34,7 @@ export function StagesSlider() {
 
   return (
     <section className="overflow-hidden px-6 py-8 tablet:px-16 tablet:py-12">
-      <div className="relative mx-auto max-w-[1300px] rounded-lg">
+      <div className="relative mx-auto max-w-[1300px] overflow-hidden rounded-lg py-4">
         <div className="absolute inset-0 overflow-hidden rounded-lg">
           <Image
             src="/images/about/stages.png"
@@ -46,8 +46,8 @@ export function StagesSlider() {
           <div className="absolute inset-0 bg-brand-dark/50" />
         </div>
 
-        <div className="relative flex flex-col gap-6 p-4 text-white tablet:h-[533px] tablet:flex-row tablet:gap-0 tablet:py-8 tablet:pr-0 tablet:pl-8">
-          <div className="tablet:w-[20%] tablet:shrink-0">
+        <div className="relative flex flex-col gap-6 p-4 text-white tablet:h-[447px] tablet:flex-row tablet:gap-0 tablet:py-8 tablet:pr-0 tablet:pl-8">
+          <div className="tablet:w-[15%] tablet:shrink-0">
             <Badge>{t("badge")}</Badge>
           </div>
 
@@ -70,12 +70,12 @@ export function StagesSlider() {
               {STAGE_KEYS.map((key, i) => (
                 <div
                   key={key}
-                  className="flex min-h-40 shrink-0 flex-col justify-between gap-6 rounded-lg bg-white p-4 text-brand-dark tablet:w-72 tablet:snap-start"
+                  className="flex min-h-40 shrink-0 flex-col justify-between gap-6 rounded-lg bg-white p-4 text-brand-dark tablet:w-[330px] tablet:snap-start"
                 >
-                  <span className="text-brand-dark/60">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-heading text-[25px] font-light leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark/60">{String(i + 1).padStart(2, "0")}</span>
                   <div>
-                    <h3 className="font-semibold">{t(`${key}.title`)}</h3>
-                    <p className="mt-1 text-sm text-brand-dark/70">{t(`${key}.description`)}</p>
+                    <h3 className="font-heading text-[25px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">{t(`${key}.title`)}</h3>
+                    <p className="mt-2 font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-brand-dark/70">{t(`${key}.description`)}</p>
                   </div>
                 </div>
               ))}
