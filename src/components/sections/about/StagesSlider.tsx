@@ -65,7 +65,7 @@ export function StagesSlider() {
             <div
               ref={scrollerRef}
               onScroll={updateEdges}
-              className="flex max-h-[420px] flex-col gap-2.5 tablet:min-h-0 tablet:flex-1 overflow-y-auto overscroll-contain tablet:-mr-16 tablet:max-h-none tablet:snap-x tablet:snap-mandatory tablet:flex-row tablet:overflow-x-auto tablet:overflow-y-visible tablet:scroll-smooth tablet:pr-16"
+              className="flex max-h-[420px] flex-col gap-2.5 tablet:min-h-0 tablet:flex-1 overflow-y-auto overscroll-contain tablet:-mr-16 tablet:max-h-none tablet:snap-x tablet:snap-mandatory tablet:flex-row tablet:overflow-x-auto tablet:overflow-y-hidden tablet:overscroll-auto tablet:scroll-smooth tablet:pr-16"
             >
               {STAGE_KEYS.map((key, i) => (
                 <div

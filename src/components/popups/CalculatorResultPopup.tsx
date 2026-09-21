@@ -56,25 +56,25 @@ export function CalculatorResultPopup({
       <div className="flex flex-col divide-y divide-brand-dark/10 p-6 tablet:flex-row tablet:divide-x tablet:divide-y-0 tablet:p-10">
         <div className="flex flex-col items-center pb-6 text-center tablet:w-1/2 tablet:pb-0 tablet:pr-10">
           <Image src="/icons/calculator.svg" alt="" width={24} height={31} className="mb-4 h-8 w-auto" />
-          <p className="mb-2 text-sm text-brand-dark/60">{t("resultTitle")}</p>
+          <p className="mb-2 text-sm text-brand-dark">{t("resultTitle")}</p>
           <p className="mb-2 font-heading text-4xl font-semibold text-brand-red">
             {estimate.toLocaleString("uk-UA")} ZŁ
           </p>
-          <p className="mb-6 text-xs text-brand-dark/40">{summaryLine}</p>
+          <p className="mb-6 text-xs text-brand-dark">{summaryLine}</p>
           <Button onClick={onLeaveRequest} className="w-full tablet:w-auto">
             {t("leadCta")}
           </Button>
         </div>
 
-        <div className="flex flex-col items-center pt-6 text-center tablet:w-1/2 tablet:pt-0 tablet:pl-10">
+        <div className="flex flex-col items-center justify-center pt-6 text-center tablet:w-1/2 tablet:pt-0 tablet:pl-10">
           <span className="mb-4 text-brand-red">
             <PhoneIcon />
           </span>
-          <p className="mb-4 max-w-56 text-sm text-brand-dark/60">{t("resultPopup.contactTitle")}</p>
-          <Link href={`tel:${CONTACT_PHONE_HREF}`} className="mb-1 font-heading text-2xl font-semibold">
+          <p className="mb-4 max-w-56 text-sm text-brand-dark">{t("resultPopup.contactTitle")}</p>
+          <Link href={`tel:${CONTACT_PHONE_HREF}`} className="mb-1 font-heading text-2xl font-semibold text-brand-dark">
             {CONTACT_PHONE_DISPLAY}
           </Link>
-          <p className="text-xs text-brand-dark/40">{t("resultPopup.privacyNote")}</p>
+          <p className="text-xs text-brand-dark">{t("resultPopup.privacyNote")}</p>
         </div>
       </div>
     </Modal>

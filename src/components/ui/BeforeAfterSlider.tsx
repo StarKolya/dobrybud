@@ -47,7 +47,7 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt }: BeforeAfterSlide
       >
         <span className="h-full w-0.5 bg-white" />
         <span className="absolute flex h-8 w-8 items-center justify-center rounded-full bg-white shadow">
-          <Image src="/icons/double-arrows.svg" alt="" width={19} height={8} className="h-auto w-[19px]" />
+          <Image src="/icons/double-arrows.svg" alt="" width={19} height={8} className="pointer-events-none h-auto w-[19px]" draggable={false} />
         </span>
       </div>
     </div>

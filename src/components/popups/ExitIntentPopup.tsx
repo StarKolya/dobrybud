@@ -7,24 +7,15 @@ import { Modal } from "@/components/ui/Modal";
 
 export function ExitIntentPopup({
   onSendRequest,
-  forceOpen = false,
-  onForceClose,
 }: {
   onSendRequest: () => void;
-  /** Manual override, used by the temporary test button. */
-  forceOpen?: boolean;
-  onForceClose?: () => void;
 }) {
   const t = useTranslations("exitPopup");
-  const { triggered, dismiss: dismissAuto } = useExitIntent();
-  const dismiss = () => {
-    dismissAuto();
-    onForceClose?.();
-  };
+  const { triggered, dismiss } = useExitIntent();
 
   return (
     <Modal
-      open={triggered || forceOpen}
+      open={triggered}
       onClose={dismiss}
       maxWidthClassName="max-w-full tablet:max-w-[600px]"
       closeButtonClassName="z-20 rounded-md bg-white text-xl text-brand-dark hover:bg-white/90"

@@ -12,14 +12,16 @@ export function useExitIntent() {
   const hasFiredRef = useRef(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem(SESSION_STORAGE_KEYS.exitPopupShown)) {
-      hasFiredRef.current = true;
-    }
+    try {
+      if (sessionStorage.getItem(SESSION_STORAGE_KEYS.exitPopupShown)) hasFiredRef.current = true;
+    } catch {}
 
     const fire = () => {
       if (hasFiredRef.current) return;
       hasFiredRef.current = true;
-      sessionStorage.setItem(SESSION_STORAGE_KEYS.exitPopupShown, "1");
+      try {
+        sessionStorage.setItem(SESSION_STORAGE_KEYS.exitPopupShown, "1");
+      } catch {}
       setTriggered(true);
     };
 
@@ -27,8 +29,9 @@ export function useExitIntent() {
       if (event.clientY <= 0) fire();
     };
 
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
     const onVisibilityChange = () => {
-      if (document.visibilityState === "hidden") fire();
+      if (isTouch && document.visibilityState === "hidden") fire();
     };
 
     document.addEventListener("mouseleave", onMouseLeave);

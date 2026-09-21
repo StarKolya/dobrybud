@@ -40,7 +40,8 @@ const DISTRICT_GROUPS: SelectGroup[] = [
 export function Calculator({ onGetQuote }: { onGetQuote: (estimate: number) => void }) {
   const t = useTranslations("home.calculator");
   const [packageId, setPackageId] = useState<PackageId>("basic");
-  const [area, setArea] = useState(50);
+  const [areaInput, setAreaInput] = useState("50");
+  const area = Number(areaInput) || 0;
   const [district, setDistrict] = useState("");
   const [estimate, setEstimate] = useState<number | null>(null);
   const [resultOpen, setResultOpen] = useState(false);
@@ -102,8 +103,8 @@ export function Calculator({ onGetQuote }: { onGetQuote: (estimate: number) => v
                   <input
                     type="number"
                     min={1}
-                    value={area}
-                    onChange={(event) => setArea(Number(event.target.value))}
+                    value={areaInput}
+                    onChange={(event) => setAreaInput(event.target.value)}
                     className="w-full bg-transparent outline-none"
                   />
                   <span className="shrink-0 text-base font-medium text-brand-dark">м²</span>

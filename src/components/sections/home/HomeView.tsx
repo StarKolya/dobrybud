@@ -19,7 +19,6 @@ import { ExitIntentPopup } from "@/components/popups/ExitIntentPopup";
 export function HomeView() {
   const [leadFormOpen, setLeadFormOpen] = useState(false);
   const [leadFormUploadOpen, setLeadFormUploadOpen] = useState(false);
-  const [exitTestOpen, setExitTestOpen] = useState(false);
 
   return (
     <>
@@ -41,20 +40,7 @@ export function HomeView() {
 
       <LeadFormPopup open={leadFormOpen} onClose={() => setLeadFormOpen(false)} />
       <LeadFormUploadPopup open={leadFormUploadOpen} onClose={() => setLeadFormUploadOpen(false)} />
-      <ExitIntentPopup
-        onSendRequest={() => setLeadFormOpen(true)}
-        forceOpen={exitTestOpen}
-        onForceClose={() => setExitTestOpen(false)}
-      />
-
-      {/* TEMP: remove once the exit popup is approved. */}
-      <button
-        type="button"
-        onClick={() => setExitTestOpen(true)}
-        className="fixed bottom-4 left-4 z-40 rounded-md bg-brand-dark px-3 py-2 text-xs text-white opacity-80 hover:opacity-100"
-      >
-        Test exit popup
-      </button>
+      <ExitIntentPopup onSendRequest={() => setLeadFormOpen(true)} />
     </>
   );
 }
