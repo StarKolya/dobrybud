@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { CONTACT_EMAIL, CONTACT_TELEGRAM_URL, CONTACT_VIBER_URL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
@@ -18,6 +18,21 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
   const t = useTranslations("nav");
   const tFooter = useTranslations("footer");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Lock page scroll while the mobile menu is open, so swipes don't scroll the
+  // page behind it and toggle the browser toolbars (which shifts the viewport).
+  useEffect(() => {
+    if (!menuOpen) return;
+    const html = document.documentElement;
+    const prevHtml = html.style.overflow;
+    const prevBody = document.body.style.overflow;
+    html.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    return () => {
+      html.style.overflow = prevHtml;
+      document.body.style.overflow = prevBody;
+    };
+  }, [menuOpen]);
 
   const links = [
     { href: ROUTES.prices, label: t("prices") },
@@ -138,7 +153,7 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
       </div>
 
       {menuOpen && (
-        <div className="animate-menu-in fixed inset-0 z-50 flex flex-col overflow-y-auto bg-white px-5 pt-5.25 pb-8 tablet:hidden">
+        <div className="animate-menu-in fixed inset-x-0 top-0 z-50 flex h-dvh flex-col overflow-y-auto overscroll-contain bg-white px-5 pt-5.25 pb-[max(2rem,env(safe-area-inset-bottom))] tablet:hidden">
           <div className="flex items-center justify-between">
             <Link href={ROUTES.home} onClick={() => setMenuOpen(false)}>
               <Image src="/images/logos/red.svg" alt="Dobrybud logo" width={107} height={48} className="h-9 w-20" />
