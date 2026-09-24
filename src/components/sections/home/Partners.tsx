@@ -23,7 +23,7 @@ export function Partners() {
         </div>
       </div>
 
-      <div className="flex h-16 w-max animate-marquee items-center whitespace-nowrap">
+      <div className="flex h-16 w-max animate-marquee items-center whitespace-nowrap will-change-transform">
         {loop.map((partner, index) => (
           <Image
             key={`${partner.name}-${index}`}
@@ -31,6 +31,8 @@ export function Partners() {
             alt={partner.name}
             width={partner.width}
             height={partner.height}
+            // Off-screen copies would otherwise lazy-load mid-scroll and pop in.
+            loading="eager"
             className={`mr-8 w-auto shrink-0 object-contain ${partner.heightClass}`}
           />
         ))}

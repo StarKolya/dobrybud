@@ -32,7 +32,7 @@ export function AboutUs() {
                 key={key}
                 className="flex flex-col gap-4 rounded-lg bg-white p-4 last:col-span-2 tablet:flex-1 tablet:flex-row tablet:items-stretch tablet:gap-5 tablet:p-[5px]"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-brand-dark text-white tablet:h-auto tablet:w-auto tablet:aspect-square tablet:text-[24px] tablet:font-light desktop:text-[30px]">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-brand-dark font-heading text-white lining-nums proportional-nums tablet:h-auto tablet:w-auto tablet:aspect-square tablet:text-[24px] tablet:font-light desktop:text-[30px]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="text-[18px] leading-tight tracking-[-0.01em] text-brand-dark tablet:self-center">

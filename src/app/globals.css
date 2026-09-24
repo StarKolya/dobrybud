@@ -42,15 +42,16 @@ h4 {
 
 @keyframes marquee {
   from {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translateX(-12.5%);
+    transform: translate3d(-12.5%, 0, 0);
   }
 }
 
 .animate-marquee {
   animation: marquee 24s linear infinite;
+  backface-visibility: hidden;
 }
 
 @keyframes stat-change {
