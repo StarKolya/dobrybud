@@ -26,8 +26,8 @@ export function ProjectCard({
 
   return (
     <>
-    <div className="flex flex-col gap-3 rounded-2xl bg-white p-3 desktop:hidden">
-      <p className="font-heading text-xl font-medium uppercase leading-none text-[#2C2C2C]">
+    <div className="flex flex-col rounded-2xl bg-white p-3 desktop:hidden">
+      <p className="mb-3 font-heading text-xl font-medium uppercase leading-none text-[#2C2C2C]">
         {t("project")} {project.id}
       </p>
 
@@ -35,11 +35,13 @@ export function ProjectCard({
         <Image src={project.images[imageIndex]} alt={tAlt("project", { number: project.id, photo: imageIndex + 1 })} fill
  sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
 
-        <div className="absolute left-2 top-2 right-2 flex flex-wrap gap-1">
+        {/* One row on every phone: pills are ~16em + 44px wide in total (the Polish
+            "miesiące" is the longest), so shrink the text only when that won't fit. */}
+        <div className="@container absolute left-2 top-2 right-2 flex gap-1">
           {[project.budget, `${project.areaSqm} m²`, t("months", { count: project.durationMonths })].map((value) => (
             <span
               key={value}
-              className="flex items-center gap-1.5 rounded-md bg-white p-3 font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"
+              className="flex shrink-0 items-center gap-1.5 rounded-md bg-white p-[0.667em] font-heading text-[min(18px,calc((100cqw-44px)/16))] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"
             >
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-brand-red" aria-hidden />
               {value}
@@ -54,7 +56,7 @@ export function ProjectCard({
       </div>
 
       <div
-        className={`rounded-lg p-3 font-heading text-sm leading-tight ${
+        className={`mt-[5px] rounded-lg p-3 tablet:mt-3 font-heading text-sm leading-tight ${
           redResult ? "bg-brand-red text-white" : "bg-[#F0F0F0] text-[#2C2C2C]"
         }`}
       >
@@ -91,8 +93,10 @@ export function ProjectCard({
         <div className="flex h-[84px] w-[72%] desktop:h-[106px] desktop:w-[317px] flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
           <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("result")}:</p>
           <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">
-            <span className="font-semibold text-brand-red"><AnimatedValue value={project.resultValue} /></span>{" "}
-            {t("resultCaption")}
+            <ResultCaption
+              value={<span className="font-semibold text-brand-red"><AnimatedValue value={project.resultValue} /></span>}
+              caption={t("resultCaption")}
+            />
           </p>
         </div>
       </div>

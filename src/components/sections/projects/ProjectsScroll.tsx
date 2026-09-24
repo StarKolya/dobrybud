@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { ResultCaption } from "@/components/ui/ResultCaption";
 import { useTranslations } from "next-intl";
 import { NavButton } from "@/components/ui/NavButton";
 
@@ -59,8 +60,8 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
 
   return (
     <>
-      <div className="flex h-full flex-col gap-3 bg-brand-gray py-3 text-[#2C2C2C] tablet:hidden">
-        <h2 className="font-heading text-xl font-medium uppercase leading-none">
+      <div className="flex h-full flex-col bg-brand-gray py-3 text-[#2C2C2C] tablet:hidden">
+        <h2 className="mb-3 font-heading text-xl font-medium uppercase leading-none">
           {t("project")} {number}
         </h2>
 
@@ -72,7 +73,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
           </div>
         </div>
 
-        <div className="flex flex-col gap-[5px]">
+        <div className="mt-[5px] flex flex-col gap-[5px]">
           {[
             [
               { key: "budget", grow: "grow-[148]" },
@@ -95,9 +96,10 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
                       {fact ? (
                         fact.value
                       ) : (
-                        <>
-                          <span className="font-bold text-brand-red">{project.resultValue}</span> {t("resultCaption")}
-                        </>
+                        <ResultCaption
+                          value={<span className="font-bold text-brand-red">{project.resultValue}</span>}
+                          caption={t("resultCaption")}
+                        />
                       )}
                     </p>
                   </div>
@@ -130,8 +132,10 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
         <div className="flex flex-col gap-2 rounded-lg bg-white/90 px-5 py-[18px] text-[#2C2C2C]">
           <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{t("result")}</p>
           <p className="font-heading text-[25px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
-            <span className="text-brand-red">{project.resultValue}</span>{" "}
-            {t("resultCaption")}
+            <ResultCaption
+              value={<span className="text-brand-red">{project.resultValue}</span>}
+              caption={t("resultCaption")}
+            />
           </p>
         </div>
       </div>

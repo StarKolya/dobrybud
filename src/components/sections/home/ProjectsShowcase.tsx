@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { ResultCaption } from "@/components/ui/ResultCaption";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ROUTES } from "@/lib/constants";
@@ -86,8 +87,10 @@ function Result({ project, label }: { project: ShowcaseProject; label: string })
     <>
       <p className="text-xs text-brand-dark/50">{label}</p>
       <p className="text-sm leading-5">
-        <span className="font-semibold text-brand-red">{project.resultValue}</span>{" "}
-        {t("resultCaption")}
+        <ResultCaption
+          value={<span className="font-semibold text-brand-red">{project.resultValue}</span>}
+          caption={t("resultCaption")}
+        />
       </p>
     </>
   );
@@ -142,7 +145,7 @@ function ProjectCard({ project, number }: { project: ShowcaseProject; number: nu
         </div>
       </div>
 
-      <div className="mt-2.5 rounded-lg bg-white px-3 py-2 tablet:hidden">
+      <div className="mt-[5px] rounded-lg bg-white px-3 py-2 tablet:hidden">
         <Result project={project} label={t("result")} />
       </div>
     </div>

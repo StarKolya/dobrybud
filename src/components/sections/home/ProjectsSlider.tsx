@@ -73,7 +73,7 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
     setIndex((prev) => Math.min(Math.max(prev + delta, 0), SLIDES.length - 1));
 
   const result = (
-    <span className="block text-[min(22px,5.3vw)] tablet:text-[25px]">
+    <span className="block tablet:text-[25px]">
       <ResultCaption
         value={
           <span className="font-semibold text-brand-red">
