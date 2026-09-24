@@ -42,6 +42,7 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt }: BeforeAfterSlide
       <div
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
+        data-no-swipe
         className="absolute inset-y-0 flex w-8 -translate-x-1/2 cursor-ew-resize touch-none items-center justify-center"
         style={{ left: `${position}%` }}
       >

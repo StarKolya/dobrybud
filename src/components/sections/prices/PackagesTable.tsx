@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { NavButton } from "@/components/ui/NavButton";
+import { useSwipe } from "@/hooks/useSwipe";
 import { CALCULATOR_PACKAGES } from "@/lib/calculator";
 import type { PackageId } from "@/types";
 
@@ -109,7 +110,13 @@ export function PackagesTable({ onRequestQuote }: { onRequestQuote: () => void }
   const namesT = useTranslations("home.calculator.packages");
   const [activeId, setActiveId] = useState<PackageId>("basic");
   const activeIndex = PACKAGE_IDS.indexOf(activeId);
-  const go = (delta: number) => setActiveId(PACKAGE_IDS[activeIndex + delta]);
+  const go = (delta: number) =>
+    setActiveId(PACKAGE_IDS[Math.min(Math.max(activeIndex + delta, 0), PACKAGE_IDS.length - 1)]);
+  const { dragging, handlers: swipeHandlers } = useSwipe({
+    onSwipe: go,
+    canPrev: activeIndex > 0,
+    canNext: activeIndex < PACKAGE_IDS.length - 1,
+  });
 
   return (
     <section className="px-6 py-16 desktop:px-16 desktop:py-24">
@@ -144,8 +151,17 @@ export function PackagesTable({ onRequestQuote }: { onRequestQuote: () => void }
           ))}
         </div>
 
-        <div className="min-[900px]:hidden">
-          <PackageCard id={activeId} onRequestQuote={onRequestQuote} />
+        <div className="overflow-hidden min-[900px]:hidden" {...swipeHandlers}>
+          <div
+            className={`flex items-start gap-6 will-change-transform ${dragging ? "" : "transition-transform duration-500 ease-out"}`}
+            style={{
+              transform: `translateX(calc(${-activeIndex * 100}% - ${activeIndex * 24}px + var(--swipe-offset, 0px)))`,
+            }}
+          >
+            {PACKAGE_IDS.map((id) => (
+              <PackageCard key={id} id={id} onRequestQuote={onRequestQuote} className="w-full shrink-0" />
+            ))}
+          </div>
         </div>
 
         <div className="hidden min-[900px]:grid min-[900px]:grid-cols-3 min-[900px]:items-center min-[900px]:gap-6">

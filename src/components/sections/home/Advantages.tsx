@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/Badge";
 import { NavButton } from "@/components/ui/NavButton";
+import { useSwipe } from "@/hooks/useSwipe";
 
 export const ITEMS = [
   { id: "deadline", icon: "/icons/advantages/shield.svg" },
@@ -41,6 +42,12 @@ export function Advantages() {
     setIndex((prev) => Math.min(Math.max(prev + delta, 0), ITEMS.length - 1));
   };
 
+  const { dragging, handlers: swipeHandlers } = useSwipe({
+    onSwipe: go,
+    canPrev: canGoPrev,
+    canNext: canGoNext,
+  });
+
   useEffect(() => {
     const updateOffset = () => {
       const track = trackRef.current;
@@ -64,11 +71,11 @@ export function Advantages() {
           </div>
         </div>
 
-        <div className="min-w-0 overflow-hidden tablet:hidden">
+        <div className="min-w-0 overflow-hidden tablet:hidden" {...swipeHandlers}>
           <div
             ref={trackRef}
-            className="flex gap-2.5 transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${offset}px)` }}
+            className={`flex gap-2.5 will-change-transform ${dragging ? "" : "transition-transform duration-500 ease-out"}`}
+            style={{ transform: `translateX(calc(var(--swipe-offset, 0px) - ${offset}px))` }}
           >
             {ITEMS.map((item) => (
               <AdvantageCard key={item.id} id={item.id} icon={item.icon} />

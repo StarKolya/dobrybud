@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { BeforeAfterSlider } from "@/components/ui/BeforeAfterSlider";
 import { Badge } from "@/components/ui/Badge";
 import { NavButton } from "@/components/ui/NavButton";
+import { useScrollSlider } from "@/hooks/useScrollSlider";
 import type { Testimonial } from "@/types";
 
 const TESTIMONIALS: Testimonial[] = [
@@ -53,7 +53,7 @@ function ReviewCard({ testimonial }: { testimonial: Testimonial }) {
   const tAlt = useTranslations("seo.alt");
   const name = t(`${testimonial.id}.name`);
   return (
-    <div className="flex w-full shrink-0 flex-col gap-4 rounded-2xl bg-white p-5 tablet:w-95">
+    <div className="flex w-full shrink-0 snap-start flex-col gap-4 rounded-2xl bg-white p-5 tablet:w-95">
       <div className="flex items-end gap-3">
         {testimonial.avatarImage ? (
           <Image
@@ -98,28 +98,7 @@ function ReviewCard({ testimonial }: { testimonial: Testimonial }) {
 
 export function Testimonials() {
   const t = useTranslations("home.reviews");
-  const [index, setIndex] = useState(0);
-  const [offset, setOffset] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  const canGoPrev = index > 0;
-  const canGoNext = index < TESTIMONIALS.length - 1;
-
-  const go = (delta: number) => {
-    setIndex((prev) => Math.min(Math.max(prev + delta, 0), TESTIMONIALS.length - 1));
-  };
-
-  useEffect(() => {
-    const updateOffset = () => {
-      const track = trackRef.current;
-      const target = track?.children[index] as HTMLElement | undefined;
-      if (target) setOffset(target.offsetLeft);
-    };
-
-    updateOffset();
-    window.addEventListener("resize", updateOffset);
-    return () => window.removeEventListener("resize", updateOffset);
-  }, [index]);
+  const { ref, atStart, atEnd, scrollBySlides, dragging, handlers } = useScrollSlider<HTMLDivElement>();
 
   return (
     <section className="overflow-x-clip bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
@@ -127,8 +106,8 @@ export function Testimonials() {
         <div className="mb-6 flex items-center justify-between gap-4 tablet:hidden">
           <Badge>{t("title")}</Badge>
           <div className="flex gap-2">
-            <NavButton direction="prev" onClick={() => go(-1)} disabled={!canGoPrev} />
-            <NavButton direction="next" onClick={() => go(1)} disabled={!canGoNext} />
+            <NavButton direction="prev" onClick={() => scrollBySlides(-1)} disabled={atStart} />
+            <NavButton direction="next" onClick={() => scrollBySlides(1)} disabled={atEnd} />
           </div>
         </div>
 
@@ -136,21 +115,22 @@ export function Testimonials() {
           <div className="hidden tablet:flex tablet:w-40 tablet:shrink-0 tablet:flex-col tablet:justify-between desktop:w-52">
             <Badge>{t("title")}</Badge>
             <div className="flex gap-2">
-              <NavButton direction="prev" onClick={() => go(-1)} disabled={!canGoPrev} />
-              <NavButton direction="next" onClick={() => go(1)} disabled={!canGoNext} />
+              <NavButton direction="prev" onClick={() => scrollBySlides(-1)} disabled={atStart} />
+              <NavButton direction="next" onClick={() => scrollBySlides(1)} disabled={atEnd} />
             </div>
           </div>
 
-          <div className="min-w-0 flex-1 overflow-hidden tablet:-mr-[max(1.5rem,calc((100vw_-_1300px)/2))] desktop:-mr-[max(4rem,calc((100vw_-_1300px)/2))]">
-            <div
-              ref={trackRef}
-              className="flex items-stretch gap-6 transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${offset}px)` }}
-            >
-              {TESTIMONIALS.map((testimonial) => (
-                <ReviewCard key={testimonial.id} testimonial={testimonial} />
-              ))}
-            </div>
+          <div
+            ref={ref}
+            {...handlers}
+            className={`flex min-w-0 flex-1 items-stretch gap-6 overflow-x-auto overscroll-x-contain [scrollbar-width:none] tablet:-mr-[max(1.5rem,calc((100vw_-_1300px)/2))] desktop:-mr-[max(4rem,calc((100vw_-_1300px)/2))] [&::-webkit-scrollbar]:hidden ${
+              // Snapping and smooth scrolling would fight the pointer, so they're off mid-drag.
+              dragging ? "cursor-grabbing select-none" : "cursor-grab snap-x snap-mandatory scroll-smooth"
+            }`}
+          >
+            {TESTIMONIALS.map((testimonial) => (
+              <ReviewCard key={testimonial.id} testimonial={testimonial} />
+            ))}
           </div>
         </div>
       </div>
