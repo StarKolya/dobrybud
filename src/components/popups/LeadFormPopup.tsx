@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { ROUTES } from "@/lib/constants";
 import { submitLead } from "@/lib/submitLead";
 import { Modal } from "@/components/ui/Modal";
@@ -91,7 +91,11 @@ export function LeadFormPopup({ open, onClose }: { open: boolean; onClose: () =>
               {t("submit")}
             </Button>
             {failed && <p className="mt-2 text-center text-xs text-brand-red">{t("submitError")}</p>}
-            <p className="mt-2.5 text-center font-sans text-xs font-light text-brand-dark">@{t("privacyNote")}</p>
+            <p className="mt-2.5 text-center font-sans text-xs font-light text-brand-dark">
+              <Link href={ROUTES.privacy} target="_blank" className="underline-offset-2 hover:underline">
+                @{t("privacyNote")}
+              </Link>
+            </p>
           </form>
         </div>
       </div>

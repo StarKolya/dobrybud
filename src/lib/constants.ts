@@ -13,6 +13,7 @@ export const ROUTES = {
   projects: "/projects",
   about: "/about",
   thankYou: "/thank-you",
+  privacy: "/privacy",
 } as const;
 
 export const MAX_UPLOAD_SIZE_BYTES = 10 * 1024 * 1024; // 10 MB per file

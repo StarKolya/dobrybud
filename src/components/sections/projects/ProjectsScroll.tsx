@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { ResultCaption } from "@/components/ui/ResultCaption";
 import { useTranslations } from "next-intl";
 import { NavButton } from "@/components/ui/NavButton";
@@ -60,7 +60,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
 
   return (
     <>
-      <div className="flex h-full flex-col bg-brand-gray py-3 text-[#2C2C2C] tablet:hidden">
+      <div className="flex h-full flex-col bg-brand-gray px-3 py-3 text-[#2C2C2C] tablet:hidden">
         <h2 className="mb-3 font-heading text-xl font-medium uppercase leading-none">
           {t("project")} {number}
         </h2>
@@ -99,6 +99,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
                         <ResultCaption
                           value={<span className="font-bold text-brand-red">{project.resultValue}</span>}
                           caption={t("resultCaption")}
+                          fit={false}
                         />
                       )}
                     </p>
@@ -176,9 +177,16 @@ const PAD_DESKTOP_PX = 64;
 const MAX_CONTENT_PX = 1300;
 /** Extra side inset of the not-yet-active cards compared to the first one. */
 const NARROW_EXTRA_PX = 24;
+/** Smallest scale an incoming card starts at (keeps phones from shrinking too much). */
+const MIN_INCOMING_SCALE = 0.9;
+/** How far a card sinks back, and how dark it gets, while the next one covers it. */
+const RECEDE_SCALE = 0.94;
+const RECEDE_SHADE = 0.45;
 const CARD_H_MOBILE_PX = 560;
 const CARD_H_TABLET_PX = 620;
 const GAP_PX = 24;
+/** Phones: the card reaches this far past the content column, padding its content back in. */
+const CARD_PAD_X_MOBILE_PX = 12;
 const BOTTOM_MARGIN_PX = 16;
 
 /** Top of the finished stack: the first card ends up here, covering the heading. */
@@ -198,11 +206,14 @@ interface Metrics {
   firstTop: number;
   contentLeft: number;
   contentW: number;
+  cardPadX: number;
   cardH: number;
 }
 
 const clamp01 = (n: number) => Math.min(Math.max(n, 0), 1);
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+/** Smoothstep: eases each phase in and out instead of moving at constant speed. */
+const ease = (t: number) => t * t * (3 - 2 * t);
 
 /**
  * The first card starts below the heading, slightly wider than the others, and
@@ -213,8 +224,9 @@ export function ProjectsScroll() {
   const t = useTranslations("projects");
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const shadeRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [metrics, setMetrics] = useState<Metrics | null>(null);
-  const [progress, setProgress] = useState(0); // 0..3, one unit per card
 
   useLayoutEffect(() => {
     const measure = () => {
@@ -229,6 +241,7 @@ export function ProjectsScroll() {
         firstTop: title ? title.offsetTop + title.offsetHeight + GAP_PX : 0,
         contentLeft: (vw - contentW) / 2,
         contentW,
+        cardPadX: vw >= TABLET_BREAKPOINT_PX ? 0 : CARD_PAD_X_MOBILE_PX,
         cardH: vw >= TABLET_BREAKPOINT_PX ? CARD_H_TABLET_PX : CARD_H_MOBILE_PX,
       });
     };
@@ -240,8 +253,45 @@ export function ProjectsScroll() {
   const m = metrics;
   const stageH = m ? Math.max(m.vh - m.headerH, m.firstTop + m.cardH + BOTTOM_MARGIN_PX) : 0;
 
-  useEffect(() => {
+  // Scroll-linked, so styles are written straight to the DOM every frame rather
+  // than through React state, and only transform/opacity change (no layout).
+  useLayoutEffect(() => {
     if (!m) return;
+    const cardW = m.contentW + m.cardPadX * 2;
+    const narrowScale = Math.max((cardW - NARROW_EXTRA_PX * 2) / cardW, MIN_INCOMING_SCALE);
+
+    const apply = (progress: number) => {
+      // The heading fades out as the first card slides over it.
+      if (titleRef.current) titleRef.current.style.opacity = String(1 - ease(clamp01(progress)));
+      // Card 0 slides up over the heading in the first unit of progress. Cards 1
+      // and 2 then each slide in the first half of their unit and widen in the
+      // second, while the card underneath sinks back and darkens.
+      PROJECTS.forEach((_, i) => {
+        const card = cardRefs.current[i];
+        const shade = shadeRefs.current[i];
+        if (!card || !shade) return;
+
+        const step = progress - i;
+        const move = ease(clamp01(step * 2));
+        const widen = ease(clamp01(step * 2 - 1));
+        const restY = m.firstTop + i * (m.cardH + GAP_PX);
+        // The third card rides along with the second one, keeping the gap.
+        const followed =
+          i === 2 ? (m.firstTop + m.cardH + GAP_PX - END_TOP_PX) * ease(clamp01((progress - 1) * 2)) : 0;
+        const y =
+          i === 0 ? lerp(m.firstTop, END_TOP_PX, ease(clamp01(progress))) : lerp(restY - followed, END_TOP_PX, move);
+        const covered = i < PROJECTS.length - 1 ? ease(clamp01((progress - i - 1) * 2)) : 0;
+        const recede = lerp(1, RECEDE_SCALE, covered);
+        const scale = (i === 0 ? 1 : lerp(narrowScale, 1, widen)) * recede;
+        // Sink back around the centre, so the darkened top edge drops behind the
+        // covering card instead of peeking out as a line along its top.
+        const sink = (m.cardH * (1 - recede)) / 2;
+
+        card.style.transform = `translate3d(0, ${y + sink}px, 0) scale(${scale})`;
+        shade.style.opacity = String(covered * RECEDE_SHADE);
+      });
+    };
+
     let frame = 0;
     const update = () => {
       frame = 0;
@@ -252,7 +302,7 @@ export function ProjectsScroll() {
         const start = PHASE_SCROLL_RATIOS.slice(0, i).reduce((sum, r) => sum + r, 0);
         return clamp01((scrolled / m.vh - start) / PHASE_SCROLL_RATIOS[i]);
       };
-      setProgress(phase(0) + (phase(1) + phase(2)) / 2 + (phase(3) + phase(4)) / 2);
+      apply(phase(0) + (phase(1) + phase(2)) / 2 + (phase(3) + phase(4)) / 2); // 0..3, one unit per card
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -267,23 +317,12 @@ export function ProjectsScroll() {
 
   const cardStyle = (i: number) => {
     if (!m) return { visibility: "hidden" as const };
-    // Card 0 slides up over the heading in the first unit of progress. Cards 1
-    // and 2 then each slide in the first half of their unit and widen in the second.
-    const step = progress - i;
-    const move = clamp01(step * 2);
-    const widen = clamp01(step * 2 - 1);
-    const restY = m.firstTop + i * (m.cardH + GAP_PX);
-    // The third card rides along with the second one, keeping the gap.
-    const followed = i === 2 ? (m.firstTop + m.cardH + GAP_PX - END_TOP_PX) * clamp01((progress - 1) * 2) : 0;
-    const extra = i === 0 ? 0 : lerp(NARROW_EXTRA_PX, 0, widen);
     return {
       top: 0,
-      left: m.contentLeft + extra,
-      width: m.contentW - extra * 2,
+      left: m.contentLeft - m.cardPadX,
+      width: m.contentW + m.cardPadX * 2,
       height: m.cardH,
-      transform: `translateY(${
-        i === 0 ? lerp(m.firstTop, END_TOP_PX, clamp01(progress)) : lerp(restY - followed, END_TOP_PX, move)
-      }px)`,
+      transformOrigin: "50% 0",
       zIndex: i + 1,
     };
   };
@@ -322,10 +361,20 @@ export function ProjectsScroll() {
         {PROJECTS.map((project, index) => (
           <div
             key={project.id}
-            className="pointer-events-auto absolute overflow-hidden will-change-transform"
+            ref={(el) => {
+              cardRefs.current[index] = el;
+            }}
+            className="pointer-events-auto absolute overflow-hidden rounded-2xl will-change-transform"
             style={cardStyle(index)}
           >
             <ProjectCardContent project={project} number={index + 1} />
+            <div
+              ref={(el) => {
+                shadeRefs.current[index] = el;
+              }}
+              className="pointer-events-none absolute inset-0 z-20 bg-black opacity-0"
+              aria-hidden
+            />
           </div>
         ))}
       </div>

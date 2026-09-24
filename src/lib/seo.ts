@@ -37,7 +37,7 @@ export function languageAlternates(path: string) {
 export async function buildMetadata(
   locale: string,
   path: string,
-  namespace: "home" | "prices" | "projects" | "about",
+  namespace: "home" | "prices" | "projects" | "about" | "privacy",
 ): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: `meta.${namespace}` });
   const title = t("title");

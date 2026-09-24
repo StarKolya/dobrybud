@@ -19,7 +19,7 @@ export function AdvantageCard({ id, icon }: { id: (typeof ITEMS)[number]["id"]; 
   return (
     <div className="w-full shrink-0 rounded-lg bg-white p-7.5 tablet:w-auto">
       <Image src={icon} alt="" width={46} height={46} className="shrink-0" />
-      <p className="mt-[65px] font-heading text-[25px] tablet:text-[20px] desktop:text-[25px] font-medium uppercase leading-none tracking-[-0.01em] text-brand-dark">
+      <p className="mt-[42px] max-w-[230px] tablet:mt-[65px] tablet:max-w-none font-heading text-[25px] tablet:text-[20px] desktop:text-[25px] font-medium uppercase leading-none tracking-[-0.01em] text-brand-dark">
         {t(`items.${id}.title`)}
       </p>
       <p className="mt-[30px] text-[18px] tablet:text-[15px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] text-brand-dark">

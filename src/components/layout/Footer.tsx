@@ -58,7 +58,7 @@ export function Footer() {
                   </Link>
                 ))}
                 <Link
-                  href={ROUTES.home}
+                  href={ROUTES.privacy}
                   className="font-sans text-[16px] tablet:text-base desktop:text-[20px] font-normal leading-none tracking-[-0.01em] text-[#2C2C2C] transition-colors hover:text-brand-red"
                 >
                   {t("privacyPolicy")}

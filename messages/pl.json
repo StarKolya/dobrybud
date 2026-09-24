@@ -335,6 +335,10 @@
     "about": {
       "title": "Dobry Bud — firma remontowa Warszawa | O nas",
       "description": "Dobry Bud to firma remontowa w Warszawie specjalizująca się w remontach mieszkań pod klucz. 4 lata doświadczenia, 144 realizacje i ponad 5760 m²."
+    },
+    "privacy": {
+      "title": "Polityka prywatności | Dobry Bud",
+      "description": "Jak Dobry Bud zbiera, wykorzystuje i chroni Twoje dane osobowe zgodnie z RODO."
     }
   },
   "seo": {
@@ -349,5 +353,129 @@
       "avatar": "{name} — klient Dobry Bud",
       "banner": "Bezpłatna konsultacja w sprawie remontu mieszkania"
     }
+  },
+  "privacy": {
+    "title": "Polityka prywatności",
+    "updated": "Ostatnia aktualizacja: 25.09.2026",
+    "intro": "Niniejsza polityka wyjaśnia, jakie dane osobowe zbiera serwis dobrybud.pl, w jakim celu je wykorzystujemy, jak długo je przechowujemy oraz jakie prawa przysługują Ci na podstawie ogólnego rozporządzenia o ochronie danych (RODO).",
+    "sections": [
+      {
+        "title": "1. Administrator danych",
+        "text": [
+          "Administratorem Twoich danych osobowych jest Dobry Bud, Warszawa, Polska (dalej „my”). We wszystkich sprawach dotyczących danych osobowych napisz do nas na {email} lub zadzwoń pod numer {phone}."
+        ]
+      },
+      {
+        "title": "2. Jakie dane zbieramy",
+        "text": [
+          "Zbieramy wyłącznie dane, które przekazujesz nam samodzielnie, oraz dane techniczne zbierane automatycznie podczas korzystania z serwisu:"
+        ],
+        "list": [
+          "zgłoszenie na konsultację lub wycenę: imię, numer telefonu, metraż lokalu (opcjonalnie) oraz formularz lub strona, z której wysłano zgłoszenie;",
+          "pliki dołączone do zgłoszenia (np. rzut mieszkania lub zdjęcia lokalu);",
+          "newsletter: adres e-mail;",
+          "korespondencja: dane przekazane nam telefonicznie, e-mailem, przez Telegram, Viber lub WhatsApp;",
+          "dane techniczne: adres IP, typ urządzenia i przeglądarki, odwiedzone strony i działania w serwisie — za pomocą plików cookie i podobnych technologii (zob. pkt 7)."
+        ]
+      },
+      {
+        "title": "3. Cele i podstawy prawne przetwarzania",
+        "list": [
+          "odpowiedź na zgłoszenie, kontakt z Tobą, przygotowanie wyceny i zawarcie umowy — art. 6 ust. 1 lit. b RODO (działania na Twoje żądanie przed zawarciem umowy);",
+          "wysyłka newslettera z informacjami i ofertami — art. 6 ust. 1 lit. a RODO (Twoja zgoda, którą możesz w każdej chwili wycofać);",
+          "analiza ruchu w serwisie i wyświetlanie reklam w usługach Google i Meta (Facebook, Instagram) — art. 6 ust. 1 lit. a RODO (Twoja zgoda na pliki cookie);",
+          "wypełnianie obowiązków prawnych (m.in. księgowych i podatkowych) — art. 6 ust. 1 lit. c RODO;",
+          "ustalenie, dochodzenie i obrona roszczeń — art. 6 ust. 1 lit. f RODO (nasz prawnie uzasadniony interes)."
+        ],
+        "note": [
+          "Podanie danych jest dobrowolne, ale bez imienia i numeru telefonu nie będziemy mogli odpowiedzieć na Twoje zgłoszenie."
+        ]
+      },
+      {
+        "title": "4. Jak długo przechowujemy dane",
+        "list": [
+          "dane ze zgłoszeń i dołączone pliki — 2 lata od ostatniego kontaktu z Tobą;",
+          "adres e-mail do newslettera — 2 lata lub do chwili rezygnacji z subskrypcji, jeśli nastąpi wcześniej;",
+          "jeśli zawrzemy umowę — przez okres wymagany przepisami podatkowymi i rachunkowymi;",
+          "pliki cookie — przez okres ważności każdego z nich lub do czasu ich usunięcia w przeglądarce."
+        ],
+        "note": [
+          "Po upływie tych okresów dane są usuwane."
+        ]
+      },
+      {
+        "title": "5. Odbiorcy danych",
+        "text": [
+          "Nie sprzedajemy Twoich danych. Serwis działa na własnym serwerze, którym samodzielnie administrujemy. Dostęp do danych mogą mieć wyłącznie:"
+        ],
+        "list": [
+          "nasi pracownicy i współpracownicy, którym są one potrzebne do obsługi Twojego zgłoszenia;",
+          "dostawcy usług pocztowych i IT zapewniający działanie serwisu i poczty elektronicznej;",
+          "Google Ireland Limited — Google Tag Manager oraz powiązane narzędzia analityczne i reklamowe;",
+          "Meta Platforms Ireland Limited — Meta Pixel;",
+          "organy państwowe — wyłącznie gdy wymagają tego przepisy prawa."
+        ],
+        "note": [
+          "Jeśli piszesz do nas przez Telegram, Viber lub WhatsApp, usługi te przetwarzają dane zgodnie z własnymi politykami prywatności."
+        ]
+      },
+      {
+        "title": "6. Przekazywanie danych poza EOG",
+        "text": [
+          "Google i Meta mogą przekazywać dane do USA. Odbywa się to na podstawie decyzji Komisji Europejskiej w sprawie EU-U.S. Data Privacy Framework lub standardowych klauzul umownych zatwierdzonych przez Komisję Europejską."
+        ]
+      },
+      {
+        "title": "7. Pliki cookie",
+        "text": [
+          "Pliki cookie to niewielkie pliki tekstowe zapisywane w Twojej przeglądarce. Korzystamy z plików:"
+        ],
+        "list": [
+          "niezbędnych — zapewniają działanie serwisu (np. zapamiętują, że wyskakujące okno zostało już wyświetlone podczas bieżącej wizyty);",
+          "analitycznych — Google Tag Manager i powiązane narzędzia Google pomagają nam zrozumieć, jak odwiedzający korzystają z serwisu;",
+          "marketingowych — Meta Pixel pozwala mierzyć skuteczność reklam na Facebooku i Instagramie oraz wyświetlać reklamy osobom, które odwiedziły serwis."
+        ],
+        "note": [
+          "Możesz zablokować lub usunąć pliki cookie w ustawieniach przeglądarki. Nie wpłynie to na podstawowe funkcje serwisu."
+        ]
+      },
+      {
+        "title": "8. Twoje prawa",
+        "text": [
+          "Masz prawo do:"
+        ],
+        "list": [
+          "dostępu do swoich danych i otrzymania ich kopii;",
+          "sprostowania nieprawidłowych danych;",
+          "usunięcia danych;",
+          "ograniczenia przetwarzania;",
+          "przenoszenia danych;",
+          "wniesienia sprzeciwu wobec przetwarzania opartego na naszym prawnie uzasadnionym interesie;",
+          "wycofania zgody w dowolnym momencie — nie wpływa to na zgodność z prawem przetwarzania przed jej wycofaniem;",
+          "wniesienia skargi do organu nadzorczego — Prezes Urzędu Ochrony Danych Osobowych, ul. Stawki 2, 00-193 Warszawa, uodo.gov.pl."
+        ],
+        "note": [
+          "Aby skorzystać ze swoich praw lub zrezygnować z newslettera, napisz do nas na {email}."
+        ]
+      },
+      {
+        "title": "9. Zautomatyzowane podejmowanie decyzji",
+        "text": [
+          "Nie podejmujemy wobec Ciebie decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu. Google i Meta mogą wykorzystywać dane z plików cookie do personalizacji reklam zgodnie z własnymi politykami."
+        ]
+      },
+      {
+        "title": "10. Bezpieczeństwo",
+        "text": [
+          "Stosujemy środki techniczne i organizacyjne chroniące Twoje dane przed utratą i nieuprawnionym dostępem oraz ograniczamy dostęp do nich do upoważnionych osób."
+        ]
+      },
+      {
+        "title": "11. Zmiany polityki",
+        "text": [
+          "Możemy aktualizować niniejszą politykę. Aktualna wersja jest zawsze dostępna na tej stronie, a data ostatniej aktualizacji znajduje się na górze."
+        ]
+      }
+    ]
   }
 }
