@@ -22,7 +22,7 @@ function SocialIcons() {
 }
 
 const CONTACT_LINK_CLASSNAME =
-  "flex items-center gap-2 font-sans text-[16px] tablet:text-base desktop:text-[20px] font-normal leading-none tracking-[-0.01em] text-[#2C2C2C] transition-colors hover:text-brand-red";
+  "flex items-center gap-2 whitespace-nowrap font-sans text-[15px] tablet:text-base desktop:text-[20px] font-normal leading-none tracking-[-0.01em] text-[#2C2C2C] transition-colors hover:text-brand-red";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -42,8 +42,8 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col gap-8 tablet:flex-row tablet:items-start tablet:justify-between">
-          <div className="order-2 flex gap-10 tablet:order-1 desktop:gap-16">
-            <div className="w-40 desktop:w-48">
+          <div className="order-2 flex gap-6 tablet:order-1 tablet:gap-10 desktop:gap-16">
+            <div className="w-36 min-w-0 hyphens-auto tablet:w-40 desktop:w-48">
               <p className="mb-3 desktop:mb-7 font-sans text-[18px] tablet:text-base desktop:text-[20px] font-normal uppercase leading-none tracking-[-0.01em] text-[#2C2C2C]">
                 {t("menuTitle")}
               </p>
@@ -66,7 +66,7 @@ export function Footer() {
               </nav>
             </div>
 
-            <div>
+            <div className="shrink-0">
               <p className="mb-3 desktop:mb-7 font-sans text-[18px] tablet:text-base desktop:text-[20px] font-normal uppercase leading-none tracking-[-0.01em] text-[#2C2C2C]">
                 {t("contactsTitle")}
               </p>

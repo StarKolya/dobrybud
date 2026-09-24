@@ -205,7 +205,7 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
             <div className="min-w-0">
               <Link
               href={`tel:${CONTACT_PHONE_HREF}`}
-              className="text-[25px] font-normal text-brand-dark transition-colors hover:text-brand-red"
+              className="whitespace-nowrap text-[min(25px,6vw)] font-normal text-brand-dark transition-colors hover:text-brand-red"
             >
               {CONTACT_PHONE_DISPLAY}
             </Link> <br />
