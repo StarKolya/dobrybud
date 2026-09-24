@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { NavButton } from "@/components/ui/NavButton";
 import { AnimatedValue } from "@/components/ui/AnimatedValue";
+import { ResultCaption } from "@/components/ui/ResultCaption";
 import type { ProjectCard as ProjectCardData } from "@/types";
 
 export function ProjectCard({
@@ -58,8 +59,11 @@ export function ProjectCard({
         }`}
       >
         <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{t("result")}:</p>
-        <p className="mt-2 max-w-[250px] font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
-          <span className="font-bold">{project.resultValue}</span> {t("resultCaption")}
+        <p className="mt-2 font-heading text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
+          <ResultCaption
+            value={<span className="font-bold">{project.resultValue}</span>}
+            caption={t("resultCaption")}
+          />
         </p>
       </div>
     </div>

@@ -2,13 +2,13 @@ import { Commissioner, Geist, Raleway } from "next/font/google";
 
 export const commissioner = Commissioner({
   variable: "--font-commissioner",
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["400", "500", "600", "700"],
 });
 
 export const geist = Geist({
   variable: "--font-geist",
-  subsets: ["latin", "latin-ext"],
+  subsets: ["latin", "latin-ext", "cyrillic"],
 });
 
 export const raleway = Raleway({

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { NavButton } from "@/components/ui/NavButton";
 import { AnimatedValue } from "@/components/ui/AnimatedValue";
+import { ResultCaption } from "@/components/ui/ResultCaption";
 
 interface Slide {
   image: string;
@@ -72,11 +73,15 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
     setIndex((prev) => Math.min(Math.max(prev + delta, 0), SLIDES.length - 1));
 
   const result = (
-    <span className="block w-[300px] max-w-full tablet:w-auto">
-      <span className="font-semibold text-brand-red">
-        <AnimatedValue value={slide.resultValue} />
-      </span>{" "}
-      {t("resultCaption")}
+    <span className="block text-[min(22px,5.3vw)] tablet:text-[25px]">
+      <ResultCaption
+        value={
+          <span className="font-semibold text-brand-red">
+            <AnimatedValue value={slide.resultValue} />
+          </span>
+        }
+        caption={t("resultCaption")}
+      />
     </span>
   );
 
