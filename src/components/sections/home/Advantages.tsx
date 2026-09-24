@@ -77,7 +77,7 @@ export function Advantages() {
         </div>
 
         <div className="hidden gap-6 tablet:flex">
-          <div className="w-40 shrink-0 desktop:w-52">
+          <div className="w-60 shrink-0">
             <Badge>{t("title")}</Badge>
           </div>
 

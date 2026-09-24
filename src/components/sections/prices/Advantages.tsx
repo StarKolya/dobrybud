@@ -14,7 +14,7 @@ export function Advantages({ onRequestQuote }: { onRequestQuote: () => void }) {
         <Badge className="mb-6 tablet:hidden">{t("title")}</Badge>
 
         <div className="flex gap-6">
-          <div className="hidden w-40 shrink-0 tablet:block desktop:w-52">
+          <div className="hidden shrink-0 tablet:block tablet:w-60">
             <Badge>{t("title")}</Badge>
           </div>
 
