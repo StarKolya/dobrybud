@@ -5,7 +5,10 @@ export const BREAKPOINTS = {
 
 export const SESSION_STORAGE_KEYS = {
   exitPopupShown: "dobrybud:exit-popup-shown",
+  sessionStartedAt: "dobrybud:session-started-at",
 } as const;
+
+export const EXIT_POPUP_MIN_TIME_ON_SITE_MS = 15_000;
 
 export const ROUTES = {
   home: "/",

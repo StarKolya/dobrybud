@@ -1,23 +1,29 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { SESSION_STORAGE_KEYS } from "@/lib/constants";
+import { EXIT_POPUP_MIN_TIME_ON_SITE_MS, SESSION_STORAGE_KEYS } from "@/lib/constants";
 
 /**
  * Fires once per session: on desktop when the cursor moves toward the top
  * of the viewport, on touch devices when the tab is about to be hidden.
+ * Only arms after the visitor has spent EXIT_POPUP_MIN_TIME_ON_SITE_MS on the site.
  */
 export function useExitIntent() {
   const [triggered, setTriggered] = useState(false);
   const hasFiredRef = useRef(false);
 
   useEffect(() => {
+    let sessionStartedAt = Date.now();
     try {
       if (sessionStorage.getItem(SESSION_STORAGE_KEYS.exitPopupShown)) hasFiredRef.current = true;
+      const stored = Number(sessionStorage.getItem(SESSION_STORAGE_KEYS.sessionStartedAt));
+      if (stored > 0) sessionStartedAt = stored;
+      else sessionStorage.setItem(SESSION_STORAGE_KEYS.sessionStartedAt, String(sessionStartedAt));
     } catch {}
 
     const fire = () => {
       if (hasFiredRef.current) return;
+      if (Date.now() - sessionStartedAt < EXIT_POPUP_MIN_TIME_ON_SITE_MS) return;
       hasFiredRef.current = true;
       try {
         sessionStorage.setItem(SESSION_STORAGE_KEYS.exitPopupShown, "1");
