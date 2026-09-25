@@ -45,6 +45,36 @@ const TESTIMONIALS: Testimonial[] = [
     beforeImage: "/images/testimonials/6/before.jpg",
     afterImage: "/images/testimonials/6/after.jpg",
   },
+  {
+    id: "7",
+    avatarImage: "/images/testimonials/7/avatar.jpg",
+    beforeImage: "/images/testimonials/7/before.jpg",
+    afterImage: "/images/testimonials/7/after.jpg",
+  },
+  {
+    id: "8",
+    avatarImage: "/images/testimonials/8/avatar.jpg",
+    beforeImage: "/images/testimonials/8/before.jpg",
+    afterImage: "/images/testimonials/8/after.jpg",
+  },
+  {
+    id: "9",
+    avatarImage: "/images/testimonials/9/avatar.jpg",
+    beforeImage: "/images/testimonials/9/before.jpg",
+    afterImage: "/images/testimonials/9/after.jpg",
+  },
+  {
+    id: "10",
+    avatarImage: "/images/testimonials/10/avatar.jpg",
+    beforeImage: "/images/testimonials/10/before.jpg",
+    afterImage: "/images/testimonials/10/after.jpg",
+  },
+  {
+    id: "11",
+    avatarImage: "/images/testimonials/11/avatar.jpg",
+    beforeImage: "/images/testimonials/11/before.jpg",
+    afterImage: "/images/testimonials/11/after.jpg",
+  },
 ];
 
 
