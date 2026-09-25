@@ -44,9 +44,21 @@ const PROJECTS: ScrollProject[] = [
     images: projectImages(4, 4),
     stats: { budget: "53000 zł", durationMonths: 3, areaSqm: 52, resultValue: "+39%" },
   },
-  { id: "5", images: projectImages(5, 5) },
-  { id: "6", images: projectImages(6, 4) },
-  { id: "7", images: projectImages(7, 3) },
+  {
+    id: "5",
+    images: projectImages(5, 5),
+    stats: { budget: "89000 zł", durationMonths: 3, areaSqm: 96, resultValue: "+45%" },
+  },
+  {
+    id: "6",
+    images: projectImages(6, 4),
+    stats: { budget: "46000 zł", durationMonths: 2, areaSqm: 48, resultValue: "+42%" },
+  },
+  {
+    id: "7",
+    images: projectImages(7, 3),
+    stats: { budget: "51000 zł", durationMonths: 2, areaSqm: 54, resultValue: "+40%" },
+  },
 ];
 
 function ProjectCardContent({ project, number }: { project: ScrollProject; number: number }) {

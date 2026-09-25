@@ -10,9 +10,10 @@ interface Country {
   flag: string;
 }
 
+// The first entry is the default selection.
 const COUNTRIES: Country[] = [
-  { code: "UA", name: "Україна", dialCode: "+380", flag: "🇺🇦" },
   { code: "PL", name: "Polska", dialCode: "+48", flag: "🇵🇱" },
+  { code: "UA", name: "Україна", dialCode: "+380", flag: "🇺🇦" },
   { code: "DE", name: "Deutschland", dialCode: "+49", flag: "🇩🇪" },
   { code: "GB", name: "United Kingdom", dialCode: "+44", flag: "🇬🇧" },
   { code: "US", name: "United States", dialCode: "+1", flag: "🇺🇸" },

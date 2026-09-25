@@ -135,7 +135,9 @@ export function PackagesScroll() {
   return (
     <section
       ref={sectionRef}
-      className="relative"
+      // The negative margin below makes this box overlap the next section; let taps
+      // fall through to it (the cards opt back in with pointer-events-auto).
+      className="pointer-events-none relative"
       style={
         m
           ? {
