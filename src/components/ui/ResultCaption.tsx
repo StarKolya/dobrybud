@@ -1,5 +1,5 @@
 /**
- * "+50% до вартості нерухомості / після ремонту" — breaks before the last two
+ * "+50% до вартості / нерухомості після ремонту" — breaks before the last three
  * caption words so the result reads as two lines in every locale, per design.
  *
  * Inherits the surrounding font size; on phones it shrinks only when the card
@@ -20,9 +20,9 @@ export function ResultCaption({
   return (
     <span className="@container block">
       <span className={`block ${fit ? "max-tablet:text-[min(1em,5.8cqw)]" : ""}`}>
-        {value} {words.slice(0, -2).join(" ")}
+        {value} {words.slice(0, -3).join(" ")}
         <br />
-        {words.slice(-2).join(" ")}
+        {words.slice(-3).join(" ")}
       </span>
     </span>
   );
