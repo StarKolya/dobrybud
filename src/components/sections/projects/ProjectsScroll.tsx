@@ -6,13 +6,18 @@ import { ResultCaption } from "@/components/ui/ResultCaption";
 import { useTranslations } from "next-intl";
 import { NavButton } from "@/components/ui/NavButton";
 
-interface ScrollProject {
-  id: string;
-  images: string[];
+interface ProjectStats {
   budget: string;
   durationMonths: number;
   areaSqm: number;
   resultValue: string;
+}
+
+interface ScrollProject {
+  id: string;
+  images: string[];
+  /** Left out until the real figures are known; the card then shows only its photos. */
+  stats?: ProjectStats;
 }
 
 const projectImages = (id: number, count: number) =>
@@ -22,27 +27,26 @@ const PROJECTS: ScrollProject[] = [
   {
     id: "1",
     images: projectImages(1, 5),
-    budget: "39000 zł",
-    durationMonths: 2,
-    areaSqm: 73,
-    resultValue: "+50%",
+    stats: { budget: "39000 zł", durationMonths: 2, areaSqm: 73, resultValue: "+50%" },
   },
   {
     id: "2",
     images: projectImages(2, 4),
-    budget: "53000 zł",
-    durationMonths: 3,
-    areaSqm: 52,
-    resultValue: "+39%",
+    stats: { budget: "53000 zł", durationMonths: 3, areaSqm: 52, resultValue: "+39%" },
   },
   {
     id: "3",
     images: projectImages(3, 4),
-    budget: "39000 zł",
-    durationMonths: 2,
-    areaSqm: 73,
-    resultValue: "+50%",
+    stats: { budget: "39000 zł", durationMonths: 2, areaSqm: 73, resultValue: "+50%" },
   },
+  {
+    id: "4",
+    images: projectImages(4, 4),
+    stats: { budget: "53000 zł", durationMonths: 3, areaSqm: 52, resultValue: "+39%" },
+  },
+  { id: "5", images: projectImages(5, 5) },
+  { id: "6", images: projectImages(6, 4) },
+  { id: "7", images: projectImages(7, 3) },
 ];
 
 function ProjectCardContent({ project, number }: { project: ScrollProject; number: number }) {
@@ -51,12 +55,15 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
   const [imageIndex, setImageIndex] = useState(0);
   const count = project.images.length;
   const go = (delta: number) => setImageIndex((prev) => Math.min(Math.max(prev + delta, 0), count - 1));
+  const { stats } = project;
 
-  const facts = [
-    { key: "budget", label: t("budget"), value: project.budget },
-    { key: "duration", label: t("duration"), value: t("months", { count: project.durationMonths }) },
-    { key: "area", label: t("area"), value: `${project.areaSqm} m²` },
-  ];
+  const facts = stats
+    ? [
+        { key: "budget", label: t("budget"), value: stats.budget },
+        { key: "duration", label: t("duration"), value: t("months", { count: stats.durationMonths }) },
+        { key: "area", label: t("area"), value: `${stats.areaSqm} m²` },
+      ]
+    : [];
 
   return (
     <>
@@ -65,7 +72,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
           {t("project")} {number}
         </h2>
 
-        <div className="relative h-[300px] shrink-0 overflow-hidden rounded-xl">
+        <div className={`relative overflow-hidden rounded-xl ${stats ? "h-[300px] shrink-0" : "flex-1"}`}>
           <Image src={project.images[imageIndex]} alt={tAlt("project", { number, photo: imageIndex + 1 })} fill sizes="100vw" className="object-cover" />
           <div className="absolute inset-x-2 top-1/2 flex -translate-y-1/2 justify-between">
             <NavButton small direction="prev" onClick={() => go(-1)} disabled={imageIndex === 0} />
@@ -73,6 +80,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
           </div>
         </div>
 
+        {stats && (
         <div className="mt-[5px] flex flex-col gap-[5px]">
           {[
             [
@@ -97,7 +105,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
                         fact.value
                       ) : (
                         <ResultCaption
-                          value={<span className="font-bold text-brand-red">{project.resultValue}</span>}
+                          value={<span className="font-bold text-brand-red">{stats.resultValue}</span>}
                           caption={t("resultCaption")}
                           fit={false}
                         />
@@ -109,6 +117,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
             </div>
           ))}
         </div>
+        )}
       </div>
 
       <div className="hidden tablet:contents">
@@ -130,15 +139,17 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
             <p className="font-heading text-[25px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">{fact.value}</p>
           </div>
         ))}
+        {stats && (
         <div className="flex flex-col gap-2 rounded-lg bg-white/90 px-5 py-[18px] text-[#2C2C2C]">
           <p className="font-sans text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums">{t("result")}</p>
           <p className="font-heading text-[25px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums">
             <ResultCaption
-              value={<span className="text-brand-red">{project.resultValue}</span>}
+              value={<span className="text-brand-red">{stats.resultValue}</span>}
               caption={t("resultCaption")}
             />
           </p>
         </div>
+        )}
       </div>
 
       <div className="absolute bottom-10 right-10 flex flex-col items-center gap-2">
@@ -194,9 +205,9 @@ const END_TOP_PX = BOTTOM_MARGIN_PX;
 
 /**
  * Scroll distance of each phase as a share of the viewport height: the first
- * card covers the heading, then the second and third each slide and widen.
+ * card covers the heading, then every later card slides up and widens.
  */
-const PHASE_SCROLL_RATIOS = [0.5, 0.5, 0.25, 0.5, 0.25];
+const PHASE_SCROLL_RATIOS = [0.5, ...PROJECTS.slice(1).flatMap(() => [0.5, 0.25])];
 const TOTAL_SCROLL_RATIO = PHASE_SCROLL_RATIOS.reduce((sum, r) => sum + r, 0);
 
 interface Metrics {
@@ -217,8 +228,8 @@ const ease = (t: number) => t * t * (3 - 2 * t);
 
 /**
  * The first card starts below the heading, slightly wider than the others, and
- * slides up to cover it; the second and third then slide up over it in turn and
- * widen to its width.
+ * slides up to cover it; each later card then slides up over the previous one
+ * in turn and widens to its width.
  */
 export function ProjectsScroll() {
   const t = useTranslations("projects");
@@ -263,23 +274,24 @@ export function ProjectsScroll() {
     const apply = (progress: number) => {
       // The heading fades out as the first card slides over it.
       if (titleRef.current) titleRef.current.style.opacity = String(1 - ease(clamp01(progress)));
-      // Card 0 slides up over the heading in the first unit of progress. Cards 1
-      // and 2 then each slide in the first half of their unit and widen in the
+      // Card 0 slides up over the heading in the first unit of progress. Every
+      // later card then slides in the first half of its unit and widens in the
       // second, while the card underneath sinks back and darkens.
+      let prevY = 0;
       PROJECTS.forEach((_, i) => {
-        const card = cardRefs.current[i];
-        const shade = shadeRefs.current[i];
-        if (!card || !shade) return;
-
         const step = progress - i;
         const move = ease(clamp01(step * 2));
         const widen = ease(clamp01(step * 2 - 1));
-        const restY = m.firstTop + i * (m.cardH + GAP_PX);
-        // The third card rides along with the second one, keeping the gap.
-        const followed =
-          i === 2 ? (m.firstTop + m.cardH + GAP_PX - END_TOP_PX) * ease(clamp01((progress - 1) * 2)) : 0;
+        // Card 1 waits below the heading's spot; from card 2 on, each waiting
+        // card rides along with the one above it, keeping the gap.
+        const waitY = i === 1 ? m.firstTop + m.cardH + GAP_PX : prevY + m.cardH + GAP_PX;
         const y =
-          i === 0 ? lerp(m.firstTop, END_TOP_PX, ease(clamp01(progress))) : lerp(restY - followed, END_TOP_PX, move);
+          i === 0 ? lerp(m.firstTop, END_TOP_PX, ease(clamp01(progress))) : lerp(waitY, END_TOP_PX, move);
+        prevY = y;
+
+        const card = cardRefs.current[i];
+        const shade = shadeRefs.current[i];
+        if (!card || !shade) return;
         const covered = i < PROJECTS.length - 1 ? ease(clamp01((progress - i - 1) * 2)) : 0;
         const recede = lerp(1, RECEDE_SCALE, covered);
         const scale = (i === 0 ? 1 : lerp(narrowScale, 1, widen)) * recede;
@@ -302,7 +314,11 @@ export function ProjectsScroll() {
         const start = PHASE_SCROLL_RATIOS.slice(0, i).reduce((sum, r) => sum + r, 0);
         return clamp01((scrolled / m.vh - start) / PHASE_SCROLL_RATIOS[i]);
       };
-      apply(phase(0) + (phase(1) + phase(2)) / 2 + (phase(3) + phase(4)) / 2); // 0..3, one unit per card
+      // 0..PROJECTS.length, one unit per card: the heading phase, then a slide
+      // and a widen phase per later card, each worth half a unit.
+      let progress = phase(0);
+      for (let i = 1; i < PHASE_SCROLL_RATIOS.length; i += 2) progress += (phase(i) + phase(i + 1)) / 2;
+      apply(progress);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
