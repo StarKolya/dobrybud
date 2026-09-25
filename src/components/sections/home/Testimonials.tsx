@@ -11,39 +11,39 @@ import type { Testimonial } from "@/types";
 const TESTIMONIALS: Testimonial[] = [
   {
     id: "1",
-    avatarImage: "/images/testimonials/1/avatar.png",
-    beforeImage: "/images/testimonials/1/before.png",
+    avatarImage: "/images/testimonials/1/avatar.jpg",
+    beforeImage: "/images/testimonials/1/before.jpg",
     afterImage: "/images/testimonials/1/after.jpg",
   },
   {
     id: "2",
-    avatarImage: "/images/testimonials/2/avatar.PNG",
-    beforeImage: "/images/testimonials/2/before.JPG",
-    afterImage: "/images/testimonials/2/after.JPG",
+    avatarImage: "/images/testimonials/2/avatar.jpg",
+    beforeImage: "/images/testimonials/2/before.jpg",
+    afterImage: "/images/testimonials/2/after.jpg",
   },
   {
     id: "3",
-    avatarImage: "/images/testimonials/3/avatar.PNG",
-    beforeImage: "/images/testimonials/3/before.PNG",
-    afterImage: "/images/testimonials/3/after.PNG",
+    avatarImage: "/images/testimonials/3/avatar.jpg",
+    beforeImage: "/images/testimonials/3/before.jpg",
+    afterImage: "/images/testimonials/3/after.jpg",
   },
   {
     id: "4",
-    avatarImage: "/images/testimonials/4/avatar.PNG",
-    beforeImage: "/images/testimonials/4/before.PNG",
-    afterImage: "/images/testimonials/4/after.PNG",
+    avatarImage: "/images/testimonials/4/avatar.jpg",
+    beforeImage: "/images/testimonials/4/before.jpg",
+    afterImage: "/images/testimonials/4/after.jpg",
   },
   {
     id: "5",
-    avatarImage: "/images/testimonials/5/avatar.PNG",
-    beforeImage: "/images/testimonials/5/before.PNG",
-    afterImage: "/images/testimonials/5/after.PNG",
+    avatarImage: "/images/testimonials/5/avatar.jpg",
+    beforeImage: "/images/testimonials/5/before.jpg",
+    afterImage: "/images/testimonials/5/after.jpg",
   },
   {
     id: "6",
-    avatarImage: "/images/testimonials/6/avatar.PNG",
-    beforeImage: "/images/testimonials/6/before.PNG",
-    afterImage: "/images/testimonials/6/after.PNG",
+    avatarImage: "/images/testimonials/6/avatar.jpg",
+    beforeImage: "/images/testimonials/6/before.jpg",
+    afterImage: "/images/testimonials/6/after.jpg",
   },
 ];
 
@@ -61,7 +61,7 @@ function ReviewCard({ testimonial }: { testimonial: Testimonial }) {
             alt={tAlt("avatar", { name })}
             width={80}
             height={80}
-            className="h-20 w-20 shrink-0 rounded-lg object-cover"
+            className="h-20 w-20 shrink-0 rounded-lg bg-brand-gray object-cover"
           />
         ) : (
           <span

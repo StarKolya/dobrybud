@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { CONTACT_EMAIL, CONTACT_TELEGRAM_URL, CONTACT_VIBER_URL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
+import { CONTACT_EMAIL, CONTACT_TELEGRAM_URL, CONTACT_WHATSAPP_URL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
 import { NewsletterForm } from "./NewsletterForm";
 
 const SOCIALS = [
   { name: "Telegram", href: CONTACT_TELEGRAM_URL, icon: "/icons/socials/black/telegram.svg" },
-  { name: "Viber", href: CONTACT_VIBER_URL, icon: "/icons/socials/black/viber.svg" },
+  { name: "WhatsApp", href: CONTACT_WHATSAPP_URL, icon: "/icons/socials/black/whatsapp.svg" },
 ];
 
 function SocialIcons() {
@@ -38,7 +38,7 @@ export function Footer() {
     <footer className="mt-auto bg-white px-6 pt-10 pb-5 tablet:pb-2.5 desktop:px-16 desktop:pt-14">
       <div className="mx-auto max-w-[1300px]">
         <div className="mb-8 tablet:hidden">
-          <Image src="/images/logos/red.svg" alt="Dobrybud" width={107} height={48} className="h-auto w-[100px]" />
+          <Image src="/images/logos/red.png" alt="Dobrybud" width={107} height={48} className="h-auto w-[100px]" />
         </div>
 
         <div className="flex flex-col gap-8 tablet:flex-row tablet:items-start tablet:justify-between">

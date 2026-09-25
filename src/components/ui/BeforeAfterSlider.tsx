@@ -33,7 +33,7 @@ export function BeforeAfterSlider({ beforeSrc, afterSrc, alt }: BeforeAfterSlide
   return (
     <div
       ref={containerRef}
-      className="relative aspect-[4/3] w-full select-none overflow-hidden rounded-2xl"
+      className="relative aspect-[4/3] w-full select-none overflow-hidden rounded-2xl bg-brand-gray"
     >
       <Image src={afterSrc} alt={alt} fill sizes="(min-width: 768px) 340px, 100vw" className="pointer-events-none object-cover" draggable={false} />
       <div className="absolute inset-0" style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}>

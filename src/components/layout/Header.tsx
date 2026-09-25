@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { CONTACT_EMAIL, CONTACT_TELEGRAM_URL, CONTACT_VIBER_URL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
+import { CONTACT_EMAIL, CONTACT_TELEGRAM_URL, CONTACT_WHATSAPP_URL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF, ROUTES } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 import Image from "next/image";
@@ -60,7 +60,7 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
       <div className="flex items-center gap-24">
         <Link href={ROUTES.home} className={`font-heading text-[20px] font-semibold ${textClass}`}>
           <Image
-            src={isSolid ? "/images/logos/red.svg" : "/images/logos/white.svg"}
+            src={isSolid ? "/images/logos/red.png" : "/images/logos/white.png"}
             alt="Dobrybud logo"
             width={107}
             height={48}
@@ -97,10 +97,10 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
               className="h-auto w-auto"
             />
           </Link>
-          <Link href={CONTACT_VIBER_URL} className={`text-[22px] ${textClass}`}>
+          <Link href={CONTACT_WHATSAPP_URL} className={`text-[22px] ${textClass}`}>
             <Image
-              src={`/icons/socials/${iconVariant}/viber.svg`}
-              alt="viber"
+              src={`/icons/socials/${iconVariant}/whatsapp.svg`}
+              alt="whatsapp"
               width={28}
               height={28}
               className="h-auto w-auto"
@@ -156,7 +156,7 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
         <div className="animate-menu-in fixed inset-x-0 top-0 z-50 flex h-dvh flex-col overflow-y-auto overscroll-contain bg-white px-5 pt-5.25 pb-[max(2rem,env(safe-area-inset-bottom))] tablet:hidden">
           <div className="flex items-center justify-between">
             <Link href={ROUTES.home} onClick={() => setMenuOpen(false)}>
-              <Image src="/images/logos/red.svg" alt="Dobrybud logo" width={107} height={48} className="h-9 w-20" />
+              <Image src="/images/logos/red.png" alt="Dobrybud logo" width={107} height={48} className="h-9 w-20" />
             </Link>
 
             <div className="flex items-center gap-3">
@@ -230,8 +230,8 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
                 <Image src="/icons/socials/black/telegram.svg" alt="Telegram" width={45} height={45} />
               </Link>
               <Link
-                href={CONTACT_VIBER_URL}              >
-                <Image src="/icons/socials/black/viber.svg" alt="Viber" width={45} height={45} />
+                href={CONTACT_WHATSAPP_URL}              >
+                <Image src="/icons/socials/black/whatsapp.svg" alt="WhatsApp" width={45} height={45} />
               </Link>
             </div>
           </div>
