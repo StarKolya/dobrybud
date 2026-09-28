@@ -15,7 +15,7 @@ export interface ProjectCard {
   id: string;
   image: string;
   budget: string;
-  durationMonths: number;
+  durationWeeks: number;
   areaSqm: number;
   resultValue: string;
 }

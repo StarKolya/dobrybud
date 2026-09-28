@@ -8,7 +8,7 @@ import { NavButton } from "@/components/ui/NavButton";
 
 interface ProjectStats {
   budget: string;
-  durationMonths: number;
+  durationWeeks: number;
   areaSqm: number;
   resultValue: string;
 }
@@ -27,37 +27,37 @@ const PROJECTS: ScrollProject[] = [
   {
     id: "1",
     images: projectImages(1, 5),
-    stats: { budget: "39000 zł", durationMonths: 2, areaSqm: 73, resultValue: "+50%" },
+    stats: { budget: "145000 zł", durationWeeks: 14, areaSqm: 109, resultValue: "+20%" },
   },
   {
     id: "2",
     images: projectImages(2, 4),
-    stats: { budget: "53000 zł", durationMonths: 3, areaSqm: 52, resultValue: "+39%" },
+    stats: { budget: "91000 zł", durationWeeks: 11, areaSqm: 57, resultValue: "+30%" },
   },
   {
     id: "3",
     images: projectImages(3, 4),
-    stats: { budget: "39000 zł", durationMonths: 2, areaSqm: 73, resultValue: "+50%" },
+    stats: { budget: "112000 zł", durationWeeks: 13, areaSqm: 84, resultValue: "+25%" },
   },
   {
     id: "4",
     images: projectImages(4, 4),
-    stats: { budget: "53000 zł", durationMonths: 3, areaSqm: 52, resultValue: "+39%" },
+    stats: { budget: "53000 zł", durationWeeks: 12, areaSqm: 52, resultValue: "+39%" },
   },
   {
     id: "5",
     images: projectImages(5, 5),
-    stats: { budget: "89000 zł", durationMonths: 3, areaSqm: 96, resultValue: "+45%" },
+    stats: { budget: "89000 zł", durationWeeks: 12, areaSqm: 96, resultValue: "+45%" },
   },
   {
     id: "6",
     images: projectImages(6, 4),
-    stats: { budget: "46000 zł", durationMonths: 2, areaSqm: 48, resultValue: "+42%" },
+    stats: { budget: "46000 zł", durationWeeks: 8, areaSqm: 48, resultValue: "+42%" },
   },
   {
     id: "7",
     images: projectImages(7, 3),
-    stats: { budget: "51000 zł", durationMonths: 2, areaSqm: 54, resultValue: "+40%" },
+    stats: { budget: "51000 zł", durationWeeks: 8, areaSqm: 54, resultValue: "+40%" },
   },
 ];
 
@@ -72,7 +72,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
   const facts = stats
     ? [
         { key: "budget", label: t("budget"), value: stats.budget },
-        { key: "duration", label: t("duration"), value: t("months", { count: stats.durationMonths }) },
+        { key: "duration", label: t("duration"), value: t("weeks", { count: stats.durationWeeks }) },
         { key: "area", label: t("area"), value: `${stats.areaSqm} m²` },
       ]
     : [];

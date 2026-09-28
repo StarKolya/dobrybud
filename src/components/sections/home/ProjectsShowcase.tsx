@@ -12,7 +12,7 @@ interface ShowcaseProject {
   id: string;
   images: string[];
   budget: string;
-  durationMonths: number;
+  durationWeeks: number;
   areaSqm: number;
   resultValue: string;
 }
@@ -21,26 +21,26 @@ const PROJECTS: ShowcaseProject[] = [
   {
     id: "1",
     images: ["/images/projects/1/1.jpg"],
-    budget: "39000 zł",
-    durationMonths: 2,
-    areaSqm: 73,
-    resultValue: "+50%",
+    budget: "145000 zł",
+    durationWeeks: 14,
+    areaSqm: 109,
+    resultValue: "+20%",
   },
   {
     id: "2",
     images: ["/images/projects/2/1.jpg"],
-    budget: "53000 zł",
-    durationMonths: 3,
-    areaSqm: 52,
-    resultValue: "+39%",
+    budget: "91000 zł",
+    durationWeeks: 11,
+    areaSqm: 57,
+    resultValue: "+30%",
   },
   {
     id: "3",
     images: ["/images/projects/3/1.jpg"],
-    budget: "39000 zł",
-    durationMonths: 2,
-    areaSqm: 73,
-    resultValue: "+50%",
+    budget: "112000 zł",
+    durationWeeks: 13,
+    areaSqm: 84,
+    resultValue: "+25%",
   },
 
 ];
@@ -99,7 +99,7 @@ function Result({ project, label }: { project: ShowcaseProject; label: string })
 function ProjectCard({ project, number }: { project: ShowcaseProject; number: number }) {
   const t = useTranslations("home.projects");
   const tAlt = useTranslations("seo.alt");
-  const months = t("months", { count: project.durationMonths });
+  const weeks = t("weeks", { count: project.durationWeeks });
   const [imageIndex, setImageIndex] = useState(0);
   const area = `${project.areaSqm} m²`;
 
@@ -125,13 +125,13 @@ function ProjectCard({ project, number }: { project: ShowcaseProject; number: nu
         <div className="absolute inset-x-2.5 top-2.5 flex flex-wrap gap-1 tablet:hidden">
           <Pill>{project.budget}</Pill>
           <Pill>{area}</Pill>
-          <Pill>{months}</Pill>
+          <Pill>{weeks}</Pill>
         </div>
 
         <div className="pointer-events-none absolute left-2.5 top-2.5 hidden flex-col gap-[5px] tablet:flex">
           <div className="flex gap-[5px]">
             <Fact label={t("budget")} value={project.budget} className="w-[120px]" />
-            <Fact label={t("duration")} value={months} className="w-[190px]" />
+            <Fact label={t("duration")} value={weeks} className="w-[190px]" />
             <Fact label={t("area")} value={area} className="w-[120px]" />
           </div>
           <div className="flex w-[315px] flex-col justify-center rounded-lg bg-white px-3 py-2">

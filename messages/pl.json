@@ -55,7 +55,7 @@
       "ctaHeadingHighlight": "w 1 dzień",
       "project": "Projekt",
       "viewAll": "Zobacz wszystkie projekty",
-      "months": "{count, plural, one {# miesiąc} few {# miesiące} many {# miesięcy} other {# miesiąca}}"
+      "weeks": "{count, plural, one {# tydzień} few {# tygodnie} many {# tygodni} other {# tygodnia}}"
     },
     "partners": {
       "title": "Partnerzy"
@@ -187,7 +187,7 @@
       "items": [
         {
           "question": "Ile kosztuje remont mieszkania „pod klucz”?",
-          "answer": "Koszt remontu „pod klucz” zależy od metrażu, zakresu prac i wybranego pakietu — zaczynamy od 890 zł/m². Dokładną wycenę otrzymasz po bezpłatnej konsultacji."
+          "answer": "Koszt remontu „pod klucz” zależy od metrażu, zakresu prac i wybranego pakietu. Zaczynamy od 890 zł/m². Dokładną wycenę otrzymasz po bezpłatnej konsultacji."
         },
         {
           "question": "Jak długo trwa remont?",
@@ -199,7 +199,7 @@
         },
         {
           "question": "Jak nadzorować remont, skoro nie ma mnie w Warszawie?",
-          "answer": "Cały proces możesz nadzorować zdalnie — przesyłamy regularne raporty ze zdjęciami i wideo, a menedżer projektu jest w stałym kontakcie."
+          "answer": "Cały proces możesz nadzorować zdalnie: przesyłamy regularne raporty ze zdjęciami i wideo, a menedżer projektu jest w stałym kontakcie."
         },
         {
           "question": "Czy pracujecie na podstawie umowy?",
@@ -341,7 +341,7 @@
   },
   "exitPopup": {
     "badge": "Już wychodzisz?",
-    "title": "Oferujemy\nbezpłatne usługi\nconcierge",
+    "title": "Oferujemy\nbezpłatne usługi\nmenedżera",
     "cta": "Wyślij zgłoszenie"
   },
   "meta": {

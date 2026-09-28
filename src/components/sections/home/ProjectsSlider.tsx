@@ -12,28 +12,28 @@ import { ResultCaption } from "@/components/ui/ResultCaption";
 interface Slide {
   image: string;
   budget: string;
-  durationMonths: number;
+  durationWeeks: number;
   resultValue: string;
 }
 
 const SLIDES: Slide[] = [
   {
     image: "/images/projects/1/1.jpg",
-    budget: "39000 zł",
-    durationMonths: 2,
-    resultValue: "+50%",
+    budget: "145000 zł",
+    durationWeeks: 14,
+    resultValue: "+20%",
   },
   {
     image: "/images/projects/2/1.jpg",
-    budget: "53000 zł",
-    durationMonths: 3,
-    resultValue: "+39%",
+    budget: "91000 zł",
+    durationWeeks: 11,
+    resultValue: "+30%",
   },
   {
     image: "/images/projects/3/1.jpg",
-    budget: "39000 zł",
-    durationMonths: 2,
-    resultValue: "+50%",
+    budget: "112000 zł",
+    durationWeeks: 13,
+    resultValue: "+25%",
   },
 ];
 
@@ -120,7 +120,7 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
               <AnimatedValue value={slide.budget} />
             </Fact>
             <Fact label={t("duration")} className="tablet:h-[93px]">
-              <AnimatedValue value={t("months", { count: slide.durationMonths })} />
+              <AnimatedValue value={t("weeks", { count: slide.durationWeeks })} />
             </Fact>
             <Fact label={t("result")} className="col-span-2 tablet:h-[120px]">
               {result}
@@ -146,7 +146,7 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
             <AnimatedValue value={slide.budget} />
           </Fact>
           <Fact label={t("duration")} className="h-[93px]">
-            <AnimatedValue value={t("months", { count: slide.durationMonths })} />
+            <AnimatedValue value={t("weeks", { count: slide.durationWeeks })} />
           </Fact>
           <Fact label={t("result")} className="col-span-2 h-[120px]">
             {result}
