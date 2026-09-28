@@ -6,6 +6,28 @@ export const runtime = "nodejs";
 const escapeHtml = (value: string) =>
   value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
+/** Posts the lead to the team's Telegram group; skipped when the bot isn't configured. */
+async function notifyTelegram(rows: [string, string][]) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+  if (!token || !chatId) return false;
+
+  const text = [
+    "<b>Нова заявка з сайту 🎉</b>",
+    "",
+    ...rows.map(([label, value]) => `<b>${label}:</b> ${escapeHtml(value)}`),
+  ].join("\n");
+
+  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ chat_id: chatId, text, parse_mode: "HTML", disable_web_page_preview: true }),
+    signal: AbortSignal.timeout(10_000),
+  });
+  if (!res.ok) throw new Error(`Telegram ${res.status}: ${await res.text()}`);
+  return true;
+}
+
 const field = (formData: FormData, key: string, max: number) => {
   const value = formData.get(key);
   return typeof value === "string" ? value.trim().slice(0, max) : "";
@@ -76,8 +98,8 @@ export async function POST(request: Request) {
     auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
   });
 
-  try {
-    await transporter.sendMail({
+  const [mail, telegram] = await Promise.allSettled([
+    transporter.sendMail({
       from: `"Dobry Bud — сайт" <${process.env.LEAD_MAIL_FROM}>`,
       to: process.env.LEAD_MAIL_TO,
       subject: `Нова заявка: ${name}, ${phone}`,
@@ -90,9 +112,16 @@ export async function POST(request: Request) {
           contentType: f.type || undefined,
         })),
       ),
-    });
-  } catch (error) {
-    console.error("Lead email failed", error);
+    }),
+    notifyTelegram(rows),
+  ]);
+
+  if (mail.status === "rejected") console.error("Lead email failed", mail.reason);
+  if (telegram.status === "rejected") console.error("Lead Telegram notification failed", telegram.reason);
+
+  // The lead counts as delivered if either channel got it; files only travel by email.
+  const telegramSent = telegram.status === "fulfilled" && telegram.value;
+  if (mail.status === "rejected" && !telegramSent) {
     return Response.json({ error: "Send failed" }, { status: 502 });
   }
 
