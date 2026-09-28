@@ -76,23 +76,23 @@ export function ProjectCard({
 
       <div className="absolute inset-x-2.5 top-2.5 flex flex-col gap-[5px]">
         <div className="flex gap-[5px]">
-          <div className="flex h-[60px] basis-0 grow-[119] desktop:h-[77px] desktop:w-[119px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
+          <div className="flex h-[60px] basis-0 grow-[119] desktop:h-[77px] desktop:w-[119px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:px-3.5 desktop:py-[18px]">
             <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("budget")}:</p>
-            <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={project.budget} /></p>
+            <p className="font-heading text-[15px] desktop:text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums whitespace-nowrap text-[#2C2C2C]"><AnimatedValue value={project.budget} /></p>
           </div>
           <div className="flex h-[60px] basis-0 grow-[193] desktop:h-[77px] desktop:w-[193px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
             <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("duration")}:</p>
-            <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={t("weeks", { count: project.durationWeeks })} /></p>
+            <p className="font-heading text-[15px] desktop:text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={t("weeks", { count: project.durationWeeks })} /></p>
           </div>
           <div className="flex h-[60px] basis-0 grow-[150] desktop:h-[77px] desktop:w-[150px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
             <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("area")}:</p>
-            <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={`${project.areaSqm} m²`} /></p>
+            <p className="font-heading text-[15px] desktop:text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={`${project.areaSqm} m²`} /></p>
           </div>
         </div>
 
         <div className="flex h-[84px] w-[72%] desktop:h-[106px] desktop:w-[317px] flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
           <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("result")}:</p>
-          <p className="font-heading text-[15px] desktop:text-[20px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">
+          <p className="font-heading text-[15px] desktop:text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">
             <ResultCaption
               value={<span className="font-semibold text-brand-red"><AnimatedValue value={project.resultValue} /></span>}
               caption={t("resultCaption")}
