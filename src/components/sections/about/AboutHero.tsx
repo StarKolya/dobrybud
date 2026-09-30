@@ -11,7 +11,7 @@ export function AboutHero({ onCtaClick }: { onCtaClick: () => void }) {
       <Header onCtaClick={onCtaClick} />
 
       <div className="absolute inset-0">
-        <Image src="/images/hero/hero-about.png" alt={tAlt("about")} fill priority sizes="100vw" className="object-cover" />
+        <Image src="/images/hero/hero-about.png" alt={tAlt("about")} fill preload sizes="100vw" className="object-cover" />
       </div>
 
       <div className="relative z-10 flex w-full flex-col justify-end px-5 pb-10 tablet:pb-16 desktop:px-16">

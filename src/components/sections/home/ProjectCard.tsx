@@ -38,7 +38,7 @@ export function ProjectCard({
         {/* One row on every phone: pills are ~16em + 44px wide in total (the Polish
             "miesiące" is the longest), so shrink the text only when that won't fit. */}
         <div className="@container absolute left-2 top-2 right-2 flex gap-1">
-          {[project.budget, `${project.areaSqm} m²`, t("weeks", { count: project.durationWeeks })].map((value) => (
+          {[project.budget, `${String(project.areaSqm).replace(".", ",")} m²`, t("weeks", { count: project.durationWeeks })].map((value) => (
             <span
               key={value}
               className="flex shrink-0 items-center gap-1.5 rounded-md bg-white p-[0.667em] font-heading text-[min(18px,calc((100cqw-44px)/16))] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"
@@ -86,7 +86,7 @@ export function ProjectCard({
           </div>
           <div className="flex h-[60px] basis-0 grow-[150] desktop:h-[77px] desktop:w-[150px] desktop:flex-none flex-col justify-center gap-1 rounded-lg bg-white p-2.5 desktop:p-[18px]">
             <p className="font-sans text-[13px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]">{t("area")}:</p>
-            <p className="font-heading text-[15px] desktop:text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={`${project.areaSqm} m²`} /></p>
+            <p className="font-heading text-[15px] desktop:text-[18px] font-medium leading-none tracking-[-0.01em] lining-nums proportional-nums text-[#2C2C2C]"><AnimatedValue value={`${String(project.areaSqm).replace(".", ",")} m²`} /></p>
           </div>
         </div>
 

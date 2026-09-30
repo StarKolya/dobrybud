@@ -38,10 +38,10 @@ const PROJECTS: (ProjectCardData & { images: string[] })[] = [
     id: "4",
     images: [1, 2, 3, 4].map((n) => `/images/projects/4/${n}.jpg`),
     image: "/images/projects/4/1.jpg",
-    budget: "53000 zł",
-    durationWeeks: 12,
-    areaSqm: 52,
-    resultValue: "+39%",
+    budget: "104000 zł",
+    durationWeeks: 9,
+    areaSqm: 73.27,
+    resultValue: "+35%",
   },
 ];
 

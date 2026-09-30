@@ -110,7 +110,7 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
             src={slide.image}
             alt={tAlt("project", { number: index + 1, photo: 1 })}
             fill
-            priority={index === 0}
+            preload={index === 0}
             sizes="(min-width: 768px) 90vw, 100vw"
             className="object-cover"
           />

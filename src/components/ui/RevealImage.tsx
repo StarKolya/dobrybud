@@ -7,7 +7,7 @@ interface RevealImageProps {
   afterSrc: string;
   beforeSrc: string;
   alt: string;
-  priority?: boolean;
+  preload?: boolean;
   radiusPx?: number;
 }
 
@@ -15,7 +15,7 @@ interface RevealImageProps {
  * Cursor-follow "reveal" effect: the after-renovation image is masked by a
  * soft circle that follows the pointer, uncovering the before photo beneath.
  */
-export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140 }: RevealImageProps) {
+export function RevealImage({ afterSrc, beforeSrc, alt, preload, radiusPx = 140 }: RevealImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [pointer, setPointer] = useState<{ x: number; y: number } | null>(null);
   const [visible, setVisible] = useState(false);
@@ -71,7 +71,7 @@ export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140
         src={afterSrc}
         alt={alt}
         fill
-        priority={priority}
+        preload={preload}
         sizes="100vw"
         className="object-cover object-[calc(50%+124px)_center] tablet:object-center"
       />
@@ -88,7 +88,7 @@ export function RevealImage({ afterSrc, beforeSrc, alt, priority, radiusPx = 140
           src={beforeSrc}
           alt=""
           fill
-          priority={priority}
+          preload={preload}
           sizes="100vw"
           className="object-cover object-[calc(50%+120px)_center] tablet:object-center"
         />

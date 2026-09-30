@@ -88,6 +88,35 @@ export function businessJsonLd(description: string) {
   };
 }
 
+const BREADCRUMB_LABELS = {
+  "/prices": "nav.prices",
+  "/projects": "nav.projects",
+  "/about": "nav.about",
+  "/privacy": "footer.privacyPolicy",
+} as const;
+
+export async function breadcrumbJsonLd(
+  locale: string,
+  path: keyof typeof BREADCRUMB_LABELS,
+) {
+  const t = await getTranslations({ locale });
+  const crumbs = [
+    { name: t("nav.home"), path: "/" },
+    { name: t(BREADCRUMB_LABELS[path]), path },
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      item: `${SITE_URL}${localizedPath(locale, c.path)}`,
+    })),
+  };
+}
+
 export function faqJsonLd(items: { question: string; answer: string }[]) {
   return {
     "@context": "https://schema.org",

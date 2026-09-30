@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { CONTACT_EMAIL, CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF } from "@/lib/constants";
 
 interface PrivacySection {
@@ -66,6 +67,7 @@ export default async function PrivacyPage({
     <>
       <Header variant="solid" />
       <main className="flex flex-1 flex-col">
+        <JsonLd data={await breadcrumbJsonLd(locale, "/privacy")} />
         <article className="mx-auto w-full max-w-[900px] px-5 pt-8 pb-16 tablet:px-10 tablet:pt-14 desktop:pt-20 desktop:pb-24">
           <h1 className="font-heading text-[30px] font-semibold uppercase leading-none text-brand-dark tablet:text-[48px] desktop:text-[56px]">
             {t("title")}

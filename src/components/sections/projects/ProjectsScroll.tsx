@@ -42,22 +42,22 @@ const PROJECTS: ScrollProject[] = [
   {
     id: "4",
     images: projectImages(4, 4),
-    stats: { budget: "53000 zł", durationWeeks: 12, areaSqm: 52, resultValue: "+39%" },
+    stats: { budget: "104000 zł", durationWeeks: 9, areaSqm: 73.27, resultValue: "+35%" },
   },
   {
     id: "5",
     images: projectImages(5, 5),
-    stats: { budget: "89000 zł", durationWeeks: 12, areaSqm: 96, resultValue: "+45%" },
+    stats: { budget: "145000 zł", durationWeeks: 16, areaSqm: 92, resultValue: "+30%" },
   },
   {
     id: "6",
     images: projectImages(6, 4),
-    stats: { budget: "46000 zł", durationWeeks: 8, areaSqm: 48, resultValue: "+42%" },
+    stats: { budget: "18000 zł", durationWeeks: 4, areaSqm: 8.5, resultValue: "+10%" },
   },
   {
     id: "7",
     images: projectImages(7, 3),
-    stats: { budget: "51000 zł", durationWeeks: 8, areaSqm: 54, resultValue: "+40%" },
+    stats: { budget: "82000 zł", durationWeeks: 11, areaSqm: 54, resultValue: "+39%" },
   },
 ];
 
@@ -73,7 +73,7 @@ function ProjectCardContent({ project, number }: { project: ScrollProject; numbe
     ? [
         { key: "budget", label: t("budget"), value: stats.budget },
         { key: "duration", label: t("duration"), value: t("weeks", { count: stats.durationWeeks }) },
-        { key: "area", label: t("area"), value: `${stats.areaSqm} m²` },
+        { key: "area", label: t("area"), value: `${String(stats.areaSqm).replace(".", ",")} m²` },
       ]
     : [];
 

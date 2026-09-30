@@ -16,7 +16,7 @@ export function Hero({ onCtaClick }: { onCtaClick: () => void }) {
           afterSrc="/images/hero/hhero-before.png"
           beforeSrc="/images/hero/hhero-after-2.png"
           alt={tAlt("hero")}
-          priority
+          preload
         />
       </div>
 

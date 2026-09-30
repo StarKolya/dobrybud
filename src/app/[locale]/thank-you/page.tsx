@@ -57,7 +57,7 @@ export default async function ThankYouPage({
                   src="/images/popups/3d-house-4.png"
                   alt=""
                   fill
-                  priority
+                  preload
                   sizes="(min-width: 1280px) 873px, 200vw"
                   className="object-cover"
                 />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbJsonLd, buildMetadata } from "@/lib/seo";
 import { setRequestLocale } from "next-intl/server";
 import { PricesView } from "@/components/sections/prices/PricesView";
 
@@ -20,5 +21,10 @@ export default async function PricesPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <PricesView />;
+  return (
+    <>
+      <JsonLd data={await breadcrumbJsonLd(locale, "/prices")} />
+      <PricesView />
+    </>
+  );
 }
