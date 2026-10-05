@@ -13,7 +13,7 @@ export function Advantages({ onRequestQuote }: { onRequestQuote: () => void }) {
   const headingLines = [firstWord, restWords.slice(0, 2).join(" "), restWords.slice(2).join(" ")].filter(Boolean);
 
   return (
-    <section className="px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="section-gap px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px]">
         <Badge className="mb-6 tablet:hidden">{t("title")}</Badge>
 

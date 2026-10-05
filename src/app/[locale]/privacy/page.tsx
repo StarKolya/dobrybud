@@ -68,7 +68,7 @@ export default async function PrivacyPage({
       <Header variant="solid" />
       <main className="flex flex-1 flex-col">
         <JsonLd data={await breadcrumbJsonLd(locale, "/privacy")} />
-        <article className="mx-auto w-full max-w-[900px] px-5 pt-8 pb-16 tablet:px-10 tablet:pt-14 desktop:pt-20 desktop:pb-24">
+        <article className="mx-auto w-full max-w-[900px] px-5 pt-8 tablet:px-10 tablet:pt-14 desktop:pt-20">
           <h1 className="font-heading text-[30px] font-semibold uppercase leading-none text-brand-dark tablet:text-[48px] desktop:text-[56px]">
             {t("title")}
           </h1>

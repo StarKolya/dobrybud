@@ -242,16 +242,16 @@
       "title": "Zalety",
       "items": {
         "deadline": {
-          "title": "Gwarancja dotrzymania terminów",
-          "description": "Ustalamy terminy remontu w umowie i odpowiadamy za ich dotrzymanie."
+          "title": "Gwarancja\ndotrzymania\nterminów",
+          "description": "Ustalamy terminy w umowie i kontrolujemy każdy etap, aby remont był gotowy na czas."
         },
         "contract": {
-          "title": "Umowa o stałych warunkach",
-          "description": "Wszystkie warunki ustalamy przed startem i nie zmieniamy ich jednostronnie w trakcie remontu."
+          "title": "Umowa\no stałych\nwarunkach",
+          "description": "Wszystkie warunki uzgadniamy przed startem. Bez niespodziewanych zmian kosztów i ukrytych opłat."
         },
         "warranty": {
-          "title": "Gwarancja na prace na 1 rok",
-          "description": "Udzielamy gwarancji na wykonane prace przez rok od odbioru mieszkania."
+          "title": "Gwarancja na\nprace na 1 rok",
+          "description": "Jesteśmy pewni jakości naszej pracy. Dlatego dajemy 12 miesięcy gwarancji po zakończeniu remontu."
         }
       }
     }

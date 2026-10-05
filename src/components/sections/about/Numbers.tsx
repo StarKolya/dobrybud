@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useCountUp } from "@/hooks/useCountUp";
 import { Badge } from "@/components/ui/Badge";
 
 const STATS = [
-  { key: "hours", target: 5760, suffix: "+ M²", className: "order-1 col-span-2 pr-[150px]! tablet:pr-5! tablet:col-span-1 tablet:order-3 tablet:w-[304px]" },
+  { key: "hours", target: 5760, suffix: "+ м²", className: "order-1 col-span-2 pr-[150px]! tablet:pr-5! tablet:col-span-1 tablet:order-3 tablet:w-[304px]" },
   { key: "projects", target: 144, suffix: "", className: "order-2 col-span-2 pr-[40%]! tablet:pr-5! tablet:col-span-1 tablet:order-4 tablet:w-[290px]" },
   { key: "team", target: 100, suffix: "%", className: "order-3 col-span-1 tablet:order-2 tablet:w-[246px]" },
   { key: "years", target: 4, suffix: "+", className: "order-4 col-span-1 tablet:order-1 tablet:w-[175px]" },
@@ -35,7 +35,10 @@ function StatCard({
   className?: string;
 }) {
   const t = useTranslations("home.about.stats");
+  const locale = useLocale();
   const { value, ref } = useCountUp(target);
+  // Cyrillic "м²" for UA/RU; Polish uses the Latin "m²".
+  const unit = locale === "pl" ? suffix.replace("м", "m") : suffix;
 
   return (
     <div
@@ -43,11 +46,12 @@ function StatCard({
       className={`flex flex-col justify-between gap-2 rounded-lg bg-white p-5 tablet:h-[calc(50%-2.5px)] ${className}`}
     >
       <FlagIcon className="h-4 w-4.5 text-brand-red" />
-      <span className="font-heading text-4xl font-semibold leading-none text-brand-dark tablet:text-5xl">
+      <span className="font-heading text-4xl font-semibold leading-none lining-nums proportional-nums text-brand-dark tablet:text-5xl desktop:text-[60px] desktop:font-medium desktop:tracking-[-0.01em]">
         {value}
-        {suffix}
+        {unit}
       </span>
-      <span className="text-[18px] font-normal leading-none tracking-[-0.01em] text-brand-dark">
+      {/* Reserve two lines so one-line labels start level with two-line ones in the same row. */}
+      <span className="min-h-[2lh] text-[18px] font-normal leading-none tracking-[-0.01em] text-brand-dark">
         {t(labelKey)}
       </span>
     </div>
@@ -59,7 +63,7 @@ export function Numbers() {
   const tAlt = useTranslations("seo.alt");
 
   return (
-    <section className="overflow-x-clip bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="section-gap overflow-x-clip bg-brand-gray px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px]">
       <Badge>{t("title")}</Badge>
 
@@ -72,7 +76,7 @@ export function Numbers() {
           className="hidden object-cover tablet:block"
         />
 
-        <div className="relative z-10 grid grid-cols-2 tablet:flex gap-2.5 tablet:m-0 tablet:h-full tablet:w-[639px] tablet:flex-wrap tablet:content-stretch tablet:gap-[5px] tablet:p-5">
+        <div className="relative z-10 grid grid-cols-2 gap-[5px] tablet:flex tablet:m-0 tablet:h-full tablet:w-[639px] tablet:flex-wrap tablet:content-stretch tablet:p-5">
           <div className="pointer-events-none absolute -top-4 -right-[162px] z-20 h-[310px] w-[310px] tablet:hidden">
             <Image
               src="/images/popups/3d-house-4.png"

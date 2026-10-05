@@ -14,7 +14,7 @@ export function StagesSlider() {
   const { ref: scrollerRef, atStart, atEnd, scrollBySlides, dragging, handlers } = useScrollSlider<HTMLDivElement>();
 
   return (
-    <section className="overflow-hidden px-6 py-8 tablet:px-16 tablet:py-12">
+    <section className="section-gap overflow-hidden px-6 tablet:px-16">
       <div className="relative mx-auto max-w-[1300px] overflow-hidden rounded-lg py-4">
         <div className="absolute inset-0 overflow-hidden rounded-lg">
           <Image

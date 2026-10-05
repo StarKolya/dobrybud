@@ -49,9 +49,8 @@ export function Header({ variant = "transparent", onCtaClick, sticky = false }: 
   const textClass = isSolid ? "text-brand-dark" : "text-white";
   const hoverClass = isSolid ? "hover:text-brand-red" : "hover:underline underline-offset-4";
   const iconVariant = isSolid ? "black" : "white";
-  const paddingClass = isSolid
-    ? "desktop:px-[max(70px,calc((100%-1300px)/2))]"
-    : "desktop:px-17.5";
+  // Keeps the header content within the same 1300px column as the page sections.
+  const paddingClass = "desktop:px-[max(70px,calc((100%-1300px)/2))]";
 
   return (
     <header

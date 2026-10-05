@@ -13,7 +13,7 @@ export function ConsultationBanner({
   const tAlt = useTranslations("seo.alt");
 
   return (
-    <section className="py-16 tablet:px-16 desktop:py-24">
+    <section className="section-gap tablet:px-16">
       <div className="relative mx-auto flex h-100 max-w-[1300px] items-center justify-center overflow-hidden tablet:h-115 tablet:items-center tablet:rounded-3xl">
         <Image src="/images/banner.png" alt={tAlt("banner")} fill
  sizes="100vw" className="object-cover" />

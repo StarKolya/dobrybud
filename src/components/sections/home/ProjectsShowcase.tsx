@@ -156,7 +156,7 @@ export function ProjectsShowcase() {
   const t = useTranslations("home.projects");
 
   return (
-    <section className="bg-brand-gray px-6 py-16 tablet:px-16 tablet:py-24">
+    <section className="section-gap bg-brand-gray px-6 tablet:px-16">
       <Badge>{t("title")}</Badge>
 
       <div className="mt-6 grid gap-6 tablet:grid-cols-2 tablet:gap-2">

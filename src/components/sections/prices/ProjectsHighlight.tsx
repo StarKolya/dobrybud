@@ -50,7 +50,7 @@ export function ProjectsHighlight({ redResult = false }: { redResult?: boolean }
   const priceT = useTranslations("prices");
 
   return (
-    <section className="px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="section-gap px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px]">
         <Badge className="mb-6 desktop:mb-10">{t("title")}</Badge>
 

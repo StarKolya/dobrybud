@@ -31,7 +31,7 @@ const STATS = [
     suffix: "+ M²",
     order: "order-6",
     column: "left",
-    mobileOffset: "-translate-x-[55px] translate-y-[70px]",
+    mobileOffset: "-translate-x-[55px] translate-y-[100px]",
     offset: "tablet:translate-x-15 tablet:translate-y-5",
   },
   {
@@ -98,7 +98,7 @@ export function AboutStats() {
   const { ref: houseRef, inView: houseInView } = useInView<HTMLDivElement>();
 
   return (
-    <section className="overflow-x-clip px-6 py-16 tablet:pb-0 desktop:px-16 desktop:py-24 desktop:pb-0">
+    <section className="section-gap overflow-x-clip px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px]">
         <Badge className="order-1 col-span-2 tablet:col-span-3">
           {t("title")}

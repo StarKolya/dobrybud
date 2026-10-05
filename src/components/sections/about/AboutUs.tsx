@@ -9,7 +9,7 @@ export function AboutUs() {
   const tAlt = useTranslations("seo.alt");
 
   return (
-    <section className="bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="section-gap bg-brand-gray px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px] tablet:flex tablet:gap-6">
         <div className="tablet:w-60 tablet:shrink-0">
           <Badge>{t("title")}</Badge>
@@ -35,7 +35,7 @@ export function AboutUs() {
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-brand-dark font-heading text-white lining-nums proportional-nums tablet:size-[62px] tablet:self-center tablet:text-[24px] tablet:font-light desktop:text-[30px]">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="text-[18px] leading-tight tracking-[-0.01em] text-brand-dark tablet:self-center">
+                <span className="text-[18px] font-medium leading-tight tracking-[-0.01em] text-brand-dark tablet:self-center">
                   {t(key)}
                 </span>
               </li>

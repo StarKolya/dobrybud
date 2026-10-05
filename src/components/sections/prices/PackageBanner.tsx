@@ -7,7 +7,7 @@ export function PackageBanner({ onCtaClick }: { onCtaClick: () => void }) {
   const tAlt = useTranslations("seo.alt");
 
   return (
-    <section className="px-0 py-16 tablet:px-6 desktop:px-16 desktop:py-24">
+    <section className="section-gap px-0 tablet:px-6 desktop:px-16">
       <div className="relative mx-auto flex h-[374px] tablet:h-[580px] max-w-[1300px] items-center justify-center overflow-hidden rounded-none tablet:rounded-[15px]">
         <Image src="/images/banner-2.png" alt={tAlt("banner")} fill
  sizes="100vw" className="object-cover" />

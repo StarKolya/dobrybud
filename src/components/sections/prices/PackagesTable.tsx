@@ -92,7 +92,7 @@ function PackageCard({
         ))}
       </ul>
 
-      <div className="mt-6">
+      <div className="mt-auto pt-6">
         <p className={`text-xs ${onRed ? "text-white" : "text-brand-dark/50"}`}>{t("priceLabel")}:</p>
         <p className="font-heading text-2xl font-semibold uppercase">
           {t("priceFrom")} {CALCULATOR_PACKAGES[id].pricePerSqm} ZŁ
@@ -119,7 +119,7 @@ export function PackagesTable({ onRequestQuote }: { onRequestQuote: () => void }
   });
 
   return (
-    <section className="px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="section-gap px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px]">
         <div className="mb-6 flex items-center justify-between gap-4">
           <Badge>{t("title")}</Badge>
@@ -164,13 +164,13 @@ export function PackagesTable({ onRequestQuote }: { onRequestQuote: () => void }
           </div>
         </div>
 
-        <div className="hidden min-[900px]:grid min-[900px]:grid-cols-3 min-[900px]:items-center min-[900px]:gap-6">
+        <div className="hidden min-[900px]:grid min-[900px]:grid-cols-3 min-[900px]:items-stretch min-[900px]:gap-6">
           {PACKAGE_IDS.map((id) => (
             <PackageCard
               key={id}
               id={id}
               onRequestQuote={onRequestQuote}
-              className={id === "design" ? "min-[900px]:-my-4 min-[900px]:shadow-xl" : ""}
+              className={id === "design" ? "min-[900px]:shadow-xl" : ""}
             />
           ))}
         </div>

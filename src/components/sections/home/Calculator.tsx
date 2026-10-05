@@ -53,7 +53,7 @@ export function Calculator({ onGetQuote }: { onGetQuote: (estimate: number) => v
   };
 
   return (
-    <section className="px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="section-gap px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px]">
         <div className="mb-6 tablet:hidden">
           <Badge>{t("badge")}</Badge>

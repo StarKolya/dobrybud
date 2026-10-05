@@ -16,7 +16,7 @@ export function Partners() {
   const loop = Array.from({ length: REPEAT_COUNT }, () => PARTNERS).flat();
 
   return (
-    <section className="overflow-hidden bg-brand-gray py-8 ">
+    <section className="section-gap overflow-hidden bg-brand-gray">
       <div className="mb-6 px-6 desktop:px-16">
         <div className="mx-auto max-w-[1300px]">
           <Badge>{t("title")}</Badge>

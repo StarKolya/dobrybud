@@ -131,7 +131,7 @@ export function Testimonials() {
   const { ref, atStart, atEnd, scrollBySlides, dragging, handlers } = useScrollSlider<HTMLDivElement>();
 
   return (
-    <section className="overflow-x-clip bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="section-gap overflow-x-clip bg-brand-gray px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px]">
         <div className="mb-6 flex items-center justify-between gap-4 tablet:hidden">
           <Badge>{t("title")}</Badge>
@@ -142,7 +142,7 @@ export function Testimonials() {
         </div>
 
         <div className="flex flex-col gap-6 tablet:flex-row">
-          <div className="hidden tablet:flex tablet:w-40 tablet:shrink-0 tablet:flex-col tablet:justify-between desktop:w-52">
+          <div className="hidden tablet:flex tablet:w-40 tablet:shrink-0 tablet:flex-col tablet:items-start tablet:justify-between desktop:w-52">
             <Badge>{t("title")}</Badge>
             <div className="flex gap-2">
               <NavButton direction="prev" onClick={() => scrollBySlides(-1)} disabled={atStart} />

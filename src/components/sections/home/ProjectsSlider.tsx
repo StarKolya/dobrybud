@@ -86,7 +86,7 @@ export function ProjectsSlider({ onCtaClick }: { onCtaClick: () => void }) {
   );
 
   return (
-    <section className="mt-[100px] bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="section-gap bg-brand-gray px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px]">
         <div className="mb-4 flex items-center justify-between tablet:mb-6">
           <Badge>{tTitle("title")}</Badge>

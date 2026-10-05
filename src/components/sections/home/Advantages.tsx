@@ -13,13 +13,21 @@ export const ITEMS = [
   { id: "warranty", icon: "/icons/advantages/calendar.svg" },
 ] as const;
 
-export function AdvantageCard({ id, icon }: { id: (typeof ITEMS)[number]["id"]; icon: string }) {
+export function AdvantageCard({
+  id,
+  icon,
+  className = "",
+}: {
+  id: (typeof ITEMS)[number]["id"];
+  icon: string;
+  className?: string;
+}) {
   const t = useTranslations("prices.advantages");
 
   return (
-    <div className="w-full shrink-0 rounded-lg bg-white p-7.5 tablet:w-auto">
+    <div className={`w-full shrink-0 rounded-lg bg-white p-7.5 tablet:w-auto ${className}`}>
       <Image src={icon} alt="" width={46} height={46} className="shrink-0" />
-      <p className="mt-[42px] max-w-[230px] tablet:mt-[65px] tablet:max-w-none font-heading text-[25px] tablet:text-[20px] desktop:text-[25px] font-medium uppercase leading-none tracking-[-0.01em] text-brand-dark">
+      <p className="mt-[42px] self-end whitespace-pre-line tablet:mt-[65px] font-heading text-[25px] tablet:text-[20px] desktop:text-[25px] font-medium uppercase leading-none tracking-[-0.01em] text-brand-dark">
         {t(`items.${id}.title`)}
       </p>
       <p className="mt-[30px] text-[18px] tablet:text-[15px] desktop:text-[18px] font-normal leading-none tracking-[-0.01em] text-brand-dark">
@@ -61,7 +69,7 @@ export function Advantages() {
   }, [index]);
 
   return (
-    <section className="bg-brand-gray px-6 py-16 desktop:px-16 desktop:py-24">
+    <section className="section-gap bg-brand-gray px-6 desktop:px-16">
       <div className="mx-auto max-w-[1300px]">
         <div className="mb-6 flex items-center justify-between gap-4 tablet:hidden">
           <Badge>{t("title")}</Badge>
@@ -88,9 +96,15 @@ export function Advantages() {
             <Badge>{t("title")}</Badge>
           </div>
 
+          {/* Cards share subgrid rows so titles end and descriptions start on the same line. */}
           <div className="grid flex-1 grid-cols-3 gap-2.5">
             {ITEMS.map((item) => (
-              <AdvantageCard key={item.id} id={item.id} icon={item.icon} />
+              <AdvantageCard
+                key={item.id}
+                id={item.id}
+                icon={item.icon}
+                className="row-span-3 grid grid-rows-subgrid gap-y-0"
+              />
             ))}
           </div>
         </div>

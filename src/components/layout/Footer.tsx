@@ -35,7 +35,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="mt-auto bg-white px-6 pt-10 pb-5 tablet:pb-2.5 desktop:px-16 desktop:pt-14">
+    <footer className="section-gap bg-white px-6 pt-10 pb-5 tablet:pb-2.5 desktop:px-16 desktop:pt-14">
       <div className="mx-auto max-w-[1300px]">
         <div className="mb-8 tablet:hidden">
           <Image src="/images/logos/red.png" alt="Dobrybud" width={107} height={48} className="h-auto w-[100px]" />
