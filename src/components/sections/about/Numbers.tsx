@@ -51,7 +51,7 @@ function StatCard({
         {unit}
       </span>
       {/* Reserve two lines so one-line labels start level with two-line ones in the same row. */}
-      <span className="min-h-[2lh] text-[18px] font-normal leading-none tracking-[-0.01em] text-brand-dark">
+      <span className="min-h-[2lh] text-[18px] tablet:whitespace-pre-line font-normal leading-none tracking-[-0.01em] text-brand-dark">
         {t(labelKey)}
       </span>
     </div>
