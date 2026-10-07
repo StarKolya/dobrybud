@@ -33,12 +33,7 @@ export function Hero({ onCtaClick }: { onCtaClick: () => void }) {
           </span>
         </h1>
 
-        <p className="flex items-center gap-3 text-3xl font-medium text-white desktop:text-4xl mt-auto">
-          <span className="h-3 w-3 shrink-0 rounded-full bg-brand-red" aria-hidden />
-          {t("priceFrom")}
-        </p>
-
-        <Button onClick={onCtaClick} className="w-fit h-11.25">
+        <Button onClick={onCtaClick} className="mt-auto w-fit h-11.25">
           {t("cta")}
         </Button>
       </div>
