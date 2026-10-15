@@ -34,7 +34,7 @@ export function HomeView() {
         onNoDesignClick={() => setLeadFormOpen(true)}
       />
       <Testimonials />
-      <Calculator onGetQuote={() => setLeadFormOpen(true)} />
+      {/* <Calculator onGetQuote={() => setLeadFormOpen(true)} /> */}
       <FAQ />
       <Footer />
 
