@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import type { PackageId } from "@/types";
 
@@ -55,6 +55,7 @@ export function PackagesScroll() {
   const packagesT = useTranslations("home.calculator.packages");
   const t = useTranslations("prices");
   const tAlt = useTranslations("seo.alt");
+  const locale = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [metrics, setMetrics] = useState<Metrics | null>(null);
@@ -179,7 +180,9 @@ export function PackagesScroll() {
               <p className="max-w-md font-sans text-base font-medium leading-none tracking-[-0.01em] text-white/80 tablet:text-[18px] desktop:max-w-xl desktop:text-[22px]">
                 {t(`packages.${id}.description`)}
               </p>
-              <Button className="mt-5 px-[15px]! py-[11px]! text-[18px]! font-medium">{t("detailsCta")}</Button>
+              <Button
+                onClick={() => window.open(`/presentations/pres_${id}_${locale}.pdf`, "_blank", "noopener")}
+                className="mt-5 px-[15px]! py-[11px]! text-[18px]! font-medium">{t("detailsCta")}</Button>
             </div>
           </div>
         ))}
